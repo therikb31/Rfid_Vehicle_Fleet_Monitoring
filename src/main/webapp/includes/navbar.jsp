@@ -25,13 +25,6 @@
 					<li class="nav-item"><a class="nav-link" href="addVehicle.jsp">Add Vehicle</a></li>
 				</ul>
 				<!-- Left links -->
-
-				<div class="d-flex align-items-center">
-					<button type="button" class="btn btn-link px-3 me-2">
-						Login</button>
-					<button type="button" class="btn btn-primary me-3">Sign up
-						for free</button>
-				</div>
 			</div>
 			<!-- Collapsible wrapper -->
 		</div>
