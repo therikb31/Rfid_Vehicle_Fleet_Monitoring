@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Vector;
 
@@ -58,13 +59,21 @@ public class VehicleDAO {
 				data.setRfid(rs.getString("rfid"));
 				result.add(data);
 			}
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
 	}
-	public static void main(String[] args) {
+	@SuppressWarnings("unused")
+	private static void createTable() throws SQLException {
+		Connection conn = DBConnector.getConnection();
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(Queries.VEHICLE_CREATE);
+		conn.close();
+	}
+	public static void main(String[] args) throws SQLException {
 //		Vehicle data = new Vehicle();
 //		data.setType_name("test");
 //		data.setVehicle_no("test_vehivle");
@@ -75,5 +84,6 @@ public class VehicleDAO {
 		for(int i=0;i<result.size();i++) {
 			System.out.println(result.elementAt(i).toString());
 		}
+//		createTable();
 	}
 }

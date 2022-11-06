@@ -36,7 +36,7 @@
 			</div>
 
 			<!-- Submit button -->
-			<button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+			<button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
 		</form>
 	</div>
 </body>

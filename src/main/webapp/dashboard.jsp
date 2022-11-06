@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%@ include file="./includes/navbar.jsp"%>
-	<%@ include file="./includes/sidebar.jsp"%>
+	<%@ include file="./includes/sidebar.html"%>
 	
 </body>
 </html>

@@ -23,6 +23,7 @@
 					<li class="nav-item"><a class="nav-link">NKDA</a></li>
 					<li class="nav-item"><a class="nav-link" href="dashboard.jsp">Dashboard</a></li>
 					<li class="nav-item"><a class="nav-link" href="addVehicle.jsp">Add Vehicle</a></li>
+					<li class="nav-item"><a class="nav-link" href="addReader.jsp">Add Reader</a></li>
 				</ul>
 				<!-- Left links -->
 			</div>
