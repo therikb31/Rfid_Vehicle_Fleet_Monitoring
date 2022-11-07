@@ -23,12 +23,12 @@
 			</div>
 			
 			<div class="form-outline mb-4">
-				<input type="number" id="lat" name="lat"
+				<input type="text" id="lat" name="lat"
 					class="form-control" placeholder="Enter Latitude" />
 			</div>
 			
 			<div class="form-outline mb-4">
-				<input type="number" id="lon" name="lon"
+				<input type="text" id="lon" name="lon"
 					class="form-control" placeholder="Enter Longitude" />
 			</div>
 

@@ -9,4 +9,7 @@ public class Queries {
 	public static final String READER_RETRIEVE_ALL = "SELECT * FROM reader";
 	public static final String READER_CREATE = "CREATE TABLE `reader` (	`reader_id` VARCHAR(64),	`address` VARCHAR(256),	`lat` VARCHAR(32),	`lon` VARCHAR(32));";
 	
+	public static final String LOGITEM_CREATE = "CREATE TABLE `log` (`crossed_at` TIMESTAMP,`reader_id` VARCHAR(64),	`rfid` VARCHAR(64))";
+	public static final String LOGITEM_INSERT = "INSERT INTO log (crossed_at,reader_id,rfid) VALUES (?,?,?)";
+	public static final String LOGITEM_RETRIEVE_ALL = "SELECT * FROM log";
 }

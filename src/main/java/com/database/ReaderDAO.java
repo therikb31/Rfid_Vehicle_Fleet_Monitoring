@@ -2,15 +2,40 @@ package com.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
+import com.models.LogItem;
 import com.models.Reader;
 import com.models.Vehicle;
 import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class ReaderDAO {
+	public static Vector<Reader> getReaders(){
+		Connection conn = DBConnector.getConnection();
+		Vector<Reader> readers = new Vector<Reader>();
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(Queries.READER_RETRIEVE_ALL);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Reader reader = new Reader();
+				reader.setReader_id(rs.getString("reader_id"));
+				reader.setAddress(rs.getString("address"));
+				reader.setLat(rs.getString("lat"));
+				reader.setLon(rs.getString("lon"));
+				readers.add(reader);
+			}
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return readers;
+	}
 	public static boolean addReader(Reader reader) {
 		Connection conn = DBConnector.getConnection();
 		if (conn == null) {

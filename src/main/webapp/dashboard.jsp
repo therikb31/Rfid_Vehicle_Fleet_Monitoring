@@ -7,8 +7,8 @@
 	<title>Dashboard</title>
 </head>
 <body>
-	<%@ include file="./includes/navbar.jsp"%>
-	<%@ include file="./includes/sidebar.html"%>
-	
+	<div> <%@ include file="./includes/navbar.jsp"%></div>
+	<div> <%@ include file="./includes/sidebar.html"%></div> 
+	<!-- <%@ include file="./includes/map.jsp"%> -->
 </body>
 </html>
