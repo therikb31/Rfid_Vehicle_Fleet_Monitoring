@@ -5,12 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.Vector;
+import java.util.concurrent.TimeUnit;
 
 import com.models.LogItem;
 import com.models.Vehicle;
 import com.properties.Queries;
 import com.utils.DBConnector;
+import com.utils.RandomString;
 
 public class LogDAO {
 	public static Vector<LogItem> getLog(){
@@ -69,11 +72,20 @@ public class LogDAO {
 		return false;
 	}
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, InterruptedException {
 //		createTable();
-		Vector<LogItem> logs = getLog();
-		for(int i=0;i<logs.size();i++) {
-			System.out.println(logs.elementAt(i).toString());
+//		Vector<LogItem> logs = getLog();
+//		for(int i=0;i<logs.size();i++) {
+//			System.out.println(logs.elementAt(i).toString());
+//		}
+		while(true) {
+			LogItem logItem = new LogItem();
+			logItem.setCrossed_at(new Timestamp(System.currentTimeMillis()));
+			logItem.setReader_id(RandomString.getAlphaNumericString(8));
+			logItem.setRfid(RandomString.getAlphaNumericString(8));
+			System.out.println("Added "+logItem.toString());
+			addLogItem(logItem);
+			TimeUnit.MINUTES.sleep(1);
 		}
 	}
 }
