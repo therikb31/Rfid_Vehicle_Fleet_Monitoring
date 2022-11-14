@@ -66,7 +66,7 @@ public class PDFGenerator {
 		
 	}
 	public static void main(String[] args) throws DocumentException, MalformedURLException, IOException {
-		generate("./src/main/resources/PDFOutput/output.pdf");
+		generate("./src/main/webapp/static/document.pdf");
 	}
 
 }
