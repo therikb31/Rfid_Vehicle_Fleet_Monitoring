@@ -9,8 +9,8 @@ jsMaps.loader(function() {
 		'native',
 		{
 			center: {
-				latitude: 22.581548,
-				longitude: 88.455631
+				latitude: 22.579463,
+				longitude: 88.467688
 			},
 			zoom: 14.5,
 			mouse_scroll: true,
@@ -42,7 +42,7 @@ jsMaps.loader(function() {
 			marker.title = data[i].address;
 			marker.draggable = false;
 			
-			var marker1 = jsMaps.api.marker(map,{position: {lat:parseFloat(data[i].lat), lng:parseFloat(data[i].lon)}, title:data[i].address, draggable:false});
+			var marker1 = jsMaps.api.marker(map,{position: {lat:parseFloat(data[i].lat), lng:parseFloat(data[i].lon)}, title:data[i].address, draggable:false,icon:"./static/map-icon.png"});
 			var infoWindow = jsMaps.api.infoWindow({content: data[i].address});
 			jsMaps.api.attach_event(marker1,'click',function() {
             	infoWindow.open(map,marker1);

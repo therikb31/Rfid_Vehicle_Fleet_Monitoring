@@ -7,7 +7,6 @@ public class Vehicle {
 	private String type_name;
 	private int type_id;
 	private Timestamp date_added;
-	private String rfid;
 	
 	public String getVehicle_no() {
 		return vehicle_no;
@@ -33,15 +32,9 @@ public class Vehicle {
 	public void setDate_added(Timestamp date_added) {
 		this.date_added = date_added;
 	}
-	public String getRfid() {
-		return rfid;
-	}
-	public void setRfid(String rfid) {
-		this.rfid = rfid;
-	}
 	@Override
 	public String toString() {
 		return "Vehicle [vehicle_no=" + vehicle_no + ", type_name=" + type_name + ", type_id=" + type_id
-				+ ", date_added=" + date_added + ", rfid=" + rfid + "]";
+				+ ", date_added=" + date_added + "]";
 	}
 }

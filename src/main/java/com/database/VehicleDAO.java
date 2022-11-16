@@ -25,7 +25,6 @@ public class VehicleDAO {
 			ps.setInt(2,data.getType_id());
 			ps.setString(3, data.getType_name());
 			ps.setTimestamp(4,data.getDate_added());
-			ps.setString(5, data.getRfid());
 			
 			int rowcount = ps.executeUpdate();
 			if (rowcount > 0) {
@@ -56,7 +55,6 @@ public class VehicleDAO {
 				data.setType_id(rs.getInt("type_id"));
 				data.setType_name(rs.getString("type_name"));
 				data.setDate_added(rs.getTimestamp("date_added"));
-				data.setRfid(rs.getString("rfid"));
 				result.add(data);
 			}
 			conn.close();

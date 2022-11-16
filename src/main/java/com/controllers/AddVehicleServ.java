@@ -45,14 +45,12 @@ public class AddVehicleServ extends HttpServlet {
 		int type_id = Integer.parseInt(request.getParameter("type_id"));
 		String type_name = request.getParameter("type_name");
 		Timestamp date_added = new Timestamp(System.currentTimeMillis());
-		String rfid = request.getParameter("rfid");
 		
 		Vehicle data = new Vehicle();
 		data.setVehicle_no(vehicle_no);
 		data.setType_id(type_id);
 		data.setType_name(type_name);
 		data.setDate_added(date_added);
-		data.setRfid(rfid);
 		
 		VehicleDAO.addVehicle(data);
 		request.setAttribute("addedVehicle","true");
