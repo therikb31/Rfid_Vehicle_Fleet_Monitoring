@@ -1,7 +1,8 @@
 package com.controllers;
 
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.sql.Time;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,7 +36,8 @@ public class AddLogItemServ extends HttpServlet {
 		String reader_id = request.getParameter("reader_id");
 		String rfid = request.getParameter("rfid");
 		LogItem logItem = new LogItem();
-		logItem.setCrossed_at(new Timestamp(System.currentTimeMillis()));
+		logItem.setDate(new Date(System.currentTimeMillis()));
+		logItem.setTime(new Time(System.currentTimeMillis()));
 		logItem.setReader_id(reader_id);
 		logItem.setRfid(rfid);
 		System.out.println(logItem.toString());

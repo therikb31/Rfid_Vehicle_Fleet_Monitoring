@@ -8,9 +8,20 @@
   	<servlet-name>GetVehicleLogServ</servlet-name>
   	<servlet-class>com.controllers.GetVehicleLogServ</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>AddRfidServ</display-name>
+  	<servlet-name>AddRfidServ</servlet-name>
+  	<servlet-class>com.controllers.AddRfidServ</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>GetVehicleLogServ</servlet-name>
   	<url-pattern>/GetVehicleLogServ</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddRfidServ</servlet-name>
+  	<url-pattern>/AddRfidServ</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

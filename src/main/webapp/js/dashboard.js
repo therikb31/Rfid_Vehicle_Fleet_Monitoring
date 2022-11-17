@@ -1,74 +1,101 @@
-
+var markers = [];
 var map;
-
+var readerData;
 //loading the map
-jsMaps.loader(function() {
-	var tiles = new jsMaps.Native.Tiles();
-	tiles.addTileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", ['a', 'b', 'c'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.', 'OpenStreetMap');
-	tiles.addTileLayer("http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png", ['otile1', 'otile2', 'otile3', 'otile4'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">', 'Map Quest');
-	tiles.addTileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", ['oatile1', 'oatile2', 'oatile3', 'oatile4'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">', 'Map Quest Satellite', 19);
+function loadMap() {
+	jsMaps.loader(function() {
+		var tiles = new jsMaps.Native.Tiles();
+		tiles.addTileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", ['a', 'b', 'c'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.', 'OpenStreetMap');
+		tiles.addTileLayer("http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png", ['otile1', 'otile2', 'otile3', 'otile4'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">', 'Map Quest');
+		tiles.addTileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", ['oatile1', 'oatile2', 'oatile3', 'oatile4'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">', 'Map Quest Satellite', 19);
 
-	map = jsMaps.api.init(
-		'#map',
-		'native',
-		{
-			center: {
-				latitude: 22.579463,
-				longitude: 88.467688
-			},
-			zoom: 14.5,
-			mouse_scroll: true,
-			zoom_control: true,
-			map_type: true
-		}, tiles
-	);
-});
-
+		map = jsMaps.api.init(
+			'#map',
+			'native',
+			{
+				center: {
+					latitude: 22.579463,
+					longitude: 88.467688
+				},
+				zoom: 14.5,
+				mouse_scroll: true,
+				zoom_control: true,
+				map_type: true
+			}, tiles
+		);
+	});
+	fetchReaderData();
+}
 //fetch reader locations
 async function fetchReaderData() {
-	const url = '../GetReaderServ';
+	let url = './GetReaderServ';
 	const response = await fetch(url);
 	const datapoints = await response.json();
-	plotMap(datapoints.data);
+	readerData = datapoints.data;
+	plotMap();
 };
-async function fetchVehicleLog(vehicle_no){
-	const url = '../GetVehicleLogServ?vehicle_no='+vehicle_no;
+async function fetchVehicleLog(vehicle_no) {
+	loadMap();
+	let url = './GetVehicleLogServ?vehicle_no=';
+	url = url.concat(vehicle_no);
 	const response = await fetch(url);
 	const datapoints = await response.json();
-	console.log(datapoints.data);
+	const data = datapoints.data;
+	console.log(data);
+	console.log(markers);
+	for (let i = 0; i < data.length; i++) {
+		for (let j = 0; j < markers.length; j++) {
+			if (data[i].reader_id == markers[j].id) {
+				console.log(data[i].reader_id);
+				//markers[i].marker.setIcon("./static/map-icon.png");
+				var marker1 = markers[j].marker;
+				jsMaps.api.removeMarkers(map,[markers[j].marker])
+				jsMaps.api.marker(map,marker1);
+				marker1.setIcon("./static/map-icon.png");
+			}
+		}
+	}
 }
 
 //plot reader locations
-function plotMap(data) {
+function plotMap() {
+	var data = readerData;
 	for (let i = 0; i < data.length; i++) {
 		var position = new Object();
 		position.lat = parseFloat(data[i].lat);
-		position.lon = parseFloat(data[i].lon);
+		position.lng = parseFloat(data[i].lon);
 		var marker = new Object();
 		marker.position = position;
 		marker.title = data[i].address;
 		marker.draggable = false;
+		//marker.icon = "./static/nkda-logo.png";
 
-		var marker1 = jsMaps.api.marker(map, { position: { lat: parseFloat(data[i].lat), lng: parseFloat(data[i].lon) }, title: data[i].address, draggable: false, icon: "./static/map-icon.png" });
+		var marker1 = jsMaps.api.marker(map, marker);
+		var pair = new Object();
+		pair.id = data[i].reader_id;
+		pair.marker = marker1;
+		markers.push(pair);
+		
+		//var marker1 = jsMaps.api.marker(map, { position: { lat: parseFloat(data[i].lat), lng: parseFloat(data[i].lon) }, title: data[i].address, draggable: false, icon: "./static/map-icon.png" ,markerId : data[i].reader_id});
 		var infoWindow = jsMaps.api.infoWindow({ content: data[i].address });
 		jsMaps.api.attach_event(marker1, 'click', function() {
 			infoWindow.open(map, marker1);
 		});
 	}
+	console.log(markers);
 }
 
 function setSidebarParams(data) {
 	for (let i = 0; i < data.length; i++) {
 		var element = document.getElementById(data[i].type_id.toString());
 		var liNode = document.createElement("li");
-		liNode.innerHTML = "<button class='link-dark rounded' onclick='fetchVehicleLog(\""+data[i].vehicle_no+"\")'>" + data[i].vehicle_no + "</button>";
+		liNode.innerHTML = "<button class='link-dark rounded' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
 		element.appendChild(liNode);
 
 	}
 }
 
-
-fetch('http://localhost:8080/GetVehiclesServ')
+loadMap();
+fetch('./GetVehiclesServ')
 	.then((response) => response.json())
 	.then((data) => { setSidebarParams(data.data) });
-fetchReaderData();

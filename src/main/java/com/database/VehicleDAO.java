@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.Vector;
 
 import com.models.Vehicle;
@@ -13,6 +12,30 @@ import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class VehicleDAO {
+	@SuppressWarnings("finally")
+	public static boolean checkVehicle(String vehicle_no) {
+		Connection conn = DBConnector.getConnection();
+		boolean res = false;
+		if(conn==null) {
+			System.out.println("Database Error, failed to Connect");
+			return false;
+		}
+		try {
+			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_BY_VEHICLE_NO);
+			ps.setString(1, vehicle_no);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				res = true;
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			return res;
+		}
+		
+	}
 	public static boolean addVehicle(Vehicle data) {
 		Connection conn = DBConnector.getConnection();
 		if(conn==null) {
@@ -78,10 +101,11 @@ public class VehicleDAO {
 //		data.setType_id(0);
 //		data.setDate_added(new Timestamp(System.currentTimeMillis()));
 //		addVehicle(data);
-		Vector<Vehicle> result = getVehicle();
-		for(int i=0;i<result.size();i++) {
-			System.out.println(result.elementAt(i).toString());
-		}
+//		Vector<Vehicle> result = getVehicle();
+//		for(int i=0;i<result.size();i++) {
+//			System.out.println(result.elementAt(i).toString());
+//		}
 //		createTable();
+		System.out.println(checkVehicle("test"));
 	}
 }

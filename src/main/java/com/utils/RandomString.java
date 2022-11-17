@@ -40,4 +40,8 @@ public class RandomString {
 	  System.out.println(RandomString
 	       .getAlphaNumericString(n));
 	 }
+	 public static int getRandomInt(int max) {
+		 int b = (int)(Math.random()*(max+1));  
+		 return b;
+	 }
 	}

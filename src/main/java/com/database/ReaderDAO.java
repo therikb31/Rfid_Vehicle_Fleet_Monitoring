@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import com.models.LogItem;
 import com.models.Reader;
-import com.models.Vehicle;
 import com.properties.Queries;
 import com.utils.DBConnector;
 

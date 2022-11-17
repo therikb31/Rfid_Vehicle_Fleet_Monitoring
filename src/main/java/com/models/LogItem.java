@@ -1,16 +1,25 @@
 package com.models;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.sql.Time;
 
 public class LogItem {
-	Timestamp crossed_at;
+	Date date;
+	Time time;
 	String reader_id;
 	String rfid;
-	public Timestamp getCrossed_at() {
-		return crossed_at;
+	String vehicle_no;
+	public Date getDate() {
+		return date;
 	}
-	public void setCrossed_at(Timestamp crossed_at) {
-		this.crossed_at = crossed_at;
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public Time getTime() {
+		return time;
+	}
+	public void setTime(Time time) {
+		this.time = time;
 	}
 	public String getReader_id() {
 		return reader_id;
@@ -24,9 +33,16 @@ public class LogItem {
 	public void setRfid(String rfid) {
 		this.rfid = rfid;
 	}
+	public String getVehicle_no() {
+		return vehicle_no;
+	}
+	public void setVehicle_no(String vehicle_no) {
+		this.vehicle_no = vehicle_no;
+	}
 	@Override
 	public String toString() {
-		return "LogItem [crossed_at=" + crossed_at + ", reader_id=" + reader_id + ", rfid=" + rfid + "]";
+		return "LogItem [date=" + date + ", time=" + time + ", reader_id=" + reader_id + ", rfid=" + rfid
+				+ ", vehicle_no=" + vehicle_no + "]";
 	}
 	
 }
