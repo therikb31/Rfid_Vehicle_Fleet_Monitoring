@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.database.LogDAO;
+import com.database.RfidDAO;
 import com.models.LogItem;
 
 /**
@@ -40,6 +41,7 @@ public class AddLogItemServ extends HttpServlet {
 		logItem.setTime(new Time(System.currentTimeMillis()));
 		logItem.setReader_id(reader_id);
 		logItem.setRfid(rfid);
+		logItem.setVehicle_no(RfidDAO.getVehicleByRfid(rfid));
 		System.out.println(logItem.toString());
 		LogDAO.addLogItem(logItem);
 		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
