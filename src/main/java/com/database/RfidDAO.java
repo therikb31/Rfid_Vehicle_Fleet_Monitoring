@@ -5,12 +5,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import com.models.Rfid;
 import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class RfidDAO {
+	public static Vector<Rfid> getRfid(){
+		Connection conn = DBConnector.getConnection();
+		Vector<Rfid> rfids = new Vector<Rfid>();
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(Queries.RFID_RETRIEVE_ALL);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Rfid rfid = new Rfid();
+				rfid.setRfid(rs.getString("rfid"));
+				rfid.setVehicle_no(rs.getString("vehicle_no"));
+				rfids.add(rfid);
+			}
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rfids;
+	}
 	@SuppressWarnings("unused")
 	public static void addRfid(Rfid data) {
 		Connection conn = DBConnector.getConnection();
@@ -25,6 +46,7 @@ public class RfidDAO {
 		}
 		
 	}
+	@SuppressWarnings("unused")
 	private static void createTable() throws SQLException {
 		Connection conn = DBConnector.getConnection();
 		Statement stmt = conn.createStatement();
@@ -48,7 +70,10 @@ public class RfidDAO {
 	}
 	public static void main(String[] args) throws SQLException {
 //		createTable();
-		System.out.println(getVehicleByRfid("test"));
+		Vector<Rfid> rfids = getRfid();
+		for(Rfid each:rfids) {
+			System.out.println(each.toString());
+		}
 	}
 
 }

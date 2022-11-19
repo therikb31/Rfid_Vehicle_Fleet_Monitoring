@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.models.LogItem;
 import com.models.Reader;
+import com.models.Rfid;
 import com.models.Vehicle;
 import com.properties.Queries;
 import com.utils.DBConnector;
@@ -105,24 +106,27 @@ public class LogDAO {
 	
 	public static void main(String[] args) throws SQLException, InterruptedException {
 //		createTable();
-		Vector<LogItem> logs = getLogByVehicleNo("WB03D2642");
-		for(int i=0;i<logs.size();i++) {
-			System.out.println(logs.elementAt(i).toString());
-		}
-//		Vector<Reader> readers = ReaderDAO.getReaders();
-//		Vector<Vehicle> vehicles = VehicleDAO.getVehicle();
-//		System.out.println("ok");
-//		while(true) {
-//			
-//			LogItem logItem = new LogItem();
-//			logItem.setDate(new Date(System.currentTimeMillis()));
-//			logItem.setTime(new Time(System.currentTimeMillis()));
-//			logItem.setReader_id(readers.elementAt(RandomString.getRandomInt(readers.size()-1)).getReader_id());
-//			logItem.setRfid(RandomString.getAlphaNumericString(15));
-//			logItem.setVehicle_no(vehicles.elementAt(RandomString.getRandomInt(readers.size()-1)).getVehicle_no());
-//			System.out.println("Added "+logItem.toString());
-//			addLogItem(logItem);
-//			TimeUnit.SECONDS.sleep(1);
+//		Vector<LogItem> logs = getLogByVehicleNo("WB03D2642");
+//		for(int i=0;i<logs.size();i++) {
+//			System.out.println(logs.elementAt(i).toString());
 //		}
+		LogItem logItem = new LogItem();
+		Vector<Reader> readers = ReaderDAO.getReaders();
+		Vector<Vehicle> vehicles = VehicleDAO.getVehicle();
+		Vector<Rfid> rfids = RfidDAO.getRfid();
+//		System.out.println("ok");
+		while(true) {
+			
+			
+			logItem.setDate(new Date(System.currentTimeMillis()));
+			logItem.setTime(new Time(System.currentTimeMillis()));
+			logItem.setReader_id(readers.elementAt(RandomString.getRandomInt(readers.size()-1)).getReader_id());
+			String rfid = rfids.elementAt(RandomString.getRandomInt(rfids.size()-1)).getRfid();
+			logItem.setRfid(rfid);
+			logItem.setVehicle_no(RfidDAO.getVehicleByRfid(rfid));
+			System.out.println(logItem.toString());
+			LogDAO.addLogItem(logItem);
+			TimeUnit.SECONDS.sleep(1);
+		}
 	}
 }

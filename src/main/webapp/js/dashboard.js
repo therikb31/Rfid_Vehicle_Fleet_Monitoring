@@ -35,26 +35,17 @@ async function fetchReaderData() {
 	plotMap();
 };
 async function fetchVehicleLog(vehicle_no) {
-	loadMap();
 	let url = './GetVehicleLogServ?vehicle_no=';
 	url = url.concat(vehicle_no);
 	const response = await fetch(url);
 	const datapoints = await response.json();
 	const data = datapoints.data;
 	console.log(data);
-	console.log(markers);
-	for (let i = 0; i < data.length; i++) {
-		for (let j = 0; j < markers.length; j++) {
-			if (data[i].reader_id == markers[j].id) {
-				console.log(data[i].reader_id);
-				//markers[i].marker.setIcon("./static/map-icon.png");
-				var marker1 = markers[j].marker;
-				jsMaps.api.removeMarkers(map,[markers[j].marker])
-				jsMaps.api.marker(map,marker1);
-				marker1.setIcon("./static/map-icon.png");
-			}
-		}
-	}
+	plotConditionalMap(data);
+}
+function plotConditionalMap(Vehicledata){
+	var data = Vehicledata;
+	jsMaps.api.removeMarkers(map);
 }
 
 //plot reader locations
@@ -82,7 +73,6 @@ function plotMap() {
 			infoWindow.open(map, marker1);
 		});
 	}
-	console.log(markers);
 }
 
 function setSidebarParams(data) {
