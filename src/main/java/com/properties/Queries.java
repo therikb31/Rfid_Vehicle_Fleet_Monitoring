@@ -21,4 +21,5 @@ public class Queries {
 	public static final String RFID_RETRIEVE_ALL = "SELECT * FROM rfid";
 	public static final String RFID_RETRIEVE_VEHICLE_NO = "SELECT vehicle_no FROM rfid WHERE rfid = ?";
 	
+	public static final String MARKER_RETRIEVE_ALL = "SELECT reader.reader_id, reader.address, reader.lat, reader.lon,log.vehicle_no, vehicle.type_name, vehicle.type_id, vehicle.date_added, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.vehicle_no = ? AND log.date = ?";
 }

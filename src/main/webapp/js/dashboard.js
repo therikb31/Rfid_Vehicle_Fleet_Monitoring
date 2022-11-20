@@ -35,7 +35,7 @@ async function fetchReaderData() {
 	plotMap();
 };
 async function fetchVehicleLog(vehicle_no) {
-	let url = './GetVehicleLogServ?vehicle_no=';
+	let url = './GetMarkerServ?date=2022-11-19&vehicle_no=';
 	url = url.concat(vehicle_no);
 	const response = await fetch(url);
 	const datapoints = await response.json();
@@ -46,6 +46,21 @@ async function fetchVehicleLog(vehicle_no) {
 function plotConditionalMap(Vehicledata){
 	var data = Vehicledata;
 	jsMaps.api.removeMarkers(map);
+	for(let i=0;i<data.length;i++){
+		var position = new Object();
+		position.lat = parseFloat(data[i].lat);
+		position.lng = parseFloat(data[i].lon);
+		var marker = new Object();
+		marker.position = position;
+		marker.title = data[i].address;
+		marker.draggable = false;
+		marker.icon = "./static/map-icon.png";
+		var marker1 = jsMaps.api.marker(map, marker);
+		var infoWindow = jsMaps.api.infoWindow({ content: data[i].address });
+		jsMaps.api.attach_event(marker1, 'click', function() {
+			infoWindow.open(map, marker1);
+		});
+	}
 }
 
 //plot reader locations
@@ -79,9 +94,9 @@ function setSidebarParams(data) {
 	for (let i = 0; i < data.length; i++) {
 		var element = document.getElementById(data[i].type_id.toString());
 		var liNode = document.createElement("li");
-		liNode.innerHTML = "<button class='link-dark rounded' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
+		liNode.innerHTML = "<button style='align-items:center' class='btn btn-light btn-sm' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
+		//liNode.innerHTML = "<a class='link-dark rounded' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
 		element.appendChild(liNode);
-
 	}
 }
 

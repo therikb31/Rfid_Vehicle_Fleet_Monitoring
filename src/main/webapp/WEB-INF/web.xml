@@ -15,6 +15,13 @@
   	<servlet-name>AddRfidServ</servlet-name>
   	<servlet-class>com.controllers.AddRfidServ</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>GetMarkerServ</display-name>
+  	<servlet-name>GetMarkerServ</servlet-name>
+  	<servlet-class>com.controllers.GetMarkerServ</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>GetVehicleLogServ</servlet-name>
   	<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -22,6 +29,10 @@
   <servlet-mapping>
   	<servlet-name>AddRfidServ</servlet-name>
   	<url-pattern>/AddRfidServ</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetMarkerServ</servlet-name>
+  	<url-pattern>/GetMarkerServ</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
