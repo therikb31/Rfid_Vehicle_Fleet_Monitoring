@@ -6,18 +6,19 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="#" />
 <title>Dashboard</title>
-<div>
-	<%@ include file="./includes/navbar.jsp"%></div>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
+	<%@ include file="./includes/map.jsp"%>
+	<div>
+		<%@ include file="./includes/navbar.jsp"%>
+	</div>
 	<div>
 		<div class="row">
 			<div class="col-md-auto">
 				<%@ include file="./includes/sidebar.html"%>
 			</div>
-			<div class="col">
-				<%@ include file="./includes/map.jsp"%>
+			<div class="col" id="map">
 			</div>
 		</div>
 	</div>
