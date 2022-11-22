@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
-	<div class="container">
+	<div>
 		<div class="row">
 			<div class="col-md-auto">
 				<%@ include file="./includes/sidebar.html"%>
