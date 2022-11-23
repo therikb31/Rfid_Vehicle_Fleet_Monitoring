@@ -9,9 +9,10 @@ public class Queries {
 	public static final String READER_INSERT = "INSERT INTO reader(reader_id,address,lat,lon) VALUES (?,?,?,?)";
 	public static final String READER_RETRIEVE_ALL = "SELECT * FROM reader";
 	public static final String READER_CREATE = "CREATE TABLE `reader` (	`reader_id` VARCHAR(64),	`address` VARCHAR(256),	`lat` VARCHAR(32),	`lon` VARCHAR(32));";
+	public static final String READER_RETRIEVE_BY_READER_ID = "SELECT * FROM log WHERE reader_id = ?";
 	
 	public static final String LOGITEM_CREATE = "CREATE TABLE `log` (`date` DATE, `time` TIME,`reader_id` VARCHAR(64),	`rfid` VARCHAR(64))";
-	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no) VALUES (?,?,?,?,?)";
+	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no,id) VALUES (?,?,?,?,?,?)";
 	public static final String LOGITEM_RETRIEVE_ALL = "SELECT * FROM log";
 	public static final String LOGITEM_RETRIEVE_BY_VEHICLE_NO = "SELECT * FROM log WHERE VEHICLE_NO = ?";
 	

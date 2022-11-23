@@ -87,6 +87,7 @@ public class LogDAO {
 			ps.setString(3, logItem.getReader_id());
 			ps.setString(4, logItem.getRfid());
 			ps.setString(5, logItem.getVehicle_no());
+			ps.setString(6, logItem.getId());
 			int rowcount = ps.executeUpdate();
 			if (rowcount > 0) {
 				System.out.println("Added 1 rows successfully into Log");

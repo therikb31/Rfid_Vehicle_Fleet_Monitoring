@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.database.LogDAO;
+import com.database.ReaderDAO;
 import com.database.RfidDAO;
 import com.models.LogItem;
 
@@ -36,14 +37,23 @@ public class AddLogItemServ extends HttpServlet {
 		// TODO Auto-generated method stub
 		String reader_id = request.getParameter("reader_id");
 		String rfid = request.getParameter("rfid");
-		LogItem logItem = new LogItem();
-		logItem.setDate(new Date(System.currentTimeMillis()));
-		logItem.setTime(new Time(System.currentTimeMillis()));
-		logItem.setReader_id(reader_id);
-		logItem.setRfid(rfid);
-		logItem.setVehicle_no(RfidDAO.getVehicleByRfid(rfid));
-		System.out.println(logItem.toString());
-		LogDAO.addLogItem(logItem);
+		String id = request.getParameter("id");
+		if(ReaderDAO.checkReader(reader_id)) {
+			LogItem logItem = new LogItem();
+			logItem.setDate(new Date(System.currentTimeMillis()));
+			logItem.setTime(new Time(System.currentTimeMillis()));
+			logItem.setReader_id(reader_id);
+			logItem.setRfid(rfid);
+			logItem.setVehicle_no(RfidDAO.getVehicleByRfid(rfid));
+			logItem.setId(id);
+			System.out.println(logItem.toString());
+			LogDAO.addLogItem(logItem);
+			
+		}
+		else {
+			System.out.println("Unable to add LogItem! Reader "+reader_id+" Doesnot Exist.");
+			
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
 		rd.forward(request, response);
 	}

@@ -12,6 +12,23 @@ import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class ReaderDAO {
+	@SuppressWarnings("finally")
+	public static boolean checkReader(String reader_id) {
+		boolean res = false;
+		try {
+			Connection conn = DBConnector.getConnection();
+			PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_BY_READER_ID);
+			ps.setString(1, reader_id);
+			ResultSet rs = ps.executeQuery();
+			res = rs.next();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			return res;
+		}
+		
+	}
 	public static Vector<Reader> getReaders(){
 		Connection conn = DBConnector.getConnection();
 		Vector<Reader> readers = new Vector<Reader>();

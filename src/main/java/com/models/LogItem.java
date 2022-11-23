@@ -9,6 +9,7 @@ public class LogItem {
 	String reader_id;
 	String rfid;
 	String vehicle_no;
+	String id;
 	public Date getDate() {
 		return date;
 	}
@@ -42,7 +43,13 @@ public class LogItem {
 	@Override
 	public String toString() {
 		return "LogItem [date=" + date + ", time=" + time + ", reader_id=" + reader_id + ", rfid=" + rfid
-				+ ", vehicle_no=" + vehicle_no + "]";
+				+ ", vehicle_no=" + vehicle_no + ", id=" + id + "]";
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }
