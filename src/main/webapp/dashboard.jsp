@@ -10,18 +10,9 @@
 </head>
 <body>
 	<%@ include file="./includes/map.jsp"%>
-	<div>
-		<%@ include file="./includes/navbar.jsp"%>
-	</div>
-	<div>
-		<div class="row">
-			<div class="col-md-auto">
-				<%@ include file="./includes/sidebar.html"%>
-			</div>
-			<div class="col" id="map">
-			</div>
-		</div>
-	</div>
+	<%@ include file="./includes/navbar.jsp"%>
+	<%@ include file="./includes/sidebar.html"%>
+	<div id="map"></div>
 	<script src="../js/dashboard.js"></script>
 </body>
 </html>
