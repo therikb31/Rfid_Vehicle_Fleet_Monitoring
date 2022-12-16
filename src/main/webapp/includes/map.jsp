@@ -2,6 +2,7 @@
 <style>
 #map {
 	width: 100%;
+	height:638px;
 	margin: 0;
 	padding: 0;
 }
@@ -53,4 +54,7 @@
 	type="text/javascript">
 	
 </script>
+<body>
+<div id="map"></div>
+</body>
 	<!-- <script src="../js/jsmaps.js"></script> -->

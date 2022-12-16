@@ -91,6 +91,7 @@ function plotMap() {
 }
 
 function setSidebarParams(data) {
+	console.log(data);
 	for (let i = 0; i < data.length; i++) {
 		var element = document.getElementById(data[i].type_id.toString());
 		var liNode = document.createElement("li");
