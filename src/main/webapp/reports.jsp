@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% if(session.getAttribute("isLoggedIn")!=null){%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -11,13 +12,14 @@
 <script type="text/javascript" src="../js/reports.js"></script>
 </head>
 <body>
+	<%@ include file="./includes/navbar.jsp" %>
 	<div class="row">
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
 				<h5 class="card-title">Daily Log</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
-				<form action="DailyLog" id="dailylog">
+				<form action="DailyLog" id="dailylog" method="post">
 					<label for="date">Enter Date:</label> <input type="date"
 						name="date" id="date"><br>
 					<br>
@@ -34,5 +36,9 @@
 			</div>
 		</div>
 	</div>
+	${filepath}
 </body>
 </html>
+<%}else{%>
+<%@ include file="index.jsp"%>
+<%} %>

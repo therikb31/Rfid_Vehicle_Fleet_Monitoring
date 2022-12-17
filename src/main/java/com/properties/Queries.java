@@ -15,6 +15,7 @@ public class Queries {
 	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no,id) VALUES (?,?,?,?,?,?)";
 	public static final String LOGITEM_RETRIEVE_ALL = "SELECT * FROM log";
 	public static final String LOGITEM_RETRIEVE_BY_VEHICLE_NO = "SELECT * FROM log WHERE VEHICLE_NO = ?";
+	public static final String LOGITEM_RETRIEVE_BY_DATE = "SELECT * FROM log WHERE date = ?";
 	
 	
 	public static final String RFID_CREATE = "CREATE TABLE `rfid` (`rfid` varchar(32),`vehicle_no` VARCHAR(64), PRIMARY KEY (`rfid`))";
@@ -23,4 +24,8 @@ public class Queries {
 	public static final String RFID_RETRIEVE_VEHICLE_NO = "SELECT vehicle_no FROM rfid WHERE rfid = ?";
 	
 	public static final String MARKER_RETRIEVE_ALL = "SELECT reader.reader_id, reader.address, reader.lat, reader.lon,log.vehicle_no, vehicle.type_name, vehicle.type_id, vehicle.date_added, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.vehicle_no = ? AND log.date = ?";
+	
+	public static final String EMPLOYEE_CREATE = "CREATE TABLE employee (employee_id VARCHAR(64) PRIMARY KEY, name VARCHAR(64), password VARCHAR(128))";
+	public static final String EMPLOYEE_INSERT = "INSERT INTO employee(employee_id,name,password) VALUES(?,?,?)";
+	public static final String EMPLOYEE_RETRIEVE = "SELECT * FROM employee WHERE employee_id = ?";
 }

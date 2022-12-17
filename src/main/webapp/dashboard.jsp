@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% if(session.getAttribute("isLoggedIn")!=null){%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -12,7 +13,6 @@
 <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-	
 	<div class="mycontainer">
 		<div class="row"><%@ include file="./includes/navbar.jsp"%></div>
 		<div class="row">
@@ -27,6 +27,8 @@
 			<script src="../js/dashboard.js"></script>
 		</div>
 	</div>
-
 </body>
 </html>
+<%}else{%>
+<%@ include file="index.jsp"%>
+<%} %>

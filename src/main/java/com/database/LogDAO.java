@@ -20,6 +20,32 @@ import com.utils.RandomString;
 
 public class LogDAO {
 	@SuppressWarnings("finally")
+	public static Vector<LogItem> getLogByDate(Date date){
+		Connection conn = DBConnector.getConnection();
+		Vector<LogItem> logs = new Vector<LogItem>();
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(Queries.LOGITEM_RETRIEVE_BY_DATE);
+			ps.setDate(1, date);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				LogItem log = new LogItem();
+				log.setDate(rs.getDate("date"));
+				log.setTime(rs.getTime("time"));
+				log.setReader_id(rs.getString("reader_id"));
+				log.setRfid(rs.getString("rfid"));
+				logs.add(log);
+			}
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return logs;
+		}
+	}
+	@SuppressWarnings("finally")
 	public static Vector<LogItem> getLogByVehicleNo(String vehicle_no){
 		Connection conn = DBConnector.getConnection();
 		Vector<LogItem> logs = new Vector<LogItem>();
@@ -108,26 +134,27 @@ public class LogDAO {
 	public static void main(String[] args) throws SQLException, InterruptedException {
 //		createTable();
 //		Vector<LogItem> logs = getLogByVehicleNo("WB03D2642");
-//		for(int i=0;i<logs.size();i++) {
-//			System.out.println(logs.elementAt(i).toString());
-//		}
-		LogItem logItem = new LogItem();
-		Vector<Reader> readers = ReaderDAO.getReaders();
-		Vector<Vehicle> vehicles = VehicleDAO.getVehicle();
-		Vector<Rfid> rfids = RfidDAO.getRfid();
-//		System.out.println("ok");
-		while(true) {
-			
-			
-			logItem.setDate(new Date(System.currentTimeMillis()));
-			logItem.setTime(new Time(System.currentTimeMillis()));
-			logItem.setReader_id(readers.elementAt(RandomString.getRandomInt(readers.size()-1)).getReader_id());
-			String rfid = rfids.elementAt(RandomString.getRandomInt(rfids.size()-1)).getRfid();
-			logItem.setRfid(rfid);
-			logItem.setVehicle_no(RfidDAO.getVehicleByRfid(rfid));
-			System.out.println(logItem.toString());
-			LogDAO.addLogItem(logItem);
-			TimeUnit.SECONDS.sleep(1);
+		Vector<LogItem> logs = getLogByDate(Date.valueOf("2022-12-17"));
+		for(int i=0;i<logs.size();i++) {
+			System.out.println(logs.elementAt(i).toString());
 		}
+//		LogItem logItem = new LogItem();
+//		Vector<Reader> readers = ReaderDAO.getReaders();
+//		Vector<Vehicle> vehicles = VehicleDAO.getVehicle();
+//		Vector<Rfid> rfids = RfidDAO.getRfid();
+//		System.out.println("ok");
+//		while(true) {
+//			
+//			
+//			logItem.setDate(new Date(System.currentTimeMillis()));
+//			logItem.setTime(new Time(System.currentTimeMillis()));
+//			logItem.setReader_id(readers.elementAt(RandomString.getRandomInt(readers.size()-1)).getReader_id());
+//			String rfid = rfids.elementAt(RandomString.getRandomInt(rfids.size()-1)).getRfid();
+//			logItem.setRfid(rfid);
+//			logItem.setVehicle_no(RfidDAO.getVehicleByRfid(rfid));
+//			System.out.println(logItem.toString());
+//			LogDAO.addLogItem(logItem);
+//			TimeUnit.SECONDS.sleep(1);
+//		}
 	}
 }

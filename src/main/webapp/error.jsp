@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>View</title>
+<title>Error</title>
 </head>
 <body>
-	<div> <%@ include file="./includes/navbar.jsp"%></div>
-	<div> <iframe src="${filepath}" width="100%" height="650px"></iframe> </div>
+<%@ include file="../includes/navbar.jsp" %>
+<div class="error-body"><h3>${message}</h3></div>
+<div class="redirect-body"><a href="${redirect}">back</a></div>
 </body>
 </html>
 <%}else{%>

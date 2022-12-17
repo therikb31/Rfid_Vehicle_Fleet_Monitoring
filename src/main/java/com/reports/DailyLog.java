@@ -1,15 +1,21 @@
 package com.reports;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.database.LogDAO;
+import com.models.LogItem;
+import com.utils.PDFGenerator;
 
 /**
  * Servlet implementation class DailyLog
@@ -30,10 +36,7 @@ public class DailyLog extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String date_in = request.getParameter("date");
-		Date date = Date.valueOf(date_in);
-		System.out.println(date);
-		RequestDispatcher rd = request.getRequestDispatcher("reports.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 	}
 
@@ -42,7 +45,15 @@ public class DailyLog extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		RequestDispatcher rd = null;
+			String date_in = request.getParameter("date");
+			Date date = Date.valueOf(date_in);
+			Vector<LogItem> log = LogDAO.getLogByDate(date);
+			while(PDFGenerator.logGenerator("", log));
+			rd = request.getRequestDispatcher("reports.jsp");
+			request.setAttribute("filepath", "");
+			rd.forward(request, response);
+		
 	}
 
 }
