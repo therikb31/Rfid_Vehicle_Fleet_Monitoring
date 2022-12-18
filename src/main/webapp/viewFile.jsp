@@ -8,8 +8,7 @@
 <title>View</title>
 </head>
 <body>
-	<div> <%@ include file="./includes/navbar.jsp"%></div>
-	<div> <iframe src="${filepath}" width="100%" height="650px"></iframe> </div>
+	<iframe src="D:/Output/${filepath}" width="100%" height="650px"></iframe>
 </body>
 </html>
 <%}else{%>

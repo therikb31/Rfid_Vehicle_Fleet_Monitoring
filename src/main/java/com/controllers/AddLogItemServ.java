@@ -38,7 +38,7 @@ public class AddLogItemServ extends HttpServlet {
 		String reader_id = request.getParameter("reader_id");
 		String rfid = request.getParameter("rfid");
 		String id = request.getParameter("id");
-		if(ReaderDAO.checkReader(reader_id)) {
+		if(ReaderDAO.checkReader(reader_id) && RfidDAO.checkRfid(rfid)) {
 			LogItem logItem = new LogItem();
 			logItem.setDate(new Date(System.currentTimeMillis()));
 			logItem.setTime(new Time(System.currentTimeMillis()));
@@ -50,12 +50,6 @@ public class AddLogItemServ extends HttpServlet {
 			LogDAO.addLogItem(logItem);
 			
 		}
-		else {
-			System.out.println("Unable to add LogItem! Reader "+reader_id+" Doesnot Exist.");
-			
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
-		rd.forward(request, response);
 	}
 
 	/**

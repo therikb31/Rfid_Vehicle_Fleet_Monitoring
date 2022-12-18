@@ -1,6 +1,7 @@
 package com.utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -20,7 +21,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.models.LogItem;
 
 public class PDFGenerator {
-	public static void generate(String filepath) throws DocumentException, MalformedURLException, IOException {
+	public static void generate(String filepath) {
+		try {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
 		OutputStream outputStream = new FileOutputStream(new File(filepath));
 		PdfWriter pw = PdfWriter.getInstance(document, outputStream);
@@ -49,7 +51,10 @@ public class PDFGenerator {
         }
         document.add(table);
         document.close();
-        System.out.println("Success");
+		}
+		catch(DocumentException | FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	public static void main(String[] args) throws DocumentException, MalformedURLException, IOException {

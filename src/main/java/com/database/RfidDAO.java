@@ -53,6 +53,20 @@ public class RfidDAO {
 		stmt.executeUpdate(Queries.RFID_CREATE);
 		conn.close();
 	}
+	public static boolean checkRfid(String rfid) {
+		Connection conn = DBConnector.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement(Queries.RFID_RETRIEVE_VEHICLE_NO);
+			ps.setString(1, rfid);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public static String getVehicleByRfid(String rfid) {
 		Connection conn = DBConnector.getConnection();
 		try {

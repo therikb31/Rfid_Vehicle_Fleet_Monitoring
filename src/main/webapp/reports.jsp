@@ -19,7 +19,7 @@
 				<h5 class="card-title">Daily Log</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
-				<form action="DailyLog" id="dailylog" method="post">
+				<form action="DailyLog" id="dailylog" method="post" target="_blank">
 					<label for="date">Enter Date:</label> <input type="date"
 						name="date" id="date"><br>
 					<br>

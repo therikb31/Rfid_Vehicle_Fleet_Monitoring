@@ -134,7 +134,9 @@ public class LogDAO {
 	public static void main(String[] args) throws SQLException, InterruptedException {
 //		createTable();
 //		Vector<LogItem> logs = getLogByVehicleNo("WB03D2642");
-		Vector<LogItem> logs = getLogByDate(Date.valueOf("2022-12-17"));
+		
+		Vector<LogItem> logs = getLogByDate(Date.valueOf("2022-12-14"));
+		System.out.println(logs.size());
 		for(int i=0;i<logs.size();i++) {
 			System.out.println(logs.elementAt(i).toString());
 		}

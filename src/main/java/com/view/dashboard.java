@@ -1,5 +1,6 @@
 package com.view;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
@@ -52,6 +53,7 @@ public class dashboard extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		RequestDispatcher rd = null;
 		Employee employee = new Employee();
 		employee.setEmployee_id(request.getParameter("employee_id"));
@@ -63,9 +65,6 @@ public class dashboard extends HttpServlet {
 				HttpSession session=request.getSession();  
 		        session.setAttribute("isLoggedIn","true");
 		        session.setAttribute("employee",employee);
-		        Constants.root = Paths.get(getServletContext().getRealPath("/"));
-		        //print
-		        System.out.println(Constants.root);
 				rd.forward(request, response);
 			}
 			else {

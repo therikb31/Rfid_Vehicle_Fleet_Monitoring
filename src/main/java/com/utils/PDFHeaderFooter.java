@@ -1,6 +1,8 @@
 package com.utils;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -22,6 +24,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.properties.Constants;
 
 public class PDFHeaderFooter extends PdfPageEventHelper {
 
@@ -29,7 +32,9 @@ public class PDFHeaderFooter extends PdfPageEventHelper {
     private Image total;
 
     public void onStartPage(PdfWriter writer, Document document) {
-    	String header = "./src/main/resources/Header/log.png";
+    	String rootpath = Constants.root.toString();
+    	String headerpath = "/Header/log.png";
+    	String header = Paths.get(rootpath,headerpath).toString();
         Image headerimg;
 		try {
 			headerimg = Image.getInstance(header);
