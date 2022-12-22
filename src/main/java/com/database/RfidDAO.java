@@ -84,10 +84,11 @@ public class RfidDAO {
 	}
 	public static void main(String[] args) throws SQLException {
 //		createTable();
-		Vector<Rfid> rfids = getRfid();
-		for(Rfid each:rfids) {
-			System.out.println(each.toString());
-		}
+//		Vector<Rfid> rfids = getRfid();
+//		for(Rfid each:rfids) {
+//			System.out.println(each.toString());
+//		}
+//		System.out.println(getVehicleByRfid("767461673137000000000000"));
 	}
 
 }

@@ -35,8 +35,8 @@ public class GetMarkerServ extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String vehicle_no = request.getParameter("vehicle_no");
-		String date = request.getParameter("date");
-		Vector<Marker> data = MarkerDAO.getMarkers(vehicle_no,Date.valueOf(date));
+		Date date = Date.valueOf(java.time.LocalDate.now());
+		Vector<Marker> data = MarkerDAO.getMarkers(vehicle_no,date);
 		String jsonData = new Gson().toJson(data);
 	    response.getWriter().print("{\"data\":"+jsonData+"}");
 	}

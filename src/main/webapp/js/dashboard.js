@@ -1,6 +1,8 @@
 var markers = [];
 var map;
 var readerData;
+var mapRefreshInterval;
+var mapRefreshRate = 300000;
 //loading the map
 function loadMap() {
 	jsMaps.loader(function() {
@@ -35,6 +37,7 @@ async function fetchReaderData() {
 	plotMap();
 };
 async function fetchVehicleLog(vehicle_no) {
+	clearInterval(mapRefreshInterval);
 	let url = './GetMarkerServ?date=2022-11-19&vehicle_no=';
 	url = url.concat(vehicle_no);
 	const response = await fetch(url);
@@ -42,6 +45,7 @@ async function fetchVehicleLog(vehicle_no) {
 	const data = datapoints.data;
 	console.log(data);
 	plotConditionalMap(data);
+	mapRefreshInterval = setInterval(fetchVehicleLog,mapRefreshRate,vehicle_no);
 }
 function plotConditionalMap(Vehicledata){
 	var data = Vehicledata;
@@ -91,7 +95,6 @@ function plotMap() {
 }
 
 function setSidebarParams(data) {
-	console.log(data);
 	for (let i = 0; i < data.length; i++) {
 		var element = document.getElementById(data[i].type_id.toString());
 		var liNode = document.createElement("li");

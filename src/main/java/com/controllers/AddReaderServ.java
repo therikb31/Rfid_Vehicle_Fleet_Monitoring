@@ -1,8 +1,6 @@
 package com.controllers;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
