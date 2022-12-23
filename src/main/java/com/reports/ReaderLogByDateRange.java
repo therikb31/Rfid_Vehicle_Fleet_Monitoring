@@ -15,18 +15,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.database.LogDAO;
+import com.database.ReaderDAO;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.models.Log;
@@ -35,41 +36,42 @@ import com.utils.PDFHeaderFooter;
 import com.utils.Util;
 
 /**
- * Servlet implementation class DailyLog
+ * Servlet implementation class ReaderLogByDateRange
  */
-public class DailyLog extends HttpServlet {
+public class ReaderLogByDateRange extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ReaderLogByDateRange() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public DailyLog() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String dateValue = new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
 		String time = new SimpleDateFormat("HH:mm:ss aa").format(new java.util.Date()).toUpperCase();
 		Document document = null;
 		OutputStream outputStream = null;
 
 		RequestDispatcher rd = null;
-		String date_in = request.getParameter("date");
-		Date date = Date.valueOf(date_in);
+		Date from_date = Date.valueOf(request.getParameter("from_date"));
+		Date to_date = Date.valueOf(request.getParameter("to_date"));
+		String reader_id = request.getParameter("reader_id");
 		String filepath = Constants.PDF_FILENAME;
 		try {
 			int marginLR = 30;
@@ -87,33 +89,45 @@ public class DailyLog extends HttpServlet {
 			Font bold = new Font(FontFamily.HELVETICA, 12, Font.BOLD);
 			if (pw.getCurrentPageNumber() == 1) {
 				document.add(new Phrase("Report Name:", regular));
-				document.add(new Phrase(" Daily Log\n", bold));
+				document.add(new Phrase(" Date Ranged Reader Log\n", bold));
+				
+				document.add(new Phrase("Reader ID: ", regular));
+				document.add(new Phrase(reader_id + "\n", bold));
+				
+				document.add(new Phrase("Reader Address: ", regular));
+				document.add(new Phrase(ReaderDAO.getReaderByReaderId(reader_id).getAddress() + "\n", bold));
+				
+				document.add(new Phrase("Report From Date: ", regular));
+				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(from_date) + "\n", bold));
+				
+				document.add(new Phrase("Report From Date: ", regular));
+				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(to_date) + "\n", bold));
+				
 				document.add(new Phrase("Date Generated: ", regular));
 				document.add(new Phrase(dateValue + "\n", bold));
+				
 				document.add(new Phrase("Time Generated: ", regular));
 				document.add(new Phrase(time + "\n", bold));
 //				document.newPage();
 			}
-			PdfPTable table = new PdfPTable(6);
+			PdfPTable table = new PdfPTable(5);
 			table.setTotalWidth(document.getPageSize().getWidth() - (float) 60.0);
 			table.setLockedWidth(true);
-			table.setWidths(new float[] { (float) 0.6, (float) 1.2, (float) 1.8, (float) 3.2, 1, 1 });
+			table.setWidths(new int[] { 1,2,2,2,2 });
 			table.addCell(Util.getCell("Sl No", bold));
 			table.addCell(Util.getCell("Vehicle No", bold));
 			table.addCell(Util.getCell("Vehicle Type", bold));
-			table.addCell(Util.getCell("Address", bold));
 			table.addCell(Util.getCell("Date", bold));
 			table.addCell(Util.getCell("Time", bold));
 
 			table.setHeaderRows(1);
 			Font font = FontFactory.getFont(FontFactory.TIMES, 10);
-			Vector<Log> log = LogDAO.getDailyLog(date);
+			Vector<Log> log = LogDAO.getReaderLogByDateRange(reader_id, from_date, to_date);
 			int i;
 			for (i = 0; i < log.size(); i++) {
 				table.addCell(new Phrase(Integer.toString(i + 1), font));
 				table.addCell(new Phrase(log.elementAt(i).getVehicle_no(), font));
 				table.addCell(new Phrase(log.elementAt(i).getType_name(), font));
-				table.addCell(new Phrase(log.elementAt(i).getAddress(), font));
 				table.addCell(new Phrase(log.elementAt(i).getDate().toString(), font));
 				table.addCell(new Phrase(log.elementAt(i).getTime().toString(), font));
 
@@ -156,6 +170,7 @@ public class DailyLog extends HttpServlet {
 				outputStream.close();
 			}
 		}
+
 	}
 
 }

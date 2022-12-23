@@ -26,7 +26,6 @@ public class PDFGenerator {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
 		OutputStream outputStream = new FileOutputStream(new File(filepath));
 		PdfWriter pw = PdfWriter.getInstance(document, outputStream);
-		PDFHeaderFooter myHeaderFooter = new PDFHeaderFooter();
 		pw.setPageEvent(new PDFHeaderFooter());
         document.open();
         
@@ -51,6 +50,7 @@ public class PDFGenerator {
         	
         }
         document.add(table);
+        document.add(new Phrase("---x---"));
         document.close();
 		}
 		catch(DocumentException | FileNotFoundException e) {

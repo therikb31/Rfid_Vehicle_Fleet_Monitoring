@@ -1,11 +1,6 @@
 package com.view;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import com.database.EmployeeDAO;
 import com.models.Employee;
-import com.properties.Constants;
 import com.utils.Encryption;
 
 /**

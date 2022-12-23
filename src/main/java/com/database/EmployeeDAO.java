@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.models.Employee;
-import com.mysql.cj.protocol.Resultset;
 import com.properties.Queries;
 import com.utils.DBConnector;
 import com.utils.Encryption;

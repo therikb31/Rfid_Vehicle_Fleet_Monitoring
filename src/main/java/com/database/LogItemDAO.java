@@ -6,17 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.Vector;
-import java.util.concurrent.TimeUnit;
-
 import com.models.LogItem;
-import com.models.Reader;
-import com.models.Rfid;
-import com.models.Vehicle;
 import com.properties.Queries;
 import com.utils.DBConnector;
-import com.utils.RandomString;
 
 public class LogItemDAO {
 	@SuppressWarnings("finally")

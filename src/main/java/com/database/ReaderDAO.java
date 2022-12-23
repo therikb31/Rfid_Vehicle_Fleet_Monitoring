@@ -29,6 +29,28 @@ public class ReaderDAO {
 		}
 		
 	}
+	public static Reader getReaderByReaderId(String reader_id){
+		Connection conn = DBConnector.getConnection();
+		Reader reader = new Reader();
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(Queries.READER_RETRIEVE_BY_READER_ID);
+			ps.setString(1, reader_id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				reader.setReader_id(rs.getString("reader_id"));
+				reader.setAddress(rs.getString("address"));
+				reader.setLat(rs.getString("lat"));
+				reader.setLon(rs.getString("lon"));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reader;
+	}
+	
 	public static Vector<Reader> getReaders(){
 		Connection conn = DBConnector.getConnection();
 		Vector<Reader> readers = new Vector<Reader>();
@@ -86,12 +108,13 @@ public class ReaderDAO {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		Reader reader = new Reader();
-		reader.setReader_id("rid");
-		reader.setAddress("Novotel");
-		reader.setLat("22.2");
-		reader.setLon("88.4");
-		addReader(reader);
+		Reader reader = getReaderByReaderId("P9LR13");
+		System.out.println(reader.toString());
+//		reader.setReader_id("rid");
+//		reader.setAddress("Novotel");
+//		reader.setLat("22.2");
+//		reader.setLon("88.4");
+//		addReader(reader);
 //		createTable();
 	}
 }

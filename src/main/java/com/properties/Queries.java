@@ -9,7 +9,7 @@ public class Queries {
 	public static final String READER_INSERT = "INSERT INTO reader(reader_id,address,lat,lon) VALUES (?,?,?,?)";
 	public static final String READER_RETRIEVE_ALL = "SELECT * FROM reader";
 	public static final String READER_CREATE = "CREATE TABLE `reader` (	`reader_id` VARCHAR(64),	`address` VARCHAR(256),	`lat` VARCHAR(32),	`lon` VARCHAR(32));";
-	public static final String READER_RETRIEVE_BY_READER_ID = "SELECT * FROM log WHERE reader_id = ?";
+	public static final String READER_RETRIEVE_BY_READER_ID = "SELECT * FROM reader WHERE reader_id = ?";
 	
 	public static final String LOGITEM_CREATE = "CREATE TABLE `log` (`date` DATE, `time` TIME,`reader_id` VARCHAR(64),	`rfid` VARCHAR(64))";
 	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no,id) VALUES (?,?,?,?,?,?)";
@@ -29,5 +29,9 @@ public class Queries {
 	public static final String EMPLOYEE_INSERT = "INSERT INTO employee(employee_id,name,password) VALUES(?,?,?)";
 	public static final String EMPLOYEE_RETRIEVE = "SELECT * FROM employee WHERE employee_id = ?";
 	
-	public static final String LOG_DAILYLOG = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ?";
+	public static final String LOG_DAILY_LOG = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ?";
+	public static final String LOG_READER_LOG_BY_DATE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ? AND reader.reader_id=?";
+	public static final String LOG_READER_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date > ? AND log.date< ? AND reader.reader_id=?";
+	
+	
 }

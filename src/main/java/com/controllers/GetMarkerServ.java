@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.database.LogItemDAO;
 import com.database.MarkerDAO;
 import com.google.gson.Gson;
-import com.models.LogItem;
 import com.models.Marker;
 
 /**
