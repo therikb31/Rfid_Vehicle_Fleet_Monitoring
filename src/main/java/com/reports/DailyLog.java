@@ -21,10 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.database.LogDAO;
 import com.database.LogItemDAO;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
@@ -33,6 +35,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.models.Log;
 import com.models.LogItem;
 import com.properties.Constants;
 import com.utils.DirectoryManager;
@@ -57,6 +60,14 @@ public class DailyLog extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	private static PdfPCell getCell(String text,Font font) {
+		Phrase ph = new Phrase(text,font);
+		PdfPCell res = new PdfPCell(ph);
+		res.setMinimumHeight(20f);
+		res.setVerticalAlignment(Element.ALIGN_CENTER);
+		res.setHorizontalAlignment(Element.ALIGN_CENTER);
+		return res;
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -84,7 +95,8 @@ public class DailyLog extends HttpServlet {
 //		String filepath = timeStamp + ".pdf";
 		String filepath = "document.pdf";
 		try {
-			document = new Document(PageSize.A4, 50, 50, 50, 50);
+			int marginLR = 20;
+			document = new Document(PageSize.A4, marginLR, marginLR, 50, 50);
 			File fileObj = new File(filepath);
 			fileObj.createNewFile();
 			outputStream = new FileOutputStream(new File(filepath));
@@ -103,24 +115,29 @@ public class DailyLog extends HttpServlet {
 				document.add(new Phrase(dateValue+"\n",bold));
 				document.add(new Phrase("Time Generated: ",regular));
 				document.add(new Phrase(time+"\n",bold));
-				
 //				document.newPage();
 			}
-			PdfPTable table = new PdfPTable(5);
-			table.setWidths(new int[] { 1, 3, 2, 2, 2 });
-			table.addCell(new PdfPCell(new Phrase("Sl_No")));
-			table.addCell(new PdfPCell(new Phrase("Rfid Tag Number")));
-			table.addCell(new PdfPCell(new Phrase("Reader Id")));
-			table.addCell(new PdfPCell(new Phrase("Date")));
-			table.addCell(new PdfPCell(new Phrase("Time")));
+			PdfPTable table = new PdfPTable(6);
+			table.setTotalWidth(document.getPageSize().getWidth() - (float)60.0);
+			table.setLockedWidth(true);
+			table.setWidths(new float[] { (float) 0.6, (float)1.2, (float)1.8,(float)3.2, 1, 1 });
+			table.addCell(getCell("Sl No",bold));
+			table.addCell(getCell("Vehicle No",bold));
+			table.addCell(getCell("Vehicle Type",bold));
+			table.addCell(getCell("Address",bold));
+			table.addCell(getCell("Date",bold));
+			table.addCell(getCell("Time",bold));
+			
+			
 			table.setHeaderRows(1);
-			Font font = FontFactory.getFont(FontFactory.COURIER, 12);
-			Vector<LogItem> log = LogItemDAO.getLogByDate(date);
+			Font font = FontFactory.getFont(FontFactory.TIMES, 10);
+			Vector<Log> log = LogDAO.getDailyLog(date);
 			int i;
 			for (i = 0; i < log.size(); i++) {
 				table.addCell(new Phrase(Integer.toString(i + 1), font));
-				table.addCell(new Phrase(log.elementAt(i).getRfid(), font));
-				table.addCell(new Phrase(log.elementAt(i).getReader_id(), font));
+				table.addCell(new Phrase(log.elementAt(i).getVehicle_no(), font));
+				table.addCell(new Phrase(log.elementAt(i).getType_name(), font));
+				table.addCell(new Phrase(log.elementAt(i).getAddress(), font));
 				table.addCell(new Phrase(log.elementAt(i).getDate().toString(), font));
 				table.addCell(new Phrase(log.elementAt(i).getTime().toString(), font));
 

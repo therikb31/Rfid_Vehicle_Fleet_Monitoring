@@ -43,6 +43,13 @@
   	<servlet-name>DailyLog</servlet-name>
   	<servlet-class>com.reports.DailyLog</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>ReaderLogByDate</display-name>
+  	<servlet-name>ReaderLogByDate</servlet-name>
+  	<servlet-class>com.reports.ReaderLogByDate</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>GetVehicleLogServ</servlet-name>
   	<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -66,6 +73,10 @@
   <servlet-mapping>
   	<servlet-name>DailyLog</servlet-name>
   	<url-pattern>/DailyLog</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReaderLogByDate</servlet-name>
+  	<url-pattern>/ReaderLogByDate</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

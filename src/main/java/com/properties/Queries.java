@@ -28,4 +28,6 @@ public class Queries {
 	public static final String EMPLOYEE_CREATE = "CREATE TABLE employee (employee_id VARCHAR(64) PRIMARY KEY, name VARCHAR(64), password VARCHAR(128))";
 	public static final String EMPLOYEE_INSERT = "INSERT INTO employee(employee_id,name,password) VALUES(?,?,?)";
 	public static final String EMPLOYEE_RETRIEVE = "SELECT * FROM employee WHERE employee_id = ?";
+	
+	public static final String LOG_DAILYLOG = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ?";
 }
