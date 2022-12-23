@@ -21,11 +21,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.models.LogItem;
 
 public class PDFGenerator {
-	public static void generate(String filepath) {
+	public static void generate(String filepath,String root) {
 		try {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
 		OutputStream outputStream = new FileOutputStream(new File(filepath));
 		PdfWriter pw = PdfWriter.getInstance(document, outputStream);
+		PDFHeaderFooter myHeaderFooter = new PDFHeaderFooter();
 		pw.setPageEvent(new PDFHeaderFooter());
         document.open();
         
@@ -58,7 +59,7 @@ public class PDFGenerator {
 		
 	}
 	public static void main(String[] args) throws DocumentException, MalformedURLException, IOException {
-		generate("./src/main/webapp/static/document.pdf");
+		generate("./src/main/webapp/static/document.pdf","");
 	}
 
 }

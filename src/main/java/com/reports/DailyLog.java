@@ -26,6 +26,7 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
@@ -69,28 +70,42 @@ public class DailyLog extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
 		String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new java.util.Date());
+		String dateValue = new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
+		String time = new SimpleDateFormat("HH:mm:ss aa").format(new java.util.Date()).toUpperCase();
 		Document document = null;
 		OutputStream outputStream = null;
 
 		RequestDispatcher rd = null;
 		String date_in = request.getParameter("date");
 		Date date = Date.valueOf(date_in);
-//		String filename = timeStamp + ".pdf";
-		String filename = "document.pdf";
-		String rootpath = Constants.output;
-		String filepath = rootpath + filename;
-		System.out.println(filepath);
+//		String filepath = timeStamp + ".pdf";
+		String filepath = "document.pdf";
 		try {
 			document = new Document(PageSize.A4, 50, 50, 50, 50);
 			File fileObj = new File(filepath);
 			fileObj.createNewFile();
 			outputStream = new FileOutputStream(new File(filepath));
 			PdfWriter pw = PdfWriter.getInstance(document, outputStream);
-			pw.setPageEvent(new PDFHeaderFooter());
+			PDFHeaderFooter myHeaderFooter = new PDFHeaderFooter();
+			myHeaderFooter.header = getServletContext().getRealPath("/static/Header/log.png");
+			pw.setPageEvent(myHeaderFooter);
 			document.open();
 			document.add(new Chunk(""));
+			Font regular = new Font(FontFamily.HELVETICA, 12);
+			Font bold =new Font(FontFamily.HELVETICA, 12, Font.BOLD);
+			if(pw.getCurrentPageNumber()==1) {
+				document.add(new Phrase("Report Name:",regular));
+				document.add(new Phrase(" Daily Log\n",bold));
+				document.add(new Phrase("Date Generated: ",regular));
+				document.add(new Phrase(dateValue+"\n",bold));
+				document.add(new Phrase("Time Generated: ",regular));
+				document.add(new Phrase(time+"\n",bold));
+				
+//				document.newPage();
+			}
 			PdfPTable table = new PdfPTable(5);
 			table.setWidths(new int[] { 1, 3, 2, 2, 2 });
 			table.addCell(new PdfPCell(new Phrase("Sl_No")));
@@ -99,10 +114,8 @@ public class DailyLog extends HttpServlet {
 			table.addCell(new PdfPCell(new Phrase("Date")));
 			table.addCell(new PdfPCell(new Phrase("Time")));
 			table.setHeaderRows(1);
-
 			Font font = FontFactory.getFont(FontFactory.COURIER, 12);
 			Vector<LogItem> log = LogDAO.getLogByDate(date);
-			System.out.println("Log Size:" + log.size());
 			int i;
 			for (i = 0; i < log.size(); i++) {
 				table.addCell(new Phrase(Integer.toString(i + 1), font));
@@ -117,6 +130,7 @@ public class DailyLog extends HttpServlet {
 			document.close();
 			response.setContentType("application/pdf");
 			File pdfFile = new File(filepath);
+			pdfFile.createNewFile();
 			FileInputStream fileInputStream = new FileInputStream(pdfFile);
 			OutputStream responseOutputStream = response.getOutputStream();
 			int bytes;
@@ -124,6 +138,7 @@ public class DailyLog extends HttpServlet {
 				responseOutputStream.write(bytes);
 
 			}
+			fileInputStream.close();
 		} catch (DocumentException e) {
 			request.setAttribute("message", "Document Exception");
 			request.setAttribute("redirect", "dashboard.jsp");
