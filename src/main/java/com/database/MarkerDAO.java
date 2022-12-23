@@ -41,7 +41,7 @@ public class MarkerDAO {
 		return markers;
 	}
 	public static void main(String[] args) {
-		String str="2022-11-19";  
+		String str="2022-11-18";  
 	    Date date=Date.valueOf(str);
 		for(Marker marker: getMarkers("RD160",date)){
 			System.out.println(marker.toString());
