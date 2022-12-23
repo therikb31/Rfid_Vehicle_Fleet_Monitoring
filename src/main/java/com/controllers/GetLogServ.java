@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.database.LogDAO;
+import com.database.LogItemDAO;
 import com.google.gson.Gson;
 import com.models.LogItem;
 
@@ -33,7 +33,7 @@ public class GetLogServ extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Vector<LogItem> data = LogDAO.getLog();
+		Vector<LogItem> data = LogItemDAO.getLog();
 		String jsonData = new Gson().toJson(data);
 	    response.getWriter().print("{\"data\":"+jsonData+"}");
 	}

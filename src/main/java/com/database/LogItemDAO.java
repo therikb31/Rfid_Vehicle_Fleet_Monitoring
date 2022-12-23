@@ -18,7 +18,7 @@ import com.properties.Queries;
 import com.utils.DBConnector;
 import com.utils.RandomString;
 
-public class LogDAO {
+public class LogItemDAO {
 	@SuppressWarnings("finally")
 	public static Vector<LogItem> getLogByDate(Date date){
 		Connection conn = DBConnector.getConnection();

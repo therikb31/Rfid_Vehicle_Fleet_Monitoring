@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.database.LogDAO;
+import com.database.LogItemDAO;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -115,7 +115,7 @@ public class DailyLog extends HttpServlet {
 			table.addCell(new PdfPCell(new Phrase("Time")));
 			table.setHeaderRows(1);
 			Font font = FontFactory.getFont(FontFactory.COURIER, 12);
-			Vector<LogItem> log = LogDAO.getLogByDate(date);
+			Vector<LogItem> log = LogItemDAO.getLogByDate(date);
 			int i;
 			for (i = 0; i < log.size(); i++) {
 				table.addCell(new Phrase(Integer.toString(i + 1), font));

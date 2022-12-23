@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.util.Vector;
 
-import com.database.LogDAO;
+import com.database.LogItemDAO;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -40,7 +40,7 @@ public class PDFGenerator {
         table.setHeaderRows(1);
         
         Font font = FontFactory.getFont(FontFactory.COURIER, 12);
-        Vector<LogItem> log = LogDAO.getLog();
+        Vector<LogItem> log = LogItemDAO.getLog();
         int i;
         for(i=0;i<log.size();i++) {
         	table.addCell(new Phrase(Integer.toString(i+1),font));

@@ -88,7 +88,7 @@ public class RfidDAO {
 //		for(Rfid each:rfids) {
 //			System.out.println(each.toString());
 //		}
-//		System.out.println(getVehicleByRfid("767461673137000000000000"));
+		System.out.println(getVehicleByRfid("767461673137000000000000"));
 	}
 
 }

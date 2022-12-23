@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.database.LogDAO;
+import com.database.LogItemDAO;
 import com.database.ReaderDAO;
 import com.database.RfidDAO;
 import com.models.LogItem;
@@ -46,7 +46,7 @@ public class AddLogItemServ extends HttpServlet {
 			logItem.setVehicle_no(RfidDAO.getVehicleByRfid(rfid));
 			logItem.setId(id);
 			System.out.println(logItem.toString());
-			LogDAO.addLogItem(logItem);
+			LogItemDAO.addLogItem(logItem);
 			
 		}
 	}
