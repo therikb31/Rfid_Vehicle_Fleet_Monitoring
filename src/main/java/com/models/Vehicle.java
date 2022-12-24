@@ -7,6 +7,7 @@ public class Vehicle {
 	private String type_name;
 	private int type_id;
 	private Timestamp date_added;
+	private int activity;
 	
 	public String getVehicle_no() {
 		return vehicle_no;
@@ -35,6 +36,12 @@ public class Vehicle {
 	@Override
 	public String toString() {
 		return "Vehicle [vehicle_no=" + vehicle_no + ", type_name=" + type_name + ", type_id=" + type_id
-				+ ", date_added=" + date_added + "]";
+				+ ", date_added=" + date_added + ", activity=" + activity + "]";
+	}
+	public int getActivity() {
+		return activity;
+	}
+	public void setActivity(int activity) {
+		this.activity = activity;
 	}
 }

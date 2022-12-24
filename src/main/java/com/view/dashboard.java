@@ -55,6 +55,7 @@ public class dashboard extends HttpServlet {
 		employee.toString();
 		if(EmployeeDAO.checkEmployee(employee.getEmployee_id())) {
 			if(EmployeeDAO.checkPassword(employee)) {
+				employee.setName(EmployeeDAO.getEmployeeByEmployeeID(employee.getEmployee_id()).getName());
 				rd = request.getRequestDispatcher("dashboard.jsp");
 				HttpSession session=request.getSession();  
 		        session.setAttribute("isLoggedIn","true");

@@ -1,10 +1,13 @@
 package com.database;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.Vector;
 
 import com.models.Reader;
@@ -12,6 +15,59 @@ import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class ReaderDAO {
+public static Vector<Reader> getReaderActivityByDateRange(Date from_date, Date to_date) {
+	Vector<Reader> readers = getReaders();
+	try {
+		Connection conn = DBConnector.getConnection();
+		for(Iterator<Reader> iter = readers.iterator();iter.hasNext();) {
+			Reader reader = iter.next();
+			PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE);
+			ps.setString(1, reader.getReader_id());
+			ps.setDate(2, from_date);
+			ps.setDate(3, to_date);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				reader.setActivity(rs.getInt(1));
+//				System.out.println(reader.getReader_id()+":"+ rs.getInt(1));
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return sortReaderVector(readers);
+		
+	}
+	public static Vector<Reader> sortReaderVector(Vector<Reader> arr) {
+		int len = arr.size();
+		for(int i=0;i<len;i++) {
+			for(int j=i+1;j<len;j++) {
+				if(arr.elementAt(i).getActivity() < arr.elementAt(j).getActivity()) {
+					Collections.swap(arr, i, j);
+				}
+			}
+		}
+		return arr;
+	}
+	public static Vector<Reader> getReaderActivity(Date date){
+		Vector<Reader> readers = getReaders();
+		try {
+			Connection conn = DBConnector.getConnection();
+			for(Iterator<Reader> iter = readers.iterator();iter.hasNext();) {
+				Reader reader = iter.next();
+				PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_ACTIVITY_COUNT);
+				ps.setString(1, reader.getReader_id());
+				ps.setDate(2, date);
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+					reader.setActivity(rs.getInt(1));
+//					System.out.println(reader.getReader_id()+":"+ rs.getInt(1));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return sortReaderVector(readers);
+	}
 	@SuppressWarnings("finally")
 	public static boolean checkReader(String reader_id) {
 		boolean res = false;
@@ -108,8 +164,11 @@ public class ReaderDAO {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		Reader reader = getReaderByReaderId("P9LR13");
-		System.out.println(reader.toString());
+		for(Iterator<Reader> iter = getReaderActivity(Date.valueOf("2022-12-24")).iterator();iter.hasNext();) {
+			System.out.println(iter.next().toString());
+		}
+//		Reader reader = getReaderByReaderId("P9LR13");
+//		System.out.println(reader.toString());
 //		reader.setReader_id("rid");
 //		reader.setAddress("Novotel");
 //		reader.setLat("22.2");
@@ -117,4 +176,5 @@ public class ReaderDAO {
 //		addReader(reader);
 //		createTable();
 	}
+	
 }

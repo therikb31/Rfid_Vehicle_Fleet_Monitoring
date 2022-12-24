@@ -90,4 +90,22 @@ public class EmployeeDAO {
 //		System.out.println(checkEmployee("admin"));
 //		createEmployeeTab();
 	}
+	public static Employee getEmployeeByEmployeeID(String employee_id) {
+		Connection conn = DBConnector.getConnection();
+		Employee res = new Employee();
+		try {
+			PreparedStatement ps = conn.prepareStatement(Queries.EMPLOYEE_RETRIEVE);
+			ps.setString(1, employee_id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				res.setEmployee_id(rs.getString("employee_id"));
+				res.setName(rs.getString("name"));
+				res.setPassword(rs.getString("password"));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 }

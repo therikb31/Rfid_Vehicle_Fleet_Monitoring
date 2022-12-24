@@ -5,6 +5,7 @@ public class Reader {
 	private String address;
 	private String lat;
 	private String lon;
+	private int activity;
 	public String getReader_id() {
 		return reader_id;
 	}
@@ -31,6 +32,13 @@ public class Reader {
 	}
 	@Override
 	public String toString() {
-		return "Reader [reader_id=" + reader_id + ", address=" + address + ", lat=" + lat + ", lon=" + lon + "]";
+		return "Reader [reader_id=" + reader_id + ", address=" + address + ", lat=" + lat + ", lon=" + lon
+				+ ", activity=" + activity + "]";
+	}
+	public int getActivity() {
+		return activity;
+	}
+	public void setActivity(int activity) {
+		this.activity = activity;
 	}
 }

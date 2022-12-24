@@ -57,6 +57,41 @@
   	<servlet-name>ReaderLogByDateRange</servlet-name>
   	<servlet-class>com.reports.ReaderLogByDateRange</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>DailyLogByDateRange</display-name>
+  	<servlet-name>DailyLogByDateRange</servlet-name>
+  	<servlet-class>com.reports.DailyLogByDateRange</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>VehicleLogByDate</display-name>
+  	<servlet-name>VehicleLogByDate</servlet-name>
+  	<servlet-class>com.reports.VehicleLogByDate</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>VehicleLogByDateRange</display-name>
+  	<servlet-name>VehicleLogByDateRange</servlet-name>
+  	<servlet-class>com.reports.VehicleLogByDateRange</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>ReaderActivityLogByDate</display-name>
+  	<servlet-name>ReaderActivityLogByDate</servlet-name>
+  	<servlet-class>com.reports.ReaderActivityLogByDate</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>ReaderActivityLogByDateRange</display-name>
+  	<servlet-name>ReaderActivityLogByDateRange</servlet-name>
+  	<servlet-class>com.reports.ReaderActivityLogByDateRange</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>GetVehicleLogServ</servlet-name>
   	<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -88,6 +123,26 @@
   <servlet-mapping>
   	<servlet-name>ReaderLogByDateRange</servlet-name>
   	<url-pattern>/ReaderLogByDateRange</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DailyLogByDateRange</servlet-name>
+  	<url-pattern>/DailyLogByDateRange</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VehicleLogByDate</servlet-name>
+  	<url-pattern>/VehicleLogByDate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VehicleLogByDateRange</servlet-name>
+  	<url-pattern>/VehicleLogByDateRange</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReaderActivityLogByDate</servlet-name>
+  	<url-pattern>/ReaderActivityLogByDate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReaderActivityLogByDateRange</servlet-name>
+  	<url-pattern>/ReaderActivityLogByDateRange</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

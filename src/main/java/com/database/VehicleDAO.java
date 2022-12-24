@@ -65,6 +65,28 @@ public class VehicleDAO {
 		}
 		return false;
 	}
+	public static Vehicle getVehicleByVehicleNo(String vehicle_no) {
+		Connection conn = DBConnector.getConnection();
+		PreparedStatement ps;
+		Vehicle data = new Vehicle();
+		try {
+			ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_BY_VEHICLE_NO);
+			ps.setString(1, vehicle_no);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				data.setVehicle_no(rs.getString("vehicle_no"));
+				data.setType_id(rs.getInt("type_id"));
+				data.setType_name(rs.getString("type_name"));
+				data.setDate_added(rs.getTimestamp("date_added"));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return data;
+		
+	}
 	public static Vector<Vehicle> getVehicle() {
 		Connection conn = DBConnector.getConnection();
 		Vector<Vehicle> result = new Vector<Vehicle>();
