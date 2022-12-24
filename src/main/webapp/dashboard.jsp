@@ -11,6 +11,7 @@
 <title>Dashboard</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/dashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="mycontainer">
@@ -19,11 +20,11 @@
 			<div class="col-md-auto sidebar overflow-auto"><%@ include
 					file="./includes/sidebar.html"%></div>
 			<div class="col-3 overflow-auto">
-				<div class="row" style="background-color: blue; height: 50%;">.</div>
+				<!-- <div class="row" style="background-color: blue; height: 50%;">.</div>
 				<div class="row" style="background-color: green; height: 50%;">.</div>
-			</div>
+ -->			</div>
 			<div class="col"><%@ include file="./includes/map.jsp"%></div>
-
+			
 			<script src="../js/dashboard.js"></script>
 		</div>
 	</div>

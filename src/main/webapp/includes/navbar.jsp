@@ -1,21 +1,28 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> 
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<!-- Container wrapper -->
 	<div class="container">
 		<!-- Navbar brand -->
-		<a class="navbar-brand me-2" href="https://mdbgo.com/"> <img
-			src="./static/nkda-logo.png" height="30" alt="MDB Logo"
-			loading="lazy" style="margin-top: -1px;" />
+		<a class="navbar-brand me-2" href="/dashboard"> <img
+			src="./static/nkda-logo.png" height="30" loading="lazy"
+			style="margin-top: -1px;" />
 		</a>
 
 		<!-- Toggle button -->
-		<button class="navbar-toggler" type="button"
-			data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarButtonsExample"
 			aria-controls="navbarButtonsExample" aria-expanded="false"
 			aria-label="Toggle navigation">
-			<i class="fas fa-bars"></i>
+			<i class="fa fa-bars" aria-hidden="true"></i>
 		</button>
-
+		<!-- aria-controls="navbarButtonsExample" aria-expanded="false"
+			aria-label="Toggle navigation"> -->
 		<!-- Collapsible wrapper -->
 		<div class="collapse navbar-collapse" id="navbarButtonsExample">
 			<!-- Left links -->
