@@ -15,27 +15,27 @@ import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class ReaderDAO {
-public static Vector<Reader> getReaderActivityByDateRange(Date from_date, Date to_date) {
-	Vector<Reader> readers = getReaders();
-	try {
-		Connection conn = DBConnector.getConnection();
-		for(Iterator<Reader> iter = readers.iterator();iter.hasNext();) {
-			Reader reader = iter.next();
-			PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE);
-			ps.setString(1, reader.getReader_id());
-			ps.setDate(2, from_date);
-			ps.setDate(3, to_date);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
-				reader.setActivity(rs.getInt(1));
+	public static Vector<Reader> getReaderActivityByDateRange(Date from_date, Date to_date) {
+		Vector<Reader> readers = getReaders();
+		try {
+			Connection conn = DBConnector.getConnection();
+			for (Iterator<Reader> iter = readers.iterator(); iter.hasNext();) {
+				Reader reader = iter.next();
+				PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE);
+				ps.setString(1, reader.getReader_id());
+				ps.setDate(2, from_date);
+				ps.setDate(3, to_date);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					reader.setActivity(rs.getInt(1));
 //				System.out.println(reader.getReader_id()+":"+ rs.getInt(1));
+				}
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	return sortReaderVector(readers);
-		
+		return sortReaderVector(readers);
+
 	}
 	public static Vector<Reader> sortReaderVector(Vector<Reader> arr) {
 		int len = arr.size();

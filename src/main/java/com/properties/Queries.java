@@ -5,6 +5,8 @@ public class Queries {
 	public static final String VEHICLE_RETRIEVE_ALL = "SELECT * FROM vehicle";
 	public static final String VEHICLE_CREATE = "CREATE TABLE `vehicle` (	`vehicle_no` VARCHAR(64) NOT NULL,	`type_id` INT,	`type_name` VARCHAR(128),`date_added` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,		PRIMARY KEY (`vehicle_no`));";
 	public static final String VEHICLE_RETRIEVE_BY_VEHICLE_NO = "SELECT * FROM vehicle where vehicle_no = ?";
+	public static final String VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE = "SELECT COUNT(*) FROM log WHERE vehicle_no = ? AND date = ?";
+	public static final String VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE = "SELECT COUNT(*) FROM log WHERE vehicle_no = ? AND date >= ? AND date <= ?";
 	
 	public static final String READER_INSERT = "INSERT INTO reader(reader_id,address,lat,lon) VALUES (?,?,?,?)";
 	public static final String READER_RETRIEVE_ALL = "SELECT * FROM reader";
@@ -38,6 +40,7 @@ public class Queries {
 	public static final String LOG_READER_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date >= ? AND log.date <= ? AND reader.reader_id=?";
 	public static final String LOG_VEHICLE_LOG_BY_DATE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ? AND vehicle.vehicle_no=?";
 	public static final String LOG_VEHICLE_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date >= ? AND log.date <= ? AND vehicle.vehicle_no=?";
+	
 	
 	
 	

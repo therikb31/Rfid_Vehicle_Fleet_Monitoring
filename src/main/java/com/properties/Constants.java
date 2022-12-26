@@ -7,4 +7,5 @@ public class Constants {
 	public static final String PDF_FILENAME = "document.pdf";
 //	public static final String root = "C://Users//theri//git//nkdaswm//src//main//webapp//static//";
 //	public static final String output = "D:/Output/";
+	public static final int ATTENDANCE_MIN_READER_COUNT = 3;
 }

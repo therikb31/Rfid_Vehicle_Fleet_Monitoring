@@ -1,17 +1,75 @@
 package com.database;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.Vector;
 
+import com.models.Reader;
 import com.models.Vehicle;
 import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class VehicleDAO {
+	public static Vector<Vehicle> getVehicleActivityByDate(Date date) {
+		Vector<Vehicle> vehicles = getVehicle();
+		try {
+			Connection conn = DBConnector.getConnection();
+			for (Iterator<Vehicle> iter = vehicles.iterator(); iter.hasNext();) {
+				Vehicle vehicle = iter.next();
+				PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE);
+				ps.setString(1, vehicle.getVehicle_no());
+				ps.setDate(2, date);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					vehicle.setActivity(rs.getInt(1));
+//				System.out.println(reader.getReader_id()+":"+ rs.getInt(1));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return sortVehicleVector(vehicles);
+
+	}
+	public static Vector<Vehicle> getVehicleActivityByDateRange(Date from_date, Date to_date) {
+		Vector<Vehicle> vehicles = getVehicle();
+		try {
+			Connection conn = DBConnector.getConnection();
+			for (Iterator<Vehicle> iter = vehicles.iterator(); iter.hasNext();) {
+				Vehicle vehicle = iter.next();
+				PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE);
+				ps.setString(1, vehicle.getVehicle_no());
+				ps.setDate(2, from_date);
+				ps.setDate(3, to_date);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					vehicle.setActivity(rs.getInt(1));
+//				System.out.println(reader.getReader_id()+":"+ rs.getInt(1));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return sortVehicleVector(vehicles);
+		
+	}
+	public static Vector<Vehicle> sortVehicleVector(Vector<Vehicle> arr) {
+		int len = arr.size();
+		for(int i=0;i<len;i++) {
+			for(int j=i+1;j<len;j++) {
+				if(arr.elementAt(i).getActivity() < arr.elementAt(j).getActivity()) {
+					Collections.swap(arr, i, j);
+				}
+			}
+		}
+		return arr;
+	}
 	@SuppressWarnings("finally")
 	public static boolean checkVehicle(String vehicle_no) {
 		Connection conn = DBConnector.getConnection();
@@ -123,10 +181,10 @@ public class VehicleDAO {
 //		data.setType_id(0);
 //		data.setDate_added(new Timestamp(System.currentTimeMillis()));
 //		addVehicle(data);
-//		Vector<Vehicle> result = getVehicle();
-//		for(int i=0;i<result.size();i++) {
-//			System.out.println(result.elementAt(i).toString());
-//		}
+		Vector<Vehicle> result = getVehicleActivityByDate(Date.valueOf("2022-12-24"));
+		for(int i=0;i<result.size();i++) {
+			System.out.println(result.elementAt(i).toString());
+		}
 //		createTable();
 		System.out.println(checkVehicle("test"));
 	}
