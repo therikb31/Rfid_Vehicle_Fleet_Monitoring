@@ -123,6 +123,21 @@
 		<servlet-name>VehicleAttendanceByDateRange</servlet-name>
 		<servlet-class>com.reports.VehicleAttendanceByDateRange</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Regulator</display-name>
+		<servlet-name>Regulator</servlet-name>
+		<servlet-class>com.controllers.Regulator</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>services</display-name>
+		<servlet-name>services</servlet-name>
+		<servlet-class>com.view.services</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogServ</servlet-name>
 		<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -190,6 +205,14 @@
 	<servlet-mapping>
 		<servlet-name>VehicleAttendanceByDateRange</servlet-name>
 		<url-pattern>/VehicleAttendanceByDateRange</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Regulator</servlet-name>
+		<url-pattern>/Regulator</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>services</servlet-name>
+		<url-pattern>/services</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

@@ -45,7 +45,7 @@
 							<input type="text" id="form3Example3"
 								name="employee_id"
 								class="form-control form-control-lg"
-								placeholder="Enter employee id" />
+								placeholder="Enter employee id" required/>
 						</div>
 
 						<!-- Password input -->
@@ -53,7 +53,7 @@
 							<input type="password" id="form3Example4"
 								class="form-control form-control-lg"
 								name="password"
-								placeholder="Enter password" />
+								placeholder="Enter password" required/>
 						</div>
 
 						<div class="d-flex justify-content-between align-items-center">

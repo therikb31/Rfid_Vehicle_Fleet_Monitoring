@@ -30,8 +30,8 @@
 				<li class="nav-item"><a class=nav-link>NKDA</a></li>
 				<li class="nav-item"><a class="nav-link" href="dashboard">Dashboard</a></li>
 				<li class="nav-item"><a class="nav-link" href="reports">Reports</a></li>
-				<!-- <li class="nav-item"><a class="nav-link" href="addVehicle.jsp">Add Vehicle</a></li>
-				<li class="nav-item"><a class="nav-link" href="addReader.jsp">Add Reader</a></li> -->
+				<li class="nav-item"><a class="nav-link" href="services">Services</a></li>
+				
 			</ul>
 			<!-- Left links -->
 		</div>
