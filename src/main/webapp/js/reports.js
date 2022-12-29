@@ -1,14 +1,35 @@
 /**
  * 
  */
- function dailylog(){
-	var dateVar = $("#date").val();
-	if(dateVar==""){
-		alert("Date cannot be null");
-		window.location.href="reports";
-		return;
-	}
-	else{
-		document.getElementById("dailylog").submit();
+function setVehicleListParams(data) {
+	for (let i = 0; i < data.length; i++) {
+		var elements = document.getElementsByClassName("select-vehicle");
+		for (j = 0; j < elements.length; j++) {
+			var node = document.createElement("option");
+			node.innerHTML = data[i].vehicle_no;
+			node.value = data[i].reader_id;
+			elements[j].appendChild(node);
+		}
 	}
 }
+function setReaderListParams(data) {
+	for (let i = 0; i < data.length; i++) {
+		var elements = document.getElementsByClassName("select-reader");
+		for (j = 0; j < elements.length; j++) {
+			console.log(data[i]);
+			var node = document.createElement("option");
+			node.innerHTML = data[i].reader_id;
+			node.value = data[i].reader_id;
+			elements[j].appendChild(node);
+		}
+	}
+}
+// A $( document ).ready() block.
+$(document).ready(function() {
+	fetch('http://localhost:8080/GetReaderServ')
+		.then((response) => response.json())
+		.then((data) => { setReaderListParams(data.data) });
+	fetch('http://localhost:8080/GetVehiclesServ')
+		.then((response) => response.json())
+		.then((data) => { setVehicleListParams(data.data) });
+});
