@@ -138,6 +138,20 @@
 		<servlet-name>services</servlet-name>
 		<servlet-class>com.view.services</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetVehicleInfo</display-name>
+		<servlet-name>GetVehicleInfo</servlet-name>
+		<servlet-class>com.controllers.GetVehicleInfo</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>alerts</display-name>
+		<servlet-name>alerts</servlet-name>
+		<servlet-class>com.view.alerts</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogServ</servlet-name>
 		<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -213,6 +227,14 @@
 	<servlet-mapping>
 		<servlet-name>services</servlet-name>
 		<url-pattern>/services</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetVehicleInfo</servlet-name>
+		<url-pattern>/GetVehicleInfo</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>alerts</servlet-name>
+		<url-pattern>/alerts</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

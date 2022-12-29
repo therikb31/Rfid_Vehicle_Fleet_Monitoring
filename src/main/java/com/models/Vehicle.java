@@ -8,6 +8,8 @@ public class Vehicle {
 	private int type_id;
 	private Timestamp date_added;
 	private int activity;
+	private String current_location;
+	private String driven_by;
 	
 	public String getVehicle_no() {
 		return vehicle_no;
@@ -36,12 +38,25 @@ public class Vehicle {
 	@Override
 	public String toString() {
 		return "Vehicle [vehicle_no=" + vehicle_no + ", type_name=" + type_name + ", type_id=" + type_id
-				+ ", date_added=" + date_added + ", activity=" + activity + "]";
+				+ ", date_added=" + date_added + ", activity=" + activity + ", current_location=" + current_location
+				+ ", driven_by=" + driven_by + "]";
 	}
 	public int getActivity() {
 		return activity;
 	}
 	public void setActivity(int activity) {
 		this.activity = activity;
+	}
+	public String getCurrent_location() {
+		return current_location;
+	}
+	public void setCurrent_location(String current_location) {
+		this.current_location = current_location;
+	}
+	public String getDriven_by() {
+		return driven_by;
+	}
+	public void setDriven_by(String driven_by) {
+		this.driven_by = driven_by;
 	}
 }
