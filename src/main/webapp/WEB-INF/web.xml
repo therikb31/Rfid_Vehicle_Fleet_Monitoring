@@ -152,6 +152,27 @@
 		<servlet-name>alerts</servlet-name>
 		<servlet-class>com.view.alerts</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>MostUsedReaderAlert</display-name>
+		<servlet-name>MostUsedReaderAlert</servlet-name>
+		<servlet-class>com.alerts.MostUsedReaderAlert</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>LeastUsedReaderAlert</display-name>
+		<servlet-name>LeastUsedReaderAlert</servlet-name>
+		<servlet-class>com.alerts.LeastUsedReaderAlert</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ToggleDebugServ</display-name>
+		<servlet-name>ToggleDebugServ</servlet-name>
+		<servlet-class>com.controllers.ToggleDebugServ</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogServ</servlet-name>
 		<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -235,6 +256,18 @@
 	<servlet-mapping>
 		<servlet-name>alerts</servlet-name>
 		<url-pattern>/alerts</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MostUsedReaderAlert</servlet-name>
+		<url-pattern>/MostUsedReaderAlert</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LeastUsedReaderAlert</servlet-name>
+		<url-pattern>/LeastUsedReaderAlert</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ToggleDebugServ</servlet-name>
+		<url-pattern>/ToggleDebugServ</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

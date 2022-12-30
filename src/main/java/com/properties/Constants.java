@@ -16,4 +16,5 @@ public class Constants {
 	
 	public static final String ATTENDANCE_DAILY_MAIL_SUBJECT = "Attendance Report";
 	public static final String ATTENDANCE_DAILY_MAIL_BODY = "This is the attendance for given date %s";
+	public static boolean debug = false;
 }

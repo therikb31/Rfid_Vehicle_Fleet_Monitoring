@@ -186,7 +186,6 @@ public class VehicleDAO {
 				data.setType_name(rs.getString("type_name"));
 				data.setDate_added(rs.getTimestamp("date_added"));
 				data.setDriven_by(rs.getString("driven_by"));
-				data.setCurrent_location(getCurrentLocationByVehicleNo(rs.getString("vehicle_no")));
 				result.add(data);
 			}
 			conn.close();
