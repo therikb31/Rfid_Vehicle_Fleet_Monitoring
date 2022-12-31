@@ -3,6 +3,8 @@ package com.alerts;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -43,8 +45,9 @@ public class LeastUsedReaderAlert extends HttpServlet {
 		if(session.getAttribute("isLoggedIn") != null) {
 			Vector<Reader> log = new Vector<Reader>();
 			Vector<Reader> res = ReaderDAO.getReaderActivityByDateRange(from_date,to_date);
+			int min = res.elementAt(res.size()-1).getActivity();
 			for(int i=0;i<res.size();i++) {
-				if(res.elementAt(i).getActivity()==0) {
+				if(res.elementAt(i).getActivity()==min) {
 					log.add(res.elementAt(i));
 				}
 			}

@@ -32,6 +32,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 </head>
 <body>
 	<%@ include file="./includes/navbar.jsp"%>
+	<%@ include file="./includes/loader.jsp"%>
 	<div class="row">
 		<div class="col-1 card" style="width: 18rem; margin: 20px; padding: 0px;">
 			<h5 class="card-header">Most Used Reader</h5>
@@ -40,6 +41,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 				</p>
 			</div>
 		</div>
+	</div>
+	<div class="row" id='leastUsedReader'>
 	</div>
 </body>
 </html>
