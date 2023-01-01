@@ -28,11 +28,11 @@ function setLeastUsedReader(data) {
 		body.innerHTML += html + breakline;
 	}
 	document.querySelector(
-			"#loader").style.display = "none";
-		document.querySelector(
-			"body").style.visibility = "visible"; 
+		"#loader").style.display = "none";
+	document.querySelector(
+		"body").style.visibility = "visible";
 }
-function setMostActiveVehicle(data){
+function setMostActiveVehicle(data) {
 	var body = document.getElementById('mostUsedVehicle');
 	for (i = 0; i < data.length; i++) {
 		var breakline = "";
@@ -52,16 +52,17 @@ function setMostActiveVehicle(data){
 			'</div>' +
 			'</div>';
 		body.innerHTML += html + breakline;
+	}
 }
 document.onreadystatechange = function() {
-            if (document.readyState !== "complete") {
-                document.querySelector(
-                  "body").style.visibility = "hidden";
-                document.querySelector(
-                  "#loader").style.visibility = "visible";
-            }
-        };
-$(document).ready(function() { 
+	if (document.readyState !== "complete") {
+		document.querySelector(
+			"body").style.visibility = "hidden";
+		document.querySelector(
+			"#loader").style.visibility = "visible";
+	}
+};
+$(document).ready(function() {
 	fetch('./MostUsedReaderAlert')
 		.then((response) => response.json())
 		.then((data) => { setMostUsedReader(data.data) });
@@ -71,5 +72,5 @@ $(document).ready(function() {
 	fetch('./LeastUsedReaderAlert')
 		.then((response) => response.json())
 		.then((data) => { setLeastUsedReader(data.data) });
-		
+
 });
