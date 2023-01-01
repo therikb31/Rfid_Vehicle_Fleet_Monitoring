@@ -10,6 +10,7 @@ public class LogItem {
 	String rfid;
 	String vehicle_no;
 	String id;
+	String driven_by;
 	public Date getDate() {
 		return date;
 	}
@@ -51,5 +52,12 @@ public class LogItem {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getDriven_by() {
+		return driven_by;
+	}
+	public void setDriven_by(String driven_by) {
+		this.driven_by = driven_by;
+	}
+	
 	
 }

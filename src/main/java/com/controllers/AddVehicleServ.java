@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.database.RfidDAO;
 import com.database.VehicleDAO;
+import com.models.Rfid;
 import com.models.Vehicle;
 
 /**
@@ -42,20 +44,24 @@ public class AddVehicleServ extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String vehicle_no = request.getParameter("vehicle_no");
-		int type_id = Integer.parseInt(request.getParameter("type_id"));
 		String type_name = request.getParameter("type_name");
+		String rfid = request.getParameter("rfid");
 		Timestamp date_added = new Timestamp(System.currentTimeMillis());
 		
 		Vehicle data = new Vehicle();
 		data.setVehicle_no(vehicle_no);
-		data.setType_id(type_id);
 		data.setType_name(type_name);
 		data.setDate_added(date_added);
+		
+		Rfid rfidData = new Rfid();
+		rfidData.setRfid(rfid);
+		rfidData .setVehicle_no(vehicle_no);
+		RfidDAO.addRfid(rfidData);
 		
 		VehicleDAO.addVehicle(data);
 		request.setAttribute("addedVehicle","true");
 		request.setAttribute("vehicle_no",vehicle_no);
-		RequestDispatcher rd = request.getRequestDispatcher("addVehicle.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("services.jsp");
 		rd.forward(request, response);
 		
 	}

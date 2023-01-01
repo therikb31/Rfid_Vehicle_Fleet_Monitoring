@@ -1,27 +1,32 @@
-package com.controllers;
+package com.alerts;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Vector;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.database.ReaderDAO;
+import com.google.gson.Gson;
 import com.models.Reader;
 
 /**
- * Servlet implementation class AddReaderServ
+ * Servlet implementation class MostUsedReaderAlert
  */
-@WebServlet("/AddReaderServ")
-public class AddReaderServ extends HttpServlet {
+public class MostUsedReaderAlert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddReaderServ() {
+    public MostUsedReaderAlert() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +36,20 @@ public class AddReaderServ extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		LocalDate ld = LocalDate.now();
+		Date from_date = Date.valueOf(ld.plusMonths(-1));
+		Date to_date = Date.valueOf(ld);
+		RequestDispatcher rd = null;
+		HttpSession session = request.getSession();
+		if(session.getAttribute("isLoggedIn") != null) {
+			Reader res = ReaderDAO.getReaderActivityByDateRange(from_date,to_date).elementAt(0);
+			String jsonData = new Gson().toJson(res);
+		    response.getWriter().print("{\"data\":"+jsonData+"}");
+		}
+		else {
+			rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	/**
@@ -39,20 +57,7 @@ public class AddReaderServ extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String reader_id = request.getParameter("reader_id");
-		String address = request.getParameter("address");
-		String lat = request.getParameter("lat");
-		String lon = request.getParameter("lon");
-		
-		Reader reader = new Reader();
-		reader.setReader_id(reader_id);
-		reader.setAddress(address);
-		reader.setLat(lat);
-		reader.setLon(lon);
-		
-		ReaderDAO.addReader(reader);
-		RequestDispatcher rd = request.getRequestDispatcher("addReader.jsp");
-		rd.forward(request, response);
+		doGet(request, response);
 	}
 
 }

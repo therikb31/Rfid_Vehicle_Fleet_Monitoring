@@ -16,6 +16,31 @@ import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class VehicleDAO {
+	public static void updateDrivenBy(String vehicle_no,String driver_name) {
+		try {
+			Connection conn = DBConnector.getConnection();
+			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_UPDATE_DRIVEN_BY);
+			ps.setString(1, vehicle_no);
+			ps.setString(2, driver_name);
+			ps.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public static String getCurrentLocationByVehicleNo(String vehicle_no) {
+		try {
+			Connection conn = DBConnector.getConnection();
+			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_VEHICLE_CURRENT_LOCATION);
+			ps.setString(1, vehicle_no);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString("reader_id");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public static Vector<Vehicle> getVehicleActivityByDate(Date date) {
 		Vector<Vehicle> vehicles = getVehicle();
 		try {
@@ -106,7 +131,7 @@ public class VehicleDAO {
 			ps.setInt(2,data.getType_id());
 			ps.setString(3, data.getType_name());
 			ps.setTimestamp(4,data.getDate_added());
-			
+			ps.setString(5, data.getDriven_by());
 			int rowcount = ps.executeUpdate();
 			if (rowcount > 0) {
 				System.out.println("Added 1 rows successfully into Vehicle");
@@ -136,6 +161,8 @@ public class VehicleDAO {
 				data.setType_id(rs.getInt("type_id"));
 				data.setType_name(rs.getString("type_name"));
 				data.setDate_added(rs.getTimestamp("date_added"));
+				data.setDriven_by(rs.getString("driven_by"));
+				data.setCurrent_location(getCurrentLocationByVehicleNo(vehicle_no));
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -158,6 +185,7 @@ public class VehicleDAO {
 				data.setType_id(rs.getInt("type_id"));
 				data.setType_name(rs.getString("type_name"));
 				data.setDate_added(rs.getTimestamp("date_added"));
+				data.setDriven_by(rs.getString("driven_by"));
 				result.add(data);
 			}
 			conn.close();

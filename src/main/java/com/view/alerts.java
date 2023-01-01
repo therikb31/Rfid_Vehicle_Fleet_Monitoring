@@ -1,4 +1,4 @@
-package com.controllers;
+package com.view;
 
 import java.io.IOException;
 
@@ -8,20 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.database.RfidDAO;
-import com.database.VehicleDAO;
-import com.models.Rfid;
-
 /**
- * Servlet implementation class AddRfidServ
+ * Servlet implementation class alerts
  */
-public class AddRfidServ extends HttpServlet {
+public class alerts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddRfidServ() {
+    public alerts() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +27,8 @@ public class AddRfidServ extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		RequestDispatcher rd = request.getRequestDispatcher("alerts.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -39,16 +36,7 @@ public class AddRfidServ extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String rfid = request.getParameter("rfid");
-		String vehicle_no = request.getParameter("vehicle_no");
-		if(VehicleDAO.checkVehicle(vehicle_no)) {
-			Rfid data = new Rfid();
-			data.setRfid(rfid);
-			data .setVehicle_no(vehicle_no);
-			RfidDAO.addRfid(data);
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("services.jsp");
-		rd.forward(request, response);
+		doGet(request, response);
 	}
 
 }

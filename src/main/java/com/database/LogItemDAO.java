@@ -27,6 +27,7 @@ public class LogItemDAO {
 				log.setTime(rs.getTime("time"));
 				log.setReader_id(rs.getString("reader_id"));
 				log.setRfid(rs.getString("rfid"));
+				log.setDriven_by(rs.getString("driven_by"));
 				logs.add(log);
 			}
 			conn.close();
@@ -53,6 +54,7 @@ public class LogItemDAO {
 				log.setTime(rs.getTime("time"));
 				log.setReader_id(rs.getString("reader_id"));
 				log.setRfid(rs.getString("rfid"));
+				log.setDriven_by(rs.getString("driven_by"));
 				logs.add(log);
 			}
 			conn.close();
@@ -77,6 +79,7 @@ public class LogItemDAO {
 				log.setTime(rs.getTime("time"));
 				log.setReader_id(rs.getString("reader_id"));
 				log.setRfid(rs.getString("rfid"));
+				log.setDriven_by(rs.getString("driven_by"));
 				logs.add(log);
 			}
 			conn.close();
@@ -107,11 +110,10 @@ public class LogItemDAO {
 			ps.setString(4, logItem.getRfid());
 			ps.setString(5, logItem.getVehicle_no());
 			ps.setString(6, logItem.getId());
+			ps.setString(7, logItem.getDriven_by());
 			int rowcount = ps.executeUpdate();
 			if (rowcount > 0) {
-				System.out.println("Added 1 rows successfully into Log");
-				return true;
-						
+				return true;			
 			}
 			else {
 				System.out.println("Database Error, failed to insert data into Log");

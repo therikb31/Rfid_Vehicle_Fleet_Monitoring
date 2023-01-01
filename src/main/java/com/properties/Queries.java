@@ -1,12 +1,14 @@
 package com.properties;
 
 public class Queries {
-	public static final String VEHICLE_INSERT = "INSERT INTO vehicle(vehicle_no,type_id,type_name,date_added) VALUES (?,?,?,?)";
+	public static final String VEHICLE_INSERT = "INSERT INTO vehicle(vehicle_no,type_id,type_name,date_added,driven_by) VALUES (?,?,?,?,?)";
 	public static final String VEHICLE_RETRIEVE_ALL = "SELECT * FROM vehicle";
 	public static final String VEHICLE_CREATE = "CREATE TABLE `vehicle` (	`vehicle_no` VARCHAR(64) NOT NULL,	`type_id` INT,	`type_name` VARCHAR(128),`date_added` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,		PRIMARY KEY (`vehicle_no`));";
 	public static final String VEHICLE_RETRIEVE_BY_VEHICLE_NO = "SELECT * FROM vehicle where vehicle_no = ?";
 	public static final String VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE = "SELECT COUNT(*) FROM log WHERE vehicle_no = ? AND date = ?";
 	public static final String VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE = "SELECT COUNT(*) FROM log WHERE vehicle_no = ? AND date >= ? AND date <= ?";
+	public static final String VEHICLE_RETRIEVE_VEHICLE_CURRENT_LOCATION = "SELECT * FROM log WHERE vehicle_no=? ORDER BY date DESC Limit 1";
+	public static final String VEHICLE_UPDATE_DRIVEN_BY = "UPDATE vehicle set driven_by = ? where vehicle_no = ?";
 	
 	public static final String READER_INSERT = "INSERT INTO reader(reader_id,address,lat,lon) VALUES (?,?,?,?)";
 	public static final String READER_RETRIEVE_ALL = "SELECT * FROM reader";
@@ -16,10 +18,10 @@ public class Queries {
 	public static final String READER_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE = "SELECT COUNT(*) FROM log WHERE reader_id = ? AND date >= ? AND date <= ?";
 	
 	public static final String LOGITEM_CREATE = "CREATE TABLE `log` (`date` DATE, `time` TIME,`reader_id` VARCHAR(64),	`rfid` VARCHAR(64))";
-	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no,id) VALUES (?,?,?,?,?,?)";
+	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no,id,driven_by) VALUES (?,?,?,?,?,?,?)";
 	public static final String LOGITEM_RETRIEVE_ALL = "SELECT * FROM log";
 	public static final String LOGITEM_RETRIEVE_BY_VEHICLE_NO = "SELECT * FROM log WHERE VEHICLE_NO = ?";
-	public static final String LOGITEM_RETRIEVE_BY_DATE = "SELECT * FROM log WHERE date = ?";
+	public static final String LOGITEM_RETRIEVE_BY_DATE = "SELECT reader_id FROM log WHERE date = ?";
 	
 	
 	
@@ -40,6 +42,8 @@ public class Queries {
 	public static final String LOG_READER_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date >= ? AND log.date <= ? AND reader.reader_id=?";
 	public static final String LOG_VEHICLE_LOG_BY_DATE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ? AND vehicle.vehicle_no=?";
 	public static final String LOG_VEHICLE_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date >= ? AND log.date <= ? AND vehicle.vehicle_no=?";
+	
+	
 	
 	
 	
