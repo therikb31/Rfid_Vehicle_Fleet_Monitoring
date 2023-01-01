@@ -29,9 +29,9 @@ if (session.getAttribute("isLoggedIn") != null) {
 	crossorigin="anonymous">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="../js/alerts.js"></script>
+<%@ include file="./includes/navbar.jsp"%>
 </head>
 <body>
-	<%@ include file="./includes/navbar.jsp"%>
 	<%@ include file="./includes/loader.jsp"%>
 	<div class="row">
 		<div class="col-1 card" style="width: 18rem; margin: 20px; padding: 0px;">
