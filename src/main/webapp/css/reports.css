@@ -8,3 +8,6 @@
     background-color: rgb(227, 237, 237);
     text-align: center;
 }
+body{
+	overflow-x: hidden;
+}

@@ -12,6 +12,9 @@
 		<a class="navbar-brand me-2" href="/dashboard"> <img
 			src="./static/nkda-logo.png" height="30" loading="lazy"
 			style="margin-top: -1px;" />
+			<img
+			src="./static/nkda-logo2.png" height="30" loading="lazy"
+			style="margin-top: -1px; margin-left: 15px; margin-right: 15px;" />
 		</a>
 
 		<!-- Toggle button -->

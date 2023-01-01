@@ -11,12 +11,12 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="../js/reports.js"></script>
 </head>
-<body>
+<body style="overflow-x: hidden;">
 	<%@ include file="./includes/navbar.jsp" %>
 	<div class="row">
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
-				<h5 class="card-title">Daily Log</h5>
+				<h5 class="card-title" style="font-weight: bold;">Daily Log</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
 				<form action="DailyLog" id="dailylog" method="post" target="_blank">
@@ -27,6 +27,7 @@
 				</form>
 			</div>
 		</div>
+		<!--
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Card title</h5>
@@ -35,9 +36,10 @@
 				<a href="#" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
+		-->
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
-				<h5 class="card-title">Daily Log By Date Range</h5>
+				<h5 class="card-title" style="font-weight: bold;">Daily Log By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
 				<form action="DailyLogByDateRange" id="dailylog2" method="post" target="_blank">
@@ -53,7 +55,7 @@
 		</div>
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
-				<h5 class="card-title">Reader Log By Date</h5>
+				<h5 class="card-title" style="font-weight: bold;">Reader Log By Date</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
 				<form action="ReaderLogByDate" id="dailylog3" method="post" target="_blank">
@@ -69,7 +71,7 @@
 		</div>
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
-				<h5 class="card-title">Reader Log By Date Range</h5>
+				<h5 class="card-title" style="font-weight: bold;">Reader Log By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
 				<form action="ReaderLogByDateRange" id="dailylog4" method="post" target="_blank">
@@ -88,7 +90,7 @@
 		</div>
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
-				<h5 class="card-title">Vehicle Log By Date</h5>
+				<h5 class="card-title" style="font-weight: bold;">Vehicle Log By Date</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
 				<form action="VehicleLogByDate" id="dailylog5" method="post" target="_blank">
@@ -104,7 +106,7 @@
 		</div>
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
-				<h5 class="card-title">Vehicle Log By Date Range</h5>
+				<h5 class="card-title" style="font-weight: bold;">Vehicle Log By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
 				<form action="VehicleLogByDateRange" id="dailylog6" method="post" target="_blank">
@@ -123,7 +125,7 @@
 		</div>
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
-				<h5 class="card-title">Reader Activity Log By Date</h5>
+				<h5 class="card-title" style="font-weight: bold;">Reader Activity Log By Date</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
 				<form action="ReaderActivityLogByDate" id="dailylog7" method="post" target="_blank">
@@ -136,7 +138,7 @@
 		</div>
 		<div class="col-1 card" style="width: 18rem; margin: 20px;">
 			<div class="card-body" >
-				<h5 class="card-title">Reader Activity Log By Date Range</h5>
+				<h5 class="card-title" style="font-weight: bold;">Reader Activity Log By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
 				<form action="ReaderActivityLogByDateRange" id="dailylog8" method="post" target="_blank">

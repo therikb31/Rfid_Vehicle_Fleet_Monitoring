@@ -30,12 +30,20 @@
 <body>
 	<!-- Navbar -->
 	<section class="vh-100">
+	<!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" style="color: LightGray; margin-left: 380px; font-style: italic; font-weight: bold; letter-spacing: 3px;">
+    <img src="./static/nkda-logo.png" height="30" class="d-inline-block align-top" alt="" style="margin-right: 15px;">
+    NKDA Solid Waste Vehicle Monitoring System   
+    <img src="./static/nkda-logo2.png" height="30" class="d-inline-block align-top" alt="" style="margin-left: 15px;">
+  </a>
+</nav>
 		<div class="container-fluid h-custom">
 			<div
 				class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-md-9 col-lg-6 col-xl-5">
 					<img
-						src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+						src="../static/picture.png"
 						class="img-fluid" alt="Sample image">
 				</div>
 				<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
