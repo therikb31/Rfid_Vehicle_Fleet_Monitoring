@@ -8,9 +8,9 @@ if (session.getAttribute("isLoggedIn") != null) {
 <head>
 <meta charset="UTF-8">
 <title>Reports</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+<%@ include file="./includes/links.html"%>
 <link rel="stylesheet" href="/css/reports.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <script type="text/javascript" src="../js/reports.js"></script>
 </head>
 <body>
@@ -50,7 +50,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 					target="_blank">
 					<label for="date">Enter Date:</label> <input type="date"
 						name="date" id="date4" required><br> <br> <label
-						for="date">Enter Reader ID:</label><select class="select-reader" placeholder="Select Reader"></select><br> <br>
+						for="date">Enter Reader ID:</label><select class="select-reader" name="reader_id" splaceholder="Select Reader"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
@@ -66,7 +66,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 						name="from_date" id="date6" required><br> <br> <label
 						for="date">To Date:</label> <input type="date" name="to_date"
 						id="date7" required><br> <br> <label for="date">Enter
-						Reader ID:</label> <select class="select-reader" placeholder="Select Reader"></select><br>
+						Reader ID:</label> <select class="select-reader" name="reader_id" placeholder="Select Reader"></select><br>
 					<br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
@@ -99,7 +99,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 					target="_blank">
 					<label for="date">Enter Date:</label> <input type="date"
 						name="date" id="date9" required><br> <br> <label
-						for="date">Enter Vehicle Number:</label> <select class="select-vehicle" placeholder="Select Vehicle"></select><br> <br>
+						for="date">Enter Vehicle Number:</label> <select class="select-vehicle" name="vehicle_no" placeholder="Select Vehicle"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
@@ -115,7 +115,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 						name="from_date" id="date11" required><br> <br>
 					<label for="date">To Date:</label> <input type="date"
 						name="to_date" id="date12" required><br> <br> <label
-						for="date">Enter Vehicle Number:</label><select class="select-vehicle" placeholder="Select Vehicle"></select><br> <br>
+						for="date">Enter Vehicle Number:</label><select class="select-vehicle" name="vehicle_no" placeholder="Select Vehicle"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
@@ -137,6 +137,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 		</div>
 	</div>
 </body>
+<script src="./js/bootstrap.bundle.min.js"></script>
 </html>
 <%
 } else {

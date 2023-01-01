@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="./css/sidebars.css">
-<div class="flex-shrink-0 p-3 bg-white" id="side" style="width: 280px;">
+<div class="flex-shrink-0 p-3 bg-white sidebar" id="side">
 	<a
 		class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
 		<svg class="bi me-2" width="30" height="24">
@@ -8,15 +8,15 @@
 	<ul class="list-unstyled ps-0">
 		<li class="mb-1">
 			<button class="btn btn-toggle align-items-center rounded collapsed"
-				data-bs-toggle="collapse" data-bs-target="#home-collapse"
+				data-bs-toggle="collapse" data-bs-target="#home-collapse" data-bs-parent="#side"
 				aria-expanded="true">Tipper</button>
-			<div class="collapse show" id="home-collapse">
+			<div class="collapse show " id="home-collapse">
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="1"></ul>
 			</div>
 		</li>
 		<li class="mb-1">
 			<button class="btn btn-toggle align-items-center rounded collapsed"
-				data-bs-toggle="collapse" data-bs-target="#dashboard-collapse"
+				data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" data-bs-parent="#side"
 				aria-expanded="false">Auto Tipper</button>
 			<div class="collapse" id="dashboard-collapse">
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="2">
@@ -25,7 +25,7 @@
 		</li>
 		<li class="mb-1">
 			<button class="btn btn-toggle align-items-center rounded collapsed"
-				data-bs-toggle="collapse" data-bs-target="#orders-collapse"
+				data-bs-toggle="collapse" data-bs-target="#orders-collapse" data-bs-parent="#side"
 				aria-expanded="false">Compactors</button>
 			<div class="collapse" id="orders-collapse">
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="3">

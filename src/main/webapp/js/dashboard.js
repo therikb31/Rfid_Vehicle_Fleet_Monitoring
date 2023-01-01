@@ -98,7 +98,7 @@ function setSidebarParams(data) {
 	for (let i = 0; i < data.length; i++) {
 		var element = document.getElementById(data[i].type_id.toString());
 		var liNode = document.createElement("li");
-		liNode.innerHTML = "<button style='align-items:center' class='btn btn-light btn-sm' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
+		liNode.innerHTML = "<button style='margin-bottom:2px;margin-left:30px;' class='btn btn-outline-dark btn-sm' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
 		//liNode.innerHTML = "<a class='link-dark rounded' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
 		element.appendChild(liNode);
 	}

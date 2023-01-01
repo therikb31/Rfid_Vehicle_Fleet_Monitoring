@@ -7,7 +7,7 @@ function setVehicleListParams(data) {
 		for (j = 0; j < elements.length; j++) {
 			var node = document.createElement("option");
 			node.innerHTML = data[i].vehicle_no;
-			node.value = data[i].reader_id;
+			node.value = data[i].vehicle_no;
 			elements[j].appendChild(node);
 		}
 	}

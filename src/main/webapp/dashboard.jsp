@@ -9,22 +9,19 @@
         content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="#" />
 <title>Dashboard</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<%@ include file="./includes/links.html"%>
 <link rel="stylesheet" href="../css/dashboard.css">
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<div class="mycontainer">
 		<div class="row"><%@ include file="./includes/navbar.jsp"%></div>
 		<div class="row">
-			<div class="col-2 sidebar overflow-auto"><%@ include
+			<div class="col-2"><%@ include
 					file="./includes/sidebar.html"%></div>
-			<div class="col-3 overflow-auto">
-				<!-- <div class="row" style="background-color: blue; height: 50%;">.</div>
-				<div class="row" style="background-color: green; height: 50%;">.</div>
- -->			</div>
+			<div class="col-3 no-gutters">
+				<div class="row" style="background-color: #F9F6EE; height: 50%;">.</div>
+				<div class="row" style="background-color: #FAF9F6; height: 50%;">.</div>			</div>
 			<div class="col"><%@ include file="./includes/map.jsp"%></div>
 			
 			<script src="../js/dashboard.js"></script>
