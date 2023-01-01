@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
         content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="#" />
+<link rel="shortcut icon" href="./static/nkda-logo2.png" />
 <title>Dashboard</title>
 <%@ include file="./includes/links.html"%>
 <link rel="stylesheet" href="../css/dashboard.css">

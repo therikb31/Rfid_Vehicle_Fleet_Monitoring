@@ -8,10 +8,12 @@
 <title>Error</title>
 </head>
 <body>
+<%@ include file="./includes/links.html"%>
 <%@ include file="../includes/navbar.jsp" %>
 <div class="error-body"><h3>${message}</h3></div>
 <div class="redirect-body"><a href="${redirect}">back</a></div>
 </body>
+<script src="./js/bootstrap.bundle.min.js"></script>
 </html>
 <%}else{%>
 <%@ include file="index.jsp"%>

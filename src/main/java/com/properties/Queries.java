@@ -21,7 +21,7 @@ public class Queries {
 	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no,id,driven_by) VALUES (?,?,?,?,?,?,?)";
 	public static final String LOGITEM_RETRIEVE_ALL = "SELECT * FROM log";
 	public static final String LOGITEM_RETRIEVE_BY_VEHICLE_NO = "SELECT * FROM log WHERE VEHICLE_NO = ?";
-	public static final String LOGITEM_RETRIEVE_BY_DATE = "SELECT reader_id FROM log WHERE date = ?";
+	public static final String LOGITEM_RETRIEVE_BY_DATE = "SELECT * FROM log WHERE date = ?";
 	
 	
 	

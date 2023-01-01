@@ -50,7 +50,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 					target="_blank">
 					<label for="date">Enter Date:</label> <input type="date"
 						name="date" id="date4" required><br> <br> <label
-						for="date">Enter Reader ID:</label><select class="select-reader" name="reader_id" splaceholder="Select Reader"></select><br> <br>
+						for="date">Enter Reader ID:</label><select class="select-reader"
+						name="reader_id" splaceholder="Select Reader"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
@@ -66,16 +67,16 @@ if (session.getAttribute("isLoggedIn") != null) {
 						name="from_date" id="date6" required><br> <br> <label
 						for="date">To Date:</label> <input type="date" name="to_date"
 						id="date7" required><br> <br> <label for="date">Enter
-						Reader ID:</label> <select class="select-reader" name="reader_id" placeholder="Select Reader"></select><br>
-					<br>
+						Reader ID:</label> <select class="select-reader" name="reader_id"
+						placeholder="Select Reader"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
 		</div>
-		
+
 	</div>
 	<div class="row">
-	<div class="col card" style="width: 18rem; margin: 20px;">
+		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Daily Log By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
@@ -99,7 +100,9 @@ if (session.getAttribute("isLoggedIn") != null) {
 					target="_blank">
 					<label for="date">Enter Date:</label> <input type="date"
 						name="date" id="date9" required><br> <br> <label
-						for="date">Enter Vehicle Number:</label> <select class="select-vehicle" name="vehicle_no" placeholder="Select Vehicle"></select><br> <br>
+						for="date">Enter Vehicle Number:</label> <select
+						class="select-vehicle" name="vehicle_no"
+						placeholder="Select Vehicle"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
@@ -115,7 +118,9 @@ if (session.getAttribute("isLoggedIn") != null) {
 						name="from_date" id="date11" required><br> <br>
 					<label for="date">To Date:</label> <input type="date"
 						name="to_date" id="date12" required><br> <br> <label
-						for="date">Enter Vehicle Number:</label><select class="select-vehicle" name="vehicle_no" placeholder="Select Vehicle"></select><br> <br>
+						for="date">Enter Vehicle Number:</label><select
+						class="select-vehicle" name="vehicle_no"
+						placeholder="Select Vehicle"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
@@ -136,8 +141,24 @@ if (session.getAttribute("isLoggedIn") != null) {
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-3 card" style="width: 18rem; margin: 20px;">
+			<div class="card-body">
+				<h5 class="card-title">Log</h5>
+				<p class="card-text">Contains the Log Events of all the readers
+					combined on a given date.</p>
+				<form action="LogByDate" id="dailylog8"
+					method="post" target="_blank">
+					<label for="date15">Date:</label> <input type="date"
+						name="date" id="date15" required><br><br>
+					<button class="btn btn-primary" type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 <script src="./js/bootstrap.bundle.min.js"></script>
+
 </html>
 <%
 } else {

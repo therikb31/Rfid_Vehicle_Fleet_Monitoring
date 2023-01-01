@@ -180,6 +180,13 @@
 		<servlet-name>LogoutServ</servlet-name>
 		<servlet-class>com.controllers.LogoutServ</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>LogByDate</display-name>
+		<servlet-name>LogByDate</servlet-name>
+		<servlet-class>com.reports.LogByDate</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogServ</servlet-name>
 		<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -279,6 +286,10 @@
 	<servlet-mapping>
 		<servlet-name>LogoutServ</servlet-name>
 		<url-pattern>/LogoutServ</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogByDate</servlet-name>
+		<url-pattern>/LogByDate</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
