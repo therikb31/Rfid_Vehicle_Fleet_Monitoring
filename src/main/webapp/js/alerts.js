@@ -7,7 +7,6 @@ function setMostUsedReader(data) {
 		"Activity: <b>" + data.activity + "</b><br/>";
 }
 function setLeastUsedReader(data) {
-	console.log(data);
 	var body = document.getElementById('leastUsedReader');
 	for (i = 0; i < data.length; i++) {
 		var breakline = "";
@@ -33,6 +32,27 @@ function setLeastUsedReader(data) {
 		document.querySelector(
 			"body").style.visibility = "visible"; 
 }
+function setMostActiveVehicle(data){
+	var body = document.getElementById('mostUsedVehicle');
+	for (i = 0; i < data.length; i++) {
+		var breakline = "";
+		if ((i + 1) % 3 == 0) {
+			breakline = '<div class="w-100"></div>';
+		}
+		var html = '<div class="col card" style="width: 18rem; margin: 20px; padding: 0px;">' +
+			'<h5 class="card-header">Least Used Reader</h5>' +
+			'<div class="card-body">' +
+			'<p class="card-text" id="leastUsedReader">' +
+			"Reader ID: <b>" + data[i].reader_id + "</b><br/>" +
+			"Address: <b>" + data[i].address + "</b><br/>" +
+			"Latitude: <b>" + data[i].lat + "</b><br/>" +
+			"Longitude: <b>" + data[i].lon + "</b><br/>" +
+			"Activity: <b>" + data[i].activity + "</b><br/>" +
+			'</p>' +
+			'</div>' +
+			'</div>';
+		body.innerHTML += html + breakline;
+}
 document.onreadystatechange = function() {
             if (document.readyState !== "complete") {
                 document.querySelector(
@@ -42,10 +62,13 @@ document.onreadystatechange = function() {
             }
         };
 $(document).ready(function() { 
-	fetch('http://localhost:8080/MostUsedReaderAlert')
+	fetch('./MostUsedReaderAlert')
 		.then((response) => response.json())
 		.then((data) => { setMostUsedReader(data.data) });
-	fetch('http://localhost:8080/LeastUsedReaderAlert')
+	fetch('./LeastUsedReaderAlert')
+		.then((response) => response.json())
+		.then((data) => { setLeastUsedReader(data.data) });
+	fetch('./LeastUsedReaderAlert')
 		.then((response) => response.json())
 		.then((data) => { setLeastUsedReader(data.data) });
 		

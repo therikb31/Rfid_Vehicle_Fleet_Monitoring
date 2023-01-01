@@ -42,8 +42,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 			</div>
 		</div>
 	</div>
-	<div class="row" id='leastUsedReader'>
-	</div>
+	<div class="row" id='leastUsedReader'></div>
+	<div class="row" id='mostActiveVehicle'></div>
 </body>
 </html>
 <%

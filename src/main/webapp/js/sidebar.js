@@ -14,7 +14,7 @@ function setSidebarParams(data){
 }
 
 
-fetch('http://localhost:8080/GetVehiclesServ')
+fetch('./GetVehiclesServ')
   .then((response) => response.json())
   .then((data) => {setSidebarParams(data.data)});
   

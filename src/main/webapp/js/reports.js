@@ -26,10 +26,10 @@ function setReaderListParams(data) {
 }
 // A $( document ).ready() block.
 $(document).ready(function() {
-	fetch('http://localhost:8080/GetReaderServ')
+	fetch('./GetReaderServ')
 		.then((response) => response.json())
 		.then((data) => { setReaderListParams(data.data) });
-	fetch('http://localhost:8080/GetVehiclesServ')
+	fetch('./GetVehiclesServ')
 		.then((response) => response.json())
 		.then((data) => { setVehicleListParams(data.data) });
 });
