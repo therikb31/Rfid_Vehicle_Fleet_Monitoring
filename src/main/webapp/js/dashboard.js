@@ -16,10 +16,10 @@ function loadMap() {
 			'native',
 			{
 				center: {
-					latitude: 22.579463,
-					longitude: 88.467688
+					latitude: 22.59,
+					longitude: 88.475
 				},
-				zoom: 14.5,
+				zoom: 13.5,
 				mouse_scroll: true,
 				zoom_control: true,
 				map_type: true
@@ -78,18 +78,19 @@ function plotMap() {
 		marker.position = position;
 		marker.title = data[i].address;
 		marker.draggable = false;
-		//marker.icon = "./static/nkda-logo.png";
+		//marker.icon = "./static/wifi-icon.png";
 
 		var marker1 = jsMaps.api.marker(map, marker);
 		var pair = new Object();
 		pair.id = data[i].reader_id;
 		pair.marker = marker1;
+		var infoWindow = jsMaps.api.infoWindow({ content: data[i].address });
+		jsMaps.api.attach_event(pair.marker, 'hover', function() {
+			infoWindow.open(map, pair.marker);
+			
 		markers.push(pair);
 
 		//var marker1 = jsMaps.api.marker(map, { position: { lat: parseFloat(data[i].lat), lng: parseFloat(data[i].lon) }, title: data[i].address, draggable: false, icon: "./static/map-icon.png" ,markerId : data[i].reader_id});
-		var infoWindow = jsMaps.api.infoWindow({ content: data[i].address });
-		jsMaps.api.attach_event(marker1, 'click', function() {
-			infoWindow.open(map, marker1);
 		});
 	}
 }
