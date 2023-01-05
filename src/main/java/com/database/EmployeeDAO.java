@@ -13,20 +13,31 @@ import com.utils.Encryption;
 
 public class EmployeeDAO {
 	public static void createEmployeeTab() {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		Statement stmt;
 		try {
+			conn = DBConnector.getConnection();
 			stmt = conn.createStatement();
 			stmt.executeUpdate(Queries.EMPLOYEE_CREATE);
 			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	public static boolean checkEmployee(String employee_id) {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.EMPLOYEE_RETRIEVE);
 			ps.setString(1, employee_id);
 			ResultSet rs = ps.executeQuery();
@@ -34,6 +45,15 @@ public class EmployeeDAO {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return false;
 	}
@@ -51,6 +71,15 @@ public class EmployeeDAO {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return false;
 	}
@@ -77,6 +106,14 @@ public class EmployeeDAO {
 			e.printStackTrace();
 		}
 		finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			return res;
 		}
 	}

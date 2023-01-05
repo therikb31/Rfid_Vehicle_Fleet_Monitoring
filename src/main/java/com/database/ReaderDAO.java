@@ -17,8 +17,9 @@ import com.utils.DBConnector;
 public class ReaderDAO {
 	public static Vector<Reader> getReaderActivityByDateRange(Date from_date, Date to_date) {
 		Vector<Reader> readers = getReaders();
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			for (Iterator<Reader> iter = readers.iterator(); iter.hasNext();) {
 				Reader reader = iter.next();
 				PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE);
@@ -33,6 +34,15 @@ public class ReaderDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return sortReaderVector(readers);
 
@@ -50,8 +60,9 @@ public class ReaderDAO {
 	}
 	public static Vector<Reader> getReaderActivity(Date date){
 		Vector<Reader> readers = getReaders();
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			for(Iterator<Reader> iter = readers.iterator();iter.hasNext();) {
 				Reader reader = iter.next();
 				PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_ACTIVITY_COUNT);
@@ -65,14 +76,24 @@ public class ReaderDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return sortReaderVector(readers);
 	}
 	@SuppressWarnings("finally")
 	public static boolean checkReader(String reader_id) {
 		boolean res = false;
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_BY_READER_ID);
 			ps.setString(1, reader_id);
 			ResultSet rs = ps.executeQuery();
@@ -81,15 +102,24 @@ public class ReaderDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			return res;
 		}
 		
 	}
 	public static Reader getReaderByReaderId(String reader_id){
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		Reader reader = new Reader();
 		PreparedStatement ps;
 		try {
+			conn = DBConnector.getConnection();
 			ps = conn.prepareStatement(Queries.READER_RETRIEVE_BY_READER_ID);
 			ps.setString(1, reader_id);
 			ResultSet rs = ps.executeQuery();
@@ -108,10 +138,11 @@ public class ReaderDAO {
 	}
 	
 	public static Vector<Reader> getReaders(){
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		Vector<Reader> readers = new Vector<Reader>();
 		PreparedStatement ps;
 		try {
+			conn = DBConnector.getConnection();
 			ps = conn.prepareStatement(Queries.READER_RETRIEVE_ALL);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -126,11 +157,21 @@ public class ReaderDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return readers;
 	}
 	public static boolean addReader(Reader reader) {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
+		conn = DBConnector.getConnection();
 		if (conn == null) {
 			System.out.println("Database Error, failed to insert data into Vehicle");
 			return false;

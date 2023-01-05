@@ -17,34 +17,57 @@ import com.utils.DBConnector;
 
 public class VehicleDAO {
 	public static void updateDrivenBy(String vehicle_no,String driver_name) {
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_UPDATE_DRIVEN_BY);
 			ps.setString(1, vehicle_no);
 			ps.setString(2, driver_name);
 			ps.execute();
+			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	public static String getCurrentLocationByVehicleNo(String vehicle_no) {
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_VEHICLE_CURRENT_LOCATION);
 			ps.setString(1, vehicle_no);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				return rs.getString("reader_id");
 			}
+			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return null;
 	}
 	public static Vector<Vehicle> getVehicleActivityByDate(Date date) {
 		Vector<Vehicle> vehicles = getVehicle();
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			for (Iterator<Vehicle> iter = vehicles.iterator(); iter.hasNext();) {
 				Vehicle vehicle = iter.next();
 				PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE);
@@ -56,16 +79,27 @@ public class VehicleDAO {
 //				System.out.println(reader.getReader_id()+":"+ rs.getInt(1));
 				}
 			}
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return sortVehicleVector(vehicles);
 
 	}
 	public static Vector<Vehicle> getVehicleActivityByDateRange(Date from_date, Date to_date) {
 		Vector<Vehicle> vehicles = getVehicle();
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			for (Iterator<Vehicle> iter = vehicles.iterator(); iter.hasNext();) {
 				Vehicle vehicle = iter.next();
 				PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE);
@@ -80,6 +114,15 @@ public class VehicleDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return sortVehicleVector(vehicles);
 		
@@ -149,10 +192,11 @@ public class VehicleDAO {
 		return false;
 	}
 	public static Vehicle getVehicleByVehicleNo(String vehicle_no) {
-		Connection conn = DBConnector.getConnection();
 		PreparedStatement ps;
+		Connection conn = null;
 		Vehicle data = new Vehicle();
 		try {
+			conn = DBConnector.getConnection();
 			ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_BY_VEHICLE_NO);
 			ps.setString(1, vehicle_no);
 			ResultSet rs = ps.executeQuery();
@@ -168,6 +212,15 @@ public class VehicleDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return data;
 		
@@ -192,6 +245,15 @@ public class VehicleDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return result;
 	}

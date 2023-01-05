@@ -45,12 +45,12 @@ async function fetchVehicleLog(vehicle_no) {
 	const data = datapoints.data;
 	console.log(data);
 	plotConditionalMap(data);
-	mapRefreshInterval = setInterval(fetchVehicleLog,mapRefreshRate,vehicle_no);
+	mapRefreshInterval = setInterval(fetchVehicleLog, mapRefreshRate, vehicle_no);
 }
-function plotConditionalMap(Vehicledata){
+function plotConditionalMap(Vehicledata) {
 	var data = Vehicledata;
 	jsMaps.api.removeMarkers(map);
-	for(let i=0;i<data.length;i++){
+	for (let i = 0; i < data.length; i++) {
 		var position = new Object();
 		position.lat = parseFloat(data[i].lat);
 		position.lng = parseFloat(data[i].lon);
@@ -85,7 +85,7 @@ function plotMap() {
 		pair.id = data[i].reader_id;
 		pair.marker = marker1;
 		markers.push(pair);
-		
+
 		//var marker1 = jsMaps.api.marker(map, { position: { lat: parseFloat(data[i].lat), lng: parseFloat(data[i].lon) }, title: data[i].address, draggable: false, icon: "./static/map-icon.png" ,markerId : data[i].reader_id});
 		var infoWindow = jsMaps.api.infoWindow({ content: data[i].address });
 		jsMaps.api.attach_event(marker1, 'click', function() {
@@ -103,8 +103,7 @@ function setSidebarParams(data) {
 		element.appendChild(liNode);
 	}
 }
-
-loadMap();
-fetch('./GetVehiclesServ')
-	.then((response) => response.json())
-	.then((data) => { setSidebarParams(data.data) });
+	fetch('./GetVehiclesServ')
+		.then((response) => response.json())
+		.then((data) => { setSidebarParams(data.data) });
+	loadMap();

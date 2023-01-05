@@ -2,7 +2,7 @@
 <style>
 #map {
 	width: 100%;
-	height:638px;
+	height:100%;
 	margin: 0;
 	padding: 0;
 }

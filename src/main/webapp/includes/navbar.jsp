@@ -30,7 +30,7 @@
 				<li class="nav-item"><a class="nav-link" href="alerts">Alerts</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-				<li class="nav-item ml-auto"><a class="nav-link" href="LogoutServ"><i
+				<li class="nav-item ml-auto"><a class="nav-link" href="LogoutServ">Logout <i
 						class="fa fa-power-off"></i></a></li>
 			</ul>
 			<!-- Left links -->

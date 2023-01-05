@@ -16,17 +16,18 @@
 <body>
 	<div class="mycontainer">
 		<div class="row"><%@ include file="./includes/navbar.jsp"%></div>
-		<div class="row">
+		<div class="row min-vh-100">
 			<div class="col-2"><%@ include
 					file="./includes/sidebar.html"%></div>
 			<div class="col-3 no-gutters">
-				<div class="row" style="background-color: #F9F6EE; height: 50%;">.</div>
-				<div class="row" style="background-color: #FAF9F6; height: 50%;">.</div>			</div>
+				<div class="row" style="background-color: #F9F6EE;">.</div>
+				<div class="row h-100" style="background-color: #FAF9F6;">.</div>			</div>
 			<div class="col"><%@ include file="./includes/map.jsp"%></div>
 			
 			<script src="../js/dashboard.js"></script>
 		</div>
 	</div>
+	<%-- <div class="row"><%@include file = "./includes/footer.html" %></div> --%>
 </body>
 </html>
 <%}else{%>
