@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.database.ReaderDAO;
 import com.database.VehicleDAO;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -32,7 +31,6 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.models.Employee;
-import com.models.Reader;
 import com.models.Vehicle;
 import com.properties.Constants;
 import com.utils.PDFHeaderFooter;

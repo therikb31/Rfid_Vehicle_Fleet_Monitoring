@@ -15,8 +15,9 @@ import com.utils.DBConnector;
 public class LogDAO {
 	public static Vector<Log> getVehicleLogByDate(String vehicle_no, Date date){
 		Vector<Log> log = null;
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.LOG_VEHICLE_LOG_BY_DATE);
 			ps.setDate(1,date);
 			ps.setString(2, vehicle_no);
@@ -48,8 +49,9 @@ public class LogDAO {
 	}
 	public static Vector<Log> getVehicleLogByDateRange(String vehicle_no, Date from_date, Date to_date){
 		Vector<Log> log = null;
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();;
 			PreparedStatement ps = conn.prepareStatement(Queries.LOG_VEHICLE_LOG_BY_DATE_RANGE);
 			ps.setDate(1,from_date);
 			ps.setDate(2, to_date);
@@ -82,8 +84,9 @@ public class LogDAO {
 	}
 	public static Vector<Log> getDailyLogByDateRange(Date from_date, Date to_date){
 		Vector<Log> log = null;
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.LOG_DAILY_LOG_BY_DATE_RANGE);
 			ps.setDate(1,from_date);
 			ps.setDate(2, to_date);
@@ -101,13 +104,23 @@ public class LogDAO {
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return log;
 	}
 	public static Vector<Log> getDailyLog(Date date) {
 		Vector<Log> log = null;
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.LOG_DAILY_LOG);
 			ps.setDate(1,date);
 			log = new Vector<Log>();
@@ -124,13 +137,23 @@ public class LogDAO {
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return log;
 	}
 	public static Vector<Log> getReaderLogByDate(String reader_id,Date date) {
 		Vector<Log> log = null;
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.LOG_READER_LOG_BY_DATE);
 			ps.setDate(1,date);
 			ps.setString(2, reader_id);
@@ -148,13 +171,23 @@ public class LogDAO {
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return log;
 	}
 	public static Vector<Log> getReaderLogByDateRange(String reader_id,Date from_date, Date to_date) {
 		Vector<Log> log = null;
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.LOG_READER_LOG_BY_DATE_RANGE);
 			ps.setDate(1,from_date);
 			ps.setDate(2,to_date);
@@ -170,9 +203,17 @@ public class LogDAO {
 				data.setType_name(rs.getString("type_name"));
 				log.add(data);
 			}
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return log;
 	}

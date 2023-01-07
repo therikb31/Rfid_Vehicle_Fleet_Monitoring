@@ -16,3 +16,17 @@ body,html{
 	max-height:100vh;
 	--bs-gutter-x:0;
 }
+.vehicle-info-body{
+	margin-top: 15px;
+	margin-left: 10px;
+}
+.vehicle-info-header{
+	margin-top:10px;
+}
+.bold-text{
+	font-weight: bold;
+	font-size: 12px;
+}
+.plain-text{
+	font-size: 12px;
+}

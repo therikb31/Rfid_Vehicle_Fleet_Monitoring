@@ -133,6 +133,15 @@ public class ReaderDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return reader;
 	}
@@ -171,12 +180,8 @@ public class ReaderDAO {
 	}
 	public static boolean addReader(Reader reader) {
 		Connection conn = null;
-		conn = DBConnector.getConnection();
-		if (conn == null) {
-			System.out.println("Database Error, failed to insert data into Vehicle");
-			return false;
-		}
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.READER_INSERT);
 			ps.setString(1, reader.getReader_id());
 			ps.setString(2, reader.getAddress());
@@ -193,6 +198,15 @@ public class ReaderDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return false;
 	}

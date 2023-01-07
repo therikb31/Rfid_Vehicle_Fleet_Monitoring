@@ -3,8 +3,6 @@ package com.alerts;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;

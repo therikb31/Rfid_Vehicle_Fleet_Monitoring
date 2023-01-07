@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Vector;
 
 import com.database.VehicleDAO;
@@ -94,7 +93,7 @@ public class DailyVehicleAttendenceMail {
 			end.setAlignment(Element.ALIGN_CENTER);
 			document.add(end);
 			document.close();
-			Mail.send("srinjoy960@gmail.com", "Vehicle Attendance Report on "+dateToday, "TODO", fileObj);
+			Mail.send("", "Vehicle Attendance Report on "+dateToday, "TODO", fileObj);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (DocumentException e) {

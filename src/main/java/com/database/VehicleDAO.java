@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Vector;
 
-import com.models.Reader;
 import com.models.Vehicle;
 import com.properties.Queries;
 import com.utils.DBConnector;
@@ -21,10 +20,10 @@ public class VehicleDAO {
 		try {
 			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_UPDATE_DRIVEN_BY);
-			ps.setString(1, vehicle_no);
-			ps.setString(2, driver_name);
-			ps.execute();
-			conn.close();
+			ps.setString(2, vehicle_no);
+			ps.setString(1, driver_name);
+			int rowcount = ps.executeUpdate();
+			System.out.println(rowcount);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -44,11 +43,13 @@ public class VehicleDAO {
 			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_VEHICLE_CURRENT_LOCATION);
 			ps.setString(1, vehicle_no);
+			ps.setDate(2, new Date(System.currentTimeMillis()));
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				return rs.getString("reader_id");
 			}
 			conn.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -140,13 +141,10 @@ public class VehicleDAO {
 	}
 	@SuppressWarnings("finally")
 	public static boolean checkVehicle(String vehicle_no) {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		boolean res = false;
-		if(conn==null) {
-			System.out.println("Database Error, failed to Connect");
-			return false;
-		}
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_BY_VEHICLE_NO);
 			ps.setString(1, vehicle_no);
 			ResultSet rs = ps.executeQuery();
@@ -158,17 +156,22 @@ public class VehicleDAO {
 			e.printStackTrace();
 		}
 		finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			return res;
 		}
 		
 	}
 	public static boolean addVehicle(Vehicle data) {
-		Connection conn = DBConnector.getConnection();
-		if(conn==null) {
-			System.out.println("Database Error, failed to insert data into Vehicle");
-			return false;
-		}
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.VEHICLE_INSERT);
 			ps.setString(1,data.getVehicle_no());
 			ps.setInt(2,data.getType_id());
@@ -188,6 +191,15 @@ public class VehicleDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return false;
 	}
@@ -206,7 +218,11 @@ public class VehicleDAO {
 				data.setType_name(rs.getString("type_name"));
 				data.setDate_added(rs.getTimestamp("date_added"));
 				data.setDriven_by(rs.getString("driven_by"));
-				data.setCurrent_location(getCurrentLocationByVehicleNo(vehicle_no));
+				String current_location = ReaderDAO.getReaderByReaderId(getCurrentLocationByVehicleNo(vehicle_no)).getAddress();
+				if(current_location == null) {
+					current_location = "N/A";
+				}
+				data.setCurrent_location(current_location);
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -226,10 +242,11 @@ public class VehicleDAO {
 		
 	}
 	public static Vector<Vehicle> getVehicle() {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		Vector<Vehicle> result = new Vector<Vehicle>();
 		PreparedStatement ps;
 		try {
+			conn = DBConnector.getConnection();
 			ps = conn.prepareStatement(Queries.VEHICLE_RETRIEVE_ALL);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -271,11 +288,13 @@ public class VehicleDAO {
 //		data.setType_id(0);
 //		data.setDate_added(new Timestamp(System.currentTimeMillis()));
 //		addVehicle(data);
-		Vector<Vehicle> result = getVehicleActivityByDate(Date.valueOf("2022-12-24"));
-		for(int i=0;i<result.size();i++) {
-			System.out.println(result.elementAt(i).toString());
-		}
+//		Vector<Vehicle> result = getVehicleActivityByDate(Date.valueOf("2022-12-24"));
+//		for(int i=0;i<result.size();i++) {
+//			System.out.println(result.elementAt(i).toString());
+//		}
 //		createTable();
-		System.out.println(checkVehicle("test"));
+//		
+		updateDrivenBy("RD160", "sample");
+		System.out.println("success");
 	}
 }

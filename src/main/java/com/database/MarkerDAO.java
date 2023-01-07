@@ -14,8 +14,9 @@ import com.utils.DBConnector;
 public class MarkerDAO {
 	public static Vector<Marker> getMarkers(String vehicle_no, Date date){
 		Vector<Marker> markers = new Vector<>();
+		Connection conn = null;
 		try {
-			Connection conn = DBConnector.getConnection();
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.MARKER_RETRIEVE_ALL);
 			ps.setDate(2, date);
 			ps.setString(1, vehicle_no);
@@ -37,6 +38,15 @@ public class MarkerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return markers;
 	}

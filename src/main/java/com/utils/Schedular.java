@@ -1,7 +1,5 @@
 package com.utils;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.TimerTask;
 
 public class Schedular extends TimerTask{

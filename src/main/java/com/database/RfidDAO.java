@@ -13,10 +13,11 @@ import com.utils.DBConnector;
 
 public class RfidDAO {
 	public static Vector<Rfid> getRfid(){
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		Vector<Rfid> rfids = new Vector<Rfid>();
 		PreparedStatement ps;
 		try {
+			conn = DBConnector.getConnection();
 			ps = conn.prepareStatement(Queries.RFID_RETRIEVE_ALL);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -25,17 +26,26 @@ public class RfidDAO {
 				rfid.setVehicle_no(rs.getString("vehicle_no"));
 				rfids.add(rfid);
 			}
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return rfids;
 	}
 	@SuppressWarnings("unused")
 	public static void addRfid(Rfid data) {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.RFID_INSERT);
 			ps.setString(1, data.getRfid());
 			ps.setString(2, data.getVehicle_no());
@@ -43,6 +53,15 @@ public class RfidDAO {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 	}
@@ -54,8 +73,9 @@ public class RfidDAO {
 		conn.close();
 	}
 	public static boolean checkRfid(String rfid) {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.RFID_RETRIEVE_VEHICLE_NO);
 			ps.setString(1, rfid);
 			ResultSet rs = ps.executeQuery();
@@ -64,12 +84,22 @@ public class RfidDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return false;
 	}
 	public static String getVehicleByRfid(String rfid) {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.RFID_RETRIEVE_VEHICLE_NO);
 			ps.setString(1, rfid);
 			ResultSet rs = ps.executeQuery();

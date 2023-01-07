@@ -45,7 +45,10 @@ public class EmployeeDAO {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
-		}finally {
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		finally {
 			if(conn!=null) {
 				try {
 					conn.close();
@@ -58,8 +61,9 @@ public class EmployeeDAO {
 		return false;
 	}
 	public static boolean checkPassword(Employee employee) {
-		Connection conn = DBConnector.getConnection();
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.EMPLOYEE_RETRIEVE);
 			ps.setString(1, employee.getEmployee_id());
 			ResultSet rs = ps.executeQuery();
@@ -142,6 +146,15 @@ public class EmployeeDAO {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return res;
 	}

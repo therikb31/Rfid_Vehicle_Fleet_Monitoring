@@ -14,10 +14,11 @@ import com.utils.DBConnector;
 public class LogItemDAO {
 	@SuppressWarnings("finally")
 	public static Vector<LogItem> getLogByDate(Date date){
-		Connection conn = DBConnector.getConnection();
 		Vector<LogItem> logs = new Vector<LogItem>();
 		PreparedStatement ps;
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			ps = conn.prepareStatement(Queries.LOGITEM_RETRIEVE_BY_DATE);
 			ps.setDate(1, date);
 			ResultSet rs = ps.executeQuery();
@@ -36,15 +37,24 @@ public class LogItemDAO {
 			e.printStackTrace();
 		}
 		finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			return logs;
 		}
 	}
 	@SuppressWarnings("finally")
 	public static Vector<LogItem> getLogByVehicleNo(String vehicle_no){
-		Connection conn = DBConnector.getConnection();
 		Vector<LogItem> logs = new Vector<LogItem>();
 		PreparedStatement ps;
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			ps = conn.prepareStatement(Queries.LOGITEM_RETRIEVE_BY_VEHICLE_NO);
 			ps.setString(1, vehicle_no);
 			ResultSet rs = ps.executeQuery();
@@ -63,14 +73,23 @@ public class LogItemDAO {
 			e.printStackTrace();
 		}
 		finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			return logs;
 		}
 	}
 	public static Vector<LogItem> getLog(){
-		Connection conn = DBConnector.getConnection();
 		Vector<LogItem> logs = new Vector<LogItem>();
+		Connection conn = null;
 		PreparedStatement ps;
 		try {
+			conn = DBConnector.getConnection();
 			ps = conn.prepareStatement(Queries.LOGITEM_RETRIEVE_ALL);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -86,6 +105,15 @@ public class LogItemDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return logs;
 	}
@@ -97,12 +125,9 @@ public class LogItemDAO {
 		conn.close();
 	}
 	public static boolean addLogItem(LogItem logItem) {
-		Connection conn = DBConnector.getConnection();
-		if(conn==null) {
-			System.out.println("Database Error, failed to insert data into Log");
-			return false;
-		}
+		Connection conn = null;
 		try {
+			conn = DBConnector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(Queries.LOGITEM_INSERT);
 			ps.setDate(1, logItem.getDate());
 			ps.setTime(2, logItem.getTime());
@@ -122,6 +147,15 @@ public class LogItemDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return false;
 	}

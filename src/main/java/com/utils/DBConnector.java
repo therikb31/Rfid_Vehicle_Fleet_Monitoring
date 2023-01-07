@@ -20,10 +20,11 @@ public class DBConnector {
 		}
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws SQLException {
 		Connection conn = getConnection();
 		if (conn != null) {
 			System.out.println("Connected to " + Constants.DB_URL);
+			conn.close();
 		}
 	}
 }

@@ -7,10 +7,7 @@ var mapRefreshRate = 300000;
 function loadMap() {
 	jsMaps.loader(function() {
 		var tiles = new jsMaps.Native.Tiles();
-		tiles.addTileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", ['a', 'b', 'c'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.', 'OpenStreetMap');
-		tiles.addTileLayer("http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png", ['otile1', 'otile2', 'otile3', 'otile4'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">', 'Map Quest');
-		tiles.addTileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", ['oatile1', 'oatile2', 'oatile3', 'oatile4'], '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">', 'Map Quest Satellite', 19);
-
+		tiles.addTileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", ['a', 'b', 'c']);
 		map = jsMaps.api.init(
 			'#map',
 			'native',
@@ -37,6 +34,8 @@ async function fetchReaderData() {
 	plotMap();
 };
 async function fetchVehicleLog(vehicle_no) {
+	document.getElementById("vehicle_no_edit_driver").value = vehicle_no;
+	setVehicleInfo(vehicle_no);
 	clearInterval(mapRefreshInterval);
 	let url = './GetMarkerServ?date=2022-11-19&vehicle_no=';
 	url = url.concat(vehicle_no);
@@ -80,17 +79,17 @@ function plotMap() {
 		marker.draggable = false;
 		//marker.icon = "./static/wifi-icon.png";
 
-		var marker1 = jsMaps.api.marker(map, marker);
+		var marker1 = new jsMaps.api.marker(map, marker);
 		var pair = new Object();
 		pair.id = data[i].reader_id;
 		pair.marker = marker1;
-		var infoWindow = jsMaps.api.infoWindow({ content: data[i].address });
-		jsMaps.api.attach_event(pair.marker, 'hover', function() {
-			infoWindow.open(map, pair.marker);
-			
-		markers.push(pair);
+		pair.infoWindow = jsMaps.api.infoWindow({ content: data[i].address });
+		jsMaps.api.attach_event(pair.marker, 'click', function() {
+			pair.infoWindow.open(map, pair.marker);
 
-		//var marker1 = jsMaps.api.marker(map, { position: { lat: parseFloat(data[i].lat), lng: parseFloat(data[i].lon) }, title: data[i].address, draggable: false, icon: "./static/map-icon.png" ,markerId : data[i].reader_id});
+			markers.push(pair);
+
+			//var marker1 = jsMaps.api.marker(map, { position: { lat: parseFloat(data[i].lat), lng: parseFloat(data[i].lon) }, title: data[i].address, draggable: false, icon: "./static/map-icon.png" ,markerId : data[i].reader_id});
 		});
 	}
 }
@@ -104,7 +103,48 @@ function setSidebarParams(data) {
 		element.appendChild(liNode);
 	}
 }
-	fetch('./GetVehiclesServ')
+function resetMap() {
+	document.getElementById("vehicle_no").innerHTML = "No vehicle selected";
+	document.getElementById("vehicle_type").innerHTML = "No vehicle selected";
+	document.getElementById("driver_name").innerHTML = "No vehicle selected";
+	document.getElementById("current_location").innerHTML = "No vehicle selected";
+	document.getElementById("editDriverName").style.visibility = "hidden";
+	jsMaps.api.removeMarkers(map);
+	plotMap();
+}
+function setVehicleInfo(vehicle_no) {
+	document.getElementById("vehicle_no").innerHTML = "loading...";
+	document.getElementById("vehicle_type").innerHTML = "loading...";
+	document.getElementById("driver_name").innerHTML = "loading...";
+	document.getElementById("current_location").innerHTML = "loading...";
+	fetch('./GetVehicleInfo?vehicle_no=' + vehicle_no)
 		.then((response) => response.json())
-		.then((data) => { setSidebarParams(data.data) });
-	loadMap();
+		.then((datapoints) => {
+			console.log(datapoints);
+			data = datapoints.data;
+			console.log(data);
+			document.getElementById("vehicle_no").innerHTML = data.vehicle_no;
+			document.getElementById("vehicle_type").innerHTML = data.type_name;
+			document.getElementById("driver_name").innerHTML = data.driven_by;
+			document.getElementById("current_location").innerHTML = data.current_location;
+			document.getElementById("editDriverName").style.visibility = "visible";
+		});
+}
+function updateDriverName() {
+	var vehicle_no = document.getElementById('vehicle_no_edit_driver').value;
+	var driver_name = document.getElementById('driver_name_input').value;
+	if(driver_name == ""){
+		alert("Driver Name cannot be empty!");
+		return;
+	}
+	fetch('./UpdateDriverServ?vehicle_no=' + vehicle_no + "&driver_name=" + driver_name)
+	.then((response) => response.json())
+	.then((datapoints) => {
+		document.getElementById('driver_name').innerHTML = driver_name;
+		$("#editDriverModal").modal("hide");
+	});
+}
+fetch('./GetVehiclesServ')
+	.then((response) => response.json())
+	.then((data) => { setSidebarParams(data.data) });
+loadMap();

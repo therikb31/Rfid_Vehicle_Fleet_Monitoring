@@ -26,6 +26,7 @@
 	}
 }
 </style>
+<%@ include file="./includes/links.html"%>
 </head>
 <body>
 	<!-- Navbar -->

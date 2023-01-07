@@ -31,6 +31,7 @@ public class GetVehicleInfo extends HttpServlet {
 		// TODO Auto-generated method stub
 		String vehicle_no = request.getParameter("vehicle_no");
 		Vehicle vehicle = VehicleDAO.getVehicleByVehicleNo(vehicle_no);
+		
 		String jsonData = new Gson().toJson(vehicle);
 	    response.getWriter().print("{\"data\":"+jsonData+"}");
 	}
