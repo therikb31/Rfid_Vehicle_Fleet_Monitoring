@@ -194,6 +194,13 @@
 		<servlet-name>UpdateDriverServ</servlet-name>
 		<servlet-class>com.controllers.UpdateDriverServ</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetVehicleLogTodayServ</display-name>
+		<servlet-name>GetVehicleLogTodayServ</servlet-name>
+		<servlet-class>com.controllers.GetVehicleLogTodayServ</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogServ</servlet-name>
 		<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -301,6 +308,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateDriverServ</servlet-name>
 		<url-pattern>/UpdateDriverServ</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetVehicleLogTodayServ</servlet-name>
+		<url-pattern>/GetVehicleLogTodayServ</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

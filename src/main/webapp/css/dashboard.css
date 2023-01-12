@@ -10,6 +10,10 @@ body,html{
 	max-height: 100vh;
 	overflow-y:scroll;
 }
+#LogBody{
+	max-height:30vh;
+	overflow-y:scroll;
+}
 .row{
 	padding-right: 0;
     padding-left: 0;
@@ -25,8 +29,11 @@ body,html{
 }
 .bold-text{
 	font-weight: bold;
-	font-size: 12px;
+	font-size: 1vw;
 }
 .plain-text{
-	font-size: 12px;
+	font-size: 1vw;
+}
+th,tr{
+	font-size: 1vw;
 }

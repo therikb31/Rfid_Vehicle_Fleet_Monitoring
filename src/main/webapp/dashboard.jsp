@@ -21,7 +21,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 			<div class="col-2"><%@ include file="./includes/sidebar.html"%></div>
 			<div class="col-3 no-gutters">
 				<div class="row" style="background-color: #F9F6EE;"><%@ include file="./includes/vehicleInfo.html" %></div>
-				<div class="row h-100" style="background-color: #FAF9F6;">.</div>
+				<div class="row h-100" style="background-color: #FAF9F6;"><%@ include file="./includes/vehicleLog.html" %></div>
 			</div>
 			<div class="col"><%@ include file="./includes/map.jsp"%></div>
 

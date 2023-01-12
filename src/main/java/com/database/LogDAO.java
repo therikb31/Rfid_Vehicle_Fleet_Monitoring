@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -219,13 +220,13 @@ public class LogDAO {
 	}
 	public static void main(String[] args) {
 //		String date = "2022-12-22";
-		Date fromParam = Date.valueOf("2022-11-19");
+		Date fromParam = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 		Date toParam = Date.valueOf("2022-12-19");
 //		String reader_id = "P9LR13";
-		System.out.println("Hello");
-		for(Iterator<Log> iter = getVehicleLogByDateRange("RD160",fromParam,toParam).iterator();iter.hasNext(); ) {
+		for(Iterator<Log> iter = getVehicleLogByDate("WB08D3618",fromParam).iterator();iter.hasNext(); ) {
 			System.out.println(iter.next().toString());
 		}
+		System.out.println("Hello");
 	}
 
 }

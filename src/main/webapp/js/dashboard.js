@@ -37,6 +37,7 @@ async function fetchVehicleLog(vehicle_no) {
 	document.getElementById("vehicle_no_edit_driver").value = vehicle_no;
 	setVehicleInfo(vehicle_no);
 	clearInterval(mapRefreshInterval);
+	setLogData(vehicle_no);
 	let url = './GetMarkerServ?date=2022-11-19&vehicle_no=';
 	url = url.concat(vehicle_no);
 	const response = await fetch(url);
@@ -98,7 +99,7 @@ function setSidebarParams(data) {
 	for (let i = 0; i < data.length; i++) {
 		var element = document.getElementById(data[i].type_id.toString());
 		var liNode = document.createElement("li");
-		liNode.innerHTML = "<button style='margin-bottom:2px;margin-left:30px;' class='btn btn-outline-dark btn-sm' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
+		liNode.innerHTML = "<button style='margin-bottom:0.5vh;margin-left:2vw;' class='btn btn-outline-dark btn-sm' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'><span style='font-size:1vw;'>" + data[i].vehicle_no + "</span></button>";
 		//liNode.innerHTML = "<a class='link-dark rounded' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
 		element.appendChild(liNode);
 	}
@@ -120,7 +121,6 @@ function setVehicleInfo(vehicle_no) {
 	fetch('./GetVehicleInfo?vehicle_no=' + vehicle_no)
 		.then((response) => response.json())
 		.then((datapoints) => {
-			console.log(datapoints);
 			data = datapoints.data;
 			console.log(data);
 			document.getElementById("vehicle_no").innerHTML = data.vehicle_no;
@@ -143,6 +143,27 @@ function updateDriverName() {
 		document.getElementById('driver_name').innerHTML = driver_name;
 		$("#editDriverModal").modal("hide");
 	});
+};
+async function setLogData(vehicle_no){
+	var table = document.getElementById('LogBody');
+	table.innerHTML = "";
+	fetch('./GetVehicleLogTodayServ?vehicle_no='+vehicle_no)
+	.then((response) => response.json())
+	.then((datapoints) => {
+		console.log("hello");
+		console.log(datapoints);
+		data = datapoints.data;
+		for(let i=0;i<data.length;i++){
+			var code="<tr><th scope='row'>"+(i+1)+"</th>"+
+			"<td>"+data[i].address+"</td>"+
+			"<td>"+data[i].date+"</td>"+
+			"<td>"+data[i].time+"</td></tr>";
+			table.innerHTML += code;
+		}
+	}).catch(err => {
+          // Do something for an error here
+          console.log("Error Reading data " + err);
+        });;
 }
 fetch('./GetVehiclesServ')
 	.then((response) => response.json())

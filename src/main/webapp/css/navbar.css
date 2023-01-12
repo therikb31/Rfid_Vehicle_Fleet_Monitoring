@@ -1,0 +1,15 @@
+/* .nav-logo{
+	height:max(4vh,40px);
+	width:max(3vw,40px);
+} */
+.nav-link{
+	margin-left:0.5vw;
+	margin-right:0.5vw;
+}
+.navbar{
+	padding-top:0.5vh;
+	padding-bottom:0.5vh;
+	padding-left:1vw;
+	padding-right:1vw;
+	font-size:2.5vh;
+}
