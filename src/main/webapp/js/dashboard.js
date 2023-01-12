@@ -2,7 +2,7 @@ var markers = [];
 var map;
 var readerData;
 var mapRefreshInterval;
-var mapRefreshRate = 300000;
+var mapRefreshRate = 60000;
 //loading the map
 function loadMap() {
 	jsMaps.loader(function() {
@@ -99,7 +99,7 @@ function setSidebarParams(data) {
 	for (let i = 0; i < data.length; i++) {
 		var element = document.getElementById(data[i].type_id.toString());
 		var liNode = document.createElement("li");
-		liNode.innerHTML = "<button style='margin-bottom:0.5vh;margin-left:2vw;' class='btn btn-outline-dark btn-sm' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'><span style='font-size:1vw;'>" + data[i].vehicle_no + "</span></button>";
+		liNode.innerHTML = "<button style='margin-bottom:0.5vh;margin-left:2vw;' class='btn btn-outline-dark btn-sm' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'><span style='font-size:0.7vw;'>" + data[i].vehicle_no + "</span></button>";
 		//liNode.innerHTML = "<a class='link-dark rounded' onclick='fetchVehicleLog(\"" + data[i].vehicle_no + "\")'>" + data[i].vehicle_no + "</button>";
 		element.appendChild(liNode);
 	}
@@ -110,6 +110,7 @@ function resetMap() {
 	document.getElementById("driver_name").innerHTML = "No vehicle selected";
 	document.getElementById("current_location").innerHTML = "No vehicle selected";
 	document.getElementById("editDriverName").style.visibility = "hidden";
+	document.getElementById("LogBody").innerHTML="";
 	jsMaps.api.removeMarkers(map);
 	plotMap();
 }

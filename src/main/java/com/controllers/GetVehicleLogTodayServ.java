@@ -43,7 +43,7 @@ public class GetVehicleLogTodayServ extends HttpServlet {
 		}
 		else {
 			String vehicle_no = request.getParameter("vehicle_no");
-			Vector<Log> data = LogDAO.getVehicleLogByDate(vehicle_no,new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+			Vector<Log> data = LogDAO.getVehicleLogByDateLimit(vehicle_no,new java.sql.Date(Calendar.getInstance().getTime().getTime()));
 			String jsonData = new Gson().toJson(data);
 		    response.getWriter().print("{\"data\":"+jsonData+"}");
 		}

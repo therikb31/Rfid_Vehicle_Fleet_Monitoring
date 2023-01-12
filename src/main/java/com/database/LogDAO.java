@@ -48,6 +48,40 @@ public class LogDAO {
 		}
 		return log;
 	}
+	public static Vector<Log> getVehicleLogByDateLimit(String vehicle_no, Date date){
+		Vector<Log> log = null;
+		Connection conn = null;
+		try {
+			conn = DBConnector.getConnection();
+			PreparedStatement ps = conn.prepareStatement(Queries.LOG_VEHICLE_LOG_BY_DATE_LIMIT);
+			ps.setDate(1,date);
+			ps.setString(2, vehicle_no);
+			log = new Vector<Log>();
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Log data = new Log();
+				data.setAddress(rs.getString("address"));
+				data.setDate(rs.getDate("date"));
+				data.setTime(rs.getTime("time"));
+				data.setVehicle_no(rs.getString("vehicle_no"));
+				data.setType_name(rs.getString("type_name"));
+				log.add(data);
+			}
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return log;
+	}
 	public static Vector<Log> getVehicleLogByDateRange(String vehicle_no, Date from_date, Date to_date){
 		Vector<Log> log = null;
 		Connection conn = null;

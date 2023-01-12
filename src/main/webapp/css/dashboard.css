@@ -29,11 +29,11 @@ body,html{
 }
 .bold-text{
 	font-weight: bold;
-	font-size: 1vw;
+	font-size: 0.8vw;
 }
 .plain-text{
-	font-size: 1vw;
+	font-size: 0.8vw;
 }
 th,tr{
-	font-size: 1vw;
+	font-size: 0.8vw;
 }
