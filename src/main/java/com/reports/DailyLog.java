@@ -96,6 +96,8 @@ public class DailyLog extends HttpServlet {
 			if (pw.getCurrentPageNumber() == 1) {
 				document.add(new Phrase("Report Name:", regular));
 				document.add(new Phrase(" Daily Log\n", bold));
+				document.add(new Phrase("Report of Date: ", regular));
+				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(date) + "\n", bold));
 				document.add(new Phrase("Date Generated: ", regular));
 				document.add(new Phrase(dateValue + "\n", bold));
 				document.add(new Phrase("Time Generated: ", regular));

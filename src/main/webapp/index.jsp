@@ -4,9 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="./css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
 <title>NKDA</title>
 <style>
 .divider:after, .divider:before {
@@ -16,8 +14,8 @@
 	background: #eee;
 }
 
-.h-custom {
-	height: calc(100% - 73px);
+body {
+	max-height: 100vh;
 }
 
 @media ( max-width : 450px) {
@@ -25,44 +23,49 @@
 		height: 100%;
 	}
 }
+
+.h-custom {
+	height: 100%;
+	max-height: calc(100vh - 125px);
+}
 </style>
 <%@ include file="./includes/links.html"%>
 </head>
 <body>
 	<!-- Navbar -->
 	<section class="vh-100">
-	<!-- Image and text -->
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" style="color: LightGray; margin-left: 380px; font-style: italic; font-weight: bold; letter-spacing: 3px;">
-    <img src="./static/nkda-logo.png" height="30" class="d-inline-block align-top" alt="" style="margin-right: 15px;">
-    NKDA Solid Waste Vehicle Monitoring System   
-    <img src="./static/nkda-logo2.png" height="30" class="d-inline-block align-top" alt="" style="margin-left: 15px;">
-  </a>
-</nav>
-		<div class="container-fluid h-custom">
+		<!-- Image and text -->
+		<nav class="navbar navbar-dark bg-dark">
+			<a class="navbar-brand"
+				style="color: LightGray; margin-left: 380px; font-style: italic; font-weight: bold; letter-spacing: 3px;">
+				<img src="./static/nkda-logo.png" height="30"
+				class="d-inline-block align-top" alt="" style="margin-right: 15px;">
+				NKDA Solid Waste Vehicle Monitoring System <img
+				src="./static/nkda-logo2.png" height="30"
+				class="d-inline-block align-top" alt="" style="margin-left: 15px;">
+			</a>
+		</nav>
+		<div class="flex-grow container-fluid h-custom">
 			<div
 				class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-md-9 col-lg-6 col-xl-5">
-					<img
-						src="../static/picture.png"
-						class="img-fluid" alt="Sample image">
+					<img src="../static/picture.png" class="img-fluid"
+						alt="Sample image">
 				</div>
 				<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 					<form action="./dashboard" method="post">
 						<!-- Email input -->
 						<div class="form-outline mb-4">
-							<input type="text" id="form3Example3"
-								name="employee_id"
+							<input type="text" id="form3Example3" name="employee_id"
 								class="form-control form-control-lg"
-								placeholder="Enter employee id" required/>
+								placeholder="Enter user id" required />
 						</div>
 
 						<!-- Password input -->
 						<div class="form-outline mb-3">
 							<input type="password" id="form3Example4"
-								class="form-control form-control-lg"
-								name="password"
-								placeholder="Enter password" required/>
+								class="form-control form-control-lg" name="password"
+								placeholder="Enter password" required />
 						</div>
 
 						<div class="d-flex justify-content-between align-items-center">
@@ -75,12 +78,13 @@
 					</form>
 				</div>
 			</div>
+
 		</div>
 		<div
 			class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
 			<!-- Copyright -->
-			<div class="text-white mb-3 mb-md-0">Copyright © 2020. All
-				rights reserved.</div>
+			<div class="text-white mb-3 mb-md-0">Developed and Mainted by
+				Kanak Jyoti Udyog</div>
 			<!-- Copyright -->
 		</div>
 	</section>

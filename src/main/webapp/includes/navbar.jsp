@@ -21,10 +21,9 @@
 	<div class="collapse navbar-collapse" id="navbarButtonsExample">
 		<!-- Left links -->
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			<li class="nav-item"><a class=nav-link>NKDA</a></li>
+			<li class="nav-item"><a class="nav-link" href="https://www.nkdamar.org/" target="_blank" >NKDA</a></li>
 			<li class="nav-item"><a class="nav-link" href="dashboard">Dashboard</a></li>
 			<li class="nav-item"><a class="nav-link" href="reports">Reports</a></li>
-			<li class="nav-item"><a class="nav-link" href="services">Services</a></li>
 			<li class="nav-item"><a class="nav-link" href="alerts">Alerts</a></li>
 		</ul>
 		<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
