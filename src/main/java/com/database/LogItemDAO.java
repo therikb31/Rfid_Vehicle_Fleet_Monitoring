@@ -29,6 +29,7 @@ public class LogItemDAO {
 				log.setReader_id(rs.getString("reader_id"));
 				log.setRfid(rs.getString("rfid"));
 				log.setDriven_by(rs.getString("driven_by"));
+				log.setPole_no(rs.getString("pole_no"));
 				logs.add(log);
 			}
 			conn.close();
@@ -65,6 +66,7 @@ public class LogItemDAO {
 				log.setReader_id(rs.getString("reader_id"));
 				log.setRfid(rs.getString("rfid"));
 				log.setDriven_by(rs.getString("driven_by"));
+				log.setPole_no(rs.getString("pole_no"));
 				logs.add(log);
 			}
 			conn.close();
@@ -99,6 +101,7 @@ public class LogItemDAO {
 				log.setReader_id(rs.getString("reader_id"));
 				log.setRfid(rs.getString("rfid"));
 				log.setDriven_by(rs.getString("driven_by"));
+				log.setPole_no(rs.getString("pole_no"));
 				logs.add(log);
 			}
 			conn.close();
@@ -136,6 +139,7 @@ public class LogItemDAO {
 			ps.setString(5, logItem.getVehicle_no());
 			ps.setString(6, logItem.getId());
 			ps.setString(7, logItem.getDriven_by());
+			ps.setString(8, logItem.getPole_no());
 			int rowcount = ps.executeUpdate();
 			if (rowcount > 0) {
 				return true;			

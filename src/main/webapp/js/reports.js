@@ -13,20 +13,21 @@ function setVehicleListParams(data) {
 	}
 }
 function setReaderListParams(data) {
+	console.log(data)
 	for (let i = 0; i < data.length; i++) {
 		var elements = document.getElementsByClassName("select-reader");
 		for (j = 0; j < elements.length; j++) {
 			console.log(data[i]);
 			var node = document.createElement("option");
-			node.innerHTML = data[i].reader_id;
-			node.value = data[i].reader_id;
+			node.innerHTML = data[i].pole_no;
+			node.value = data[i].pole_no;
 			elements[j].appendChild(node);
 		}
 	}
 }
-// A $( document ).ready() block.
+
 $(document).ready(function() {
-	fetch('./GetReaderServ')
+	fetch('./GetPolesServ')
 		.then((response) => response.json())
 		.then((data) => { setReaderListParams(data.data) });
 	fetch('./GetVehiclesServ')

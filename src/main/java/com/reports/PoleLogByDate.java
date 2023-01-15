@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.database.LogDAO;
 import com.database.PoleDAO;
 import com.database.ReaderDAO;
 import com.itextpdf.text.Chunk;
@@ -32,22 +33,21 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.models.Employee;
-import com.models.Pole;
-import com.models.Reader;
+import com.models.Log;
 import com.properties.Constants;
 import com.utils.PDFHeaderFooter;
 import com.utils.Util;
 
 /**
- * Servlet implementation class ReaderActivityLogByDate
+ * Servlet implementation class PoleLogByDate
  */
-public class ReaderActivityLogByDate extends HttpServlet {
+public class PoleLogByDate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReaderActivityLogByDate() {
+    public PoleLogByDate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -81,6 +81,7 @@ public class ReaderActivityLogByDate extends HttpServlet {
 		try {
 			String date_in = request.getParameter("date");
 			Date date = Date.valueOf(date_in);
+			String pole_no = request.getParameter("pole_no");
 			String filepath = Constants.PDF_FILENAME;
 			int marginLR = 30;
 			document = new Document(PageSize.A4, marginLR, marginLR, 50, 50);
@@ -97,7 +98,13 @@ public class ReaderActivityLogByDate extends HttpServlet {
 			Font bold = new Font(FontFamily.HELVETICA, 12, Font.BOLD);
 			if (pw.getCurrentPageNumber() == 1) {
 				document.add(new Phrase("Report Name:", regular));
-				document.add(new Phrase(" Date Specific Pole Activity Log\n", bold));
+				document.add(new Phrase(" Date Specific Pole Log\n", bold));
+
+				document.add(new Phrase("Pole No: ", regular));
+				document.add(new Phrase(pole_no + "\n", bold));
+
+				document.add(new Phrase("Pole Address: ", regular));
+				document.add(new Phrase(PoleDAO.getPoleByPoleNo(pole_no).getAddress() + "\n", bold));
 
 				document.add(new Phrase("Report of Date: ", regular));
 				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(date) + "\n", bold));
@@ -112,29 +119,27 @@ public class ReaderActivityLogByDate extends HttpServlet {
 				document.add(new Phrase(emp.getName() + "\n", bold));
 //				document.newPage();
 			}
-			PdfPTable table = new PdfPTable(6);
+			PdfPTable table = new PdfPTable(5);
 			table.setTotalWidth(document.getPageSize().getWidth() - (float) 60.0);
 			table.setLockedWidth(true);
-			table.setWidths(new int[] { 1, 1, 3, 1, 1 ,1});
+			table.setWidths(new int[] { 1, 2, 2, 2, 2 });
 			table.addCell(Util.getCell("Sl No", bold));
-			table.addCell(Util.getCell("Pole ID", bold));
-			table.addCell(Util.getCell("Address", bold));
-			table.addCell(Util.getCell("Latitude", bold));
-			table.addCell(Util.getCell("Longitude", bold));
-			table.addCell(Util.getCell("Activity", bold));
+			table.addCell(Util.getCell("Vehicle No", bold));
+			table.addCell(Util.getCell("Vehicle Type", bold));
+			table.addCell(Util.getCell("Date", bold));
+			table.addCell(Util.getCell("Time", bold));
 
 			table.setHeaderRows(1);
 			Font font = FontFactory.getFont(FontFactory.TIMES, 10);
-			Vector<Pole> log = PoleDAO.getPoleActivity(date);
-			
+			Vector<Log> log = LogDAO.getPoleLogByDate(pole_no, date);
 			int i;
 			for (i = 0; i < log.size(); i++) {
 				table.addCell(new Phrase(Integer.toString(i + 1), font));
-				table.addCell(new Phrase(log.elementAt(i).getPole_no(), font));
-				table.addCell(new Phrase(log.elementAt(i).getAddress(), font));
-				table.addCell(new Phrase(log.elementAt(i).getLat(), font));
-				table.addCell(new Phrase(log.elementAt(i).getLon(), font));
-				table.addCell(new Phrase(Integer.toString(log.elementAt(i).getActivity()), font));
+				table.addCell(new Phrase(log.elementAt(i).getVehicle_no(), font));
+				table.addCell(new Phrase(log.elementAt(i).getType_name(), font));
+				table.addCell(new Phrase(log.elementAt(i).getDate().toString(), font));
+				table.addCell(new Phrase(log.elementAt(i).getTime().toString(), font));
+
 			}
 
 			document.add(table);
@@ -182,5 +187,4 @@ public class ReaderActivityLogByDate extends HttpServlet {
 		}
 
 	}
-
 }

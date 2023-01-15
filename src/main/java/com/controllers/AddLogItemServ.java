@@ -51,6 +51,8 @@ public class AddLogItemServ extends HttpServlet {
 				String vehicle_no = RfidDAO.getVehicleByRfid(rfid);
 				logItem.setVehicle_no(vehicle_no);
 				logItem.setId(id);
+				String pole_no = ReaderDAO.getReaderByReaderId(reader_id).getPole_no();
+				logItem.setPole_no(pole_no);
 				logItem.setDriven_by(VehicleDAO.getVehicleByVehicleNo(vehicle_no).getDriven_by());
 				System.out.println(logItem.toString());
 				LogItemDAO.addLogItem(logItem);

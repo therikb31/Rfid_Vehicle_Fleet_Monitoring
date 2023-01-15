@@ -10,20 +10,21 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Vector;
 
+import com.models.Pole;
 import com.models.Reader;
 import com.properties.Queries;
 import com.utils.DBConnector;
 
 public class ReaderDAO {
-	public static Vector<Reader> getReaderActivityByDateRange(Date from_date, Date to_date) {
-		Vector<Reader> readers = getReaders();
+	public static Vector<Pole> getReaderActivityByDateRange(Date from_date, Date to_date) {
+		Vector<Pole> readers = PoleDAO.getPoles();
 		Connection conn = null;
 		try {
 			conn = DBConnector.getConnection();
-			for (Iterator<Reader> iter = readers.iterator(); iter.hasNext();) {
-				Reader reader = iter.next();
-				PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE);
-				ps.setString(1, reader.getReader_id());
+			for (Iterator<Pole> iter = readers.iterator(); iter.hasNext();) {
+				Pole reader = iter.next();
+				PreparedStatement ps = conn.prepareStatement(Queries.POLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE);
+				ps.setString(1, reader.getPole_no());
 				ps.setDate(2, from_date);
 				ps.setDate(3, to_date);
 				ResultSet rs = ps.executeQuery();
@@ -47,7 +48,7 @@ public class ReaderDAO {
 		return sortReaderVector(readers);
 
 	}
-	public static Vector<Reader> sortReaderVector(Vector<Reader> arr) {
+	public static Vector<Pole> sortReaderVector(Vector<Pole> arr) {
 		int len = arr.size();
 		for(int i=0;i<len;i++) {
 			for(int j=i+1;j<len;j++) {
@@ -58,19 +59,19 @@ public class ReaderDAO {
 		}
 		return arr;
 	}
-	public static Vector<Reader> getReaderActivity(Date date){
-		Vector<Reader> readers = getReaders();
+	public static Vector<Pole> getReaderActivity(Date date){
+		Vector<Pole> poles = PoleDAO.getPoles();
 		Connection conn = null;
 		try {
 			conn = DBConnector.getConnection();
-			for(Iterator<Reader> iter = readers.iterator();iter.hasNext();) {
-				Reader reader = iter.next();
+			for(Iterator<Pole> iter = poles.iterator();iter.hasNext();) {
+				Pole pole = iter.next();
 				PreparedStatement ps = conn.prepareStatement(Queries.READER_RETRIEVE_ACTIVITY_COUNT);
-				ps.setString(1, reader.getReader_id());
+				ps.setString(1, pole.getPole_no());
 				ps.setDate(2, date);
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
-					reader.setActivity(rs.getInt(1));
+					pole.setActivity(rs.getInt(1));
 //					System.out.println(reader.getReader_id()+":"+ rs.getInt(1));
 				}
 			}
@@ -86,7 +87,7 @@ public class ReaderDAO {
 				}
 			}
 		}
-		return sortReaderVector(readers);
+		return sortReaderVector(poles);
 	}
 	@SuppressWarnings("finally")
 	public static boolean checkReader(String reader_id) {
@@ -128,6 +129,7 @@ public class ReaderDAO {
 				reader.setAddress(rs.getString("address"));
 				reader.setLat(rs.getString("lat"));
 				reader.setLon(rs.getString("lon"));
+				reader.setPole_no(rs.getString("pole_no"));
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -219,7 +221,7 @@ public class ReaderDAO {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		for(Iterator<Reader> iter = getReaderActivity(Date.valueOf("2022-12-24")).iterator();iter.hasNext();) {
+		for(Iterator<Pole> iter = getReaderActivity(Date.valueOf("2022-12-24")).iterator();iter.hasNext();) {
 			System.out.println(iter.next().toString());
 		}
 //		Reader reader = getReaderByReaderId("P9LR13");

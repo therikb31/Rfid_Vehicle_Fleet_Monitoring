@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.database.ReaderDAO;
 import com.google.gson.Gson;
+import com.models.Pole;
 import com.models.Reader;
 
 /**
@@ -41,8 +42,8 @@ public class LeastUsedReaderAlert extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		if(session.getAttribute("isLoggedIn") != null) {
-			Vector<Reader> log = new Vector<Reader>();
-			Vector<Reader> res = ReaderDAO.getReaderActivityByDateRange(from_date,to_date);
+			Vector<Pole> log = new Vector<Pole>();
+			Vector<Pole> res = ReaderDAO.getReaderActivityByDateRange(from_date,to_date);
 			int min = res.elementAt(res.size()-1).getActivity();
 			for(int i=0;i<res.size();i++) {
 				if(res.elementAt(i).getActivity()==min) {

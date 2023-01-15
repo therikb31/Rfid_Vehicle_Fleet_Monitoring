@@ -19,7 +19,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Daily Log</h5>
-				<p class="card-text">Contains the Log Events of all the readers
+				<p class="card-text">Contains the Log Events of all the poles
 					combined on a given date.</p>
 				<form action="DailyLog" id="dailylog" method="post" target="_blank">
 					<label for="date">Enter Date:</label> <input type="date"
@@ -30,10 +30,9 @@ if (session.getAttribute("isLoggedIn") != null) {
 		</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Reader Activity Log By Date</h5>
-				<p class="card-text">Contains the Log Events of all the readers
-					combined on a given date.</p>
-				<form action="ReaderActivityLogByDate" id="dailylog7" method="post"
+				<h5 class="card-title">Pole Activity Log By Date</h5>
+				<p class="card-text">Contains the activity rate of all Poles for a specific date.</p>
+				<form action="PoleActivityLogByDate" id="dailylog7" method="post"
 					target="_blank">
 					<label for="date">Enter Date:</label> <input type="date"
 						name="date" id="date14" required><br> <br>
@@ -43,31 +42,30 @@ if (session.getAttribute("isLoggedIn") != null) {
 		</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Reader Log By Date</h5>
-				<p class="card-text">Contains the Log Events of all the readers
-					combined on a given date.</p>
-				<form action="ReaderLogByDate" id="dailylog3" method="post"
+				<h5 class="card-title">Pole Log By Date</h5>
+				<p class="card-text">Contains the Vehicles passing by a given pole for a specific date.</p>
+				<form action="PoleLogByDate" method="post"
 					target="_blank">
 					<label for="date">Enter Date:</label> <input type="date"
 						name="date" id="date4" required><br> <br> <label
-						for="date">Enter Reader ID:</label><select class="select-reader"
-						name="reader_id" splaceholder="Select Reader"></select><br> <br>
+						for="date">Enter Pole ID:</label><select class="select-reader"
+						name="pole_no" splaceholder="Select Reader"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
 		</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Reader Log By Date Range</h5>
+				<h5 class="card-title">Pole Log By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
-				<form action="ReaderLogByDateRange" id="dailylog4" method="post"
+				<form action="PoleLogByDateRange" id="dailylog4" method="post"
 					target="_blank">
 					<label for="date">From Date:</label> <input type="date"
 						name="from_date" id="date6" required><br> <br> <label
 						for="date">To Date:</label> <input type="date" name="to_date"
 						id="date7" required><br> <br> <label for="date">Enter
-						Reader ID:</label> <select class="select-reader" name="reader_id"
+						Reader ID:</label> <select class="select-reader" name="pole_no"
 						placeholder="Select Reader"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
@@ -127,10 +125,10 @@ if (session.getAttribute("isLoggedIn") != null) {
 		</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Reader Activity Log By Date Range</h5>
+				<h5 class="card-title">Pole Activity Log By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
-				<form action="ReaderActivityLogByDateRange" id="dailylog8"
+				<form action="PoleActivityLogByDateRange" id="dailylog8"
 					method="post" target="_blank">
 					<label for="date">From Date:</label> <input type="date"
 						name="from_date" id="date15" required><br> <br>

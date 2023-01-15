@@ -11,6 +11,7 @@ public class LogItem {
 	String vehicle_no;
 	String id;
 	String driven_by;
+	String pole_no;
 	public Date getDate() {
 		return date;
 	}
@@ -44,7 +45,8 @@ public class LogItem {
 	@Override
 	public String toString() {
 		return "LogItem [date=" + date + ", time=" + time + ", reader_id=" + reader_id + ", rfid=" + rfid
-				+ ", vehicle_no=" + vehicle_no + ", id=" + id + "]";
+				+ ", vehicle_no=" + vehicle_no + ", id=" + id + ", driven_by=" + driven_by + ", pole_no=" + pole_no
+				+ "]";
 	}
 	public String getId() {
 		return id;
@@ -57,6 +59,12 @@ public class LogItem {
 	}
 	public void setDriven_by(String driven_by) {
 		this.driven_by = driven_by;
+	}
+	public String getPole_no() {
+		return pole_no;
+	}
+	public void setPole_no(String pole_no) {
+		this.pole_no = pole_no;
 	}
 	
 	

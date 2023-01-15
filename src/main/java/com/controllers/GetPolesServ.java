@@ -1,30 +1,27 @@
-package com.alerts;
+package com.controllers;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
-import javax.servlet.RequestDispatcher;
+import java.util.Vector;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.database.ReaderDAO;
+import com.database.PoleDAO;
 import com.google.gson.Gson;
 import com.models.Pole;
-import com.models.Reader;
 
 /**
- * Servlet implementation class MostUsedReaderAlert
+ * Servlet implementation class GetPolesServ
  */
-public class MostUsedReaderAlert extends HttpServlet {
+public class GetPolesServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MostUsedReaderAlert() {
+    public GetPolesServ() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,20 +31,9 @@ public class MostUsedReaderAlert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		LocalDate ld = LocalDate.now();
-		Date from_date = Date.valueOf(ld.plusMonths(-1));
-		Date to_date = Date.valueOf(ld);
-		RequestDispatcher rd = null;
-		HttpSession session = request.getSession();
-		if(session.getAttribute("isLoggedIn") != null) {
-			Pole res = ReaderDAO.getReaderActivityByDateRange(from_date,to_date).elementAt(0);
-			String jsonData = new Gson().toJson(res);
-		    response.getWriter().print("{\"data\":"+jsonData+"}");
-		}
-		else {
-			rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
-		}
+		Vector<Pole> data = PoleDAO.getPoles();
+		String jsonData = new Gson().toJson(data);
+	    response.getWriter().print("{\"data\":"+jsonData+"}");
 	}
 
 	/**

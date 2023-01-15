@@ -33,21 +33,20 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.models.Employee;
 import com.models.Pole;
-import com.models.Reader;
 import com.properties.Constants;
 import com.utils.PDFHeaderFooter;
 import com.utils.Util;
 
 /**
- * Servlet implementation class ReaderActivityLogByDate
+ * Servlet implementation class PoleActivityLogByDateRange
  */
-public class ReaderActivityLogByDate extends HttpServlet {
+public class PoleActivityLogByDateRange extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReaderActivityLogByDate() {
+    public PoleActivityLogByDateRange() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -79,8 +78,8 @@ public class ReaderActivityLogByDate extends HttpServlet {
 		}
 		Employee emp = (Employee) session.getAttribute("employee");
 		try {
-			String date_in = request.getParameter("date");
-			Date date = Date.valueOf(date_in);
+			Date from_date = Date.valueOf(request.getParameter("from_date"));
+			Date to_date = Date.valueOf(request.getParameter("to_date"));
 			String filepath = Constants.PDF_FILENAME;
 			int marginLR = 30;
 			document = new Document(PageSize.A4, marginLR, marginLR, 50, 50);
@@ -97,10 +96,13 @@ public class ReaderActivityLogByDate extends HttpServlet {
 			Font bold = new Font(FontFamily.HELVETICA, 12, Font.BOLD);
 			if (pw.getCurrentPageNumber() == 1) {
 				document.add(new Phrase("Report Name:", regular));
-				document.add(new Phrase(" Date Specific Pole Activity Log\n", bold));
+				document.add(new Phrase(" Date Ranged Pole Activity Log\n", bold));
 
-				document.add(new Phrase("Report of Date: ", regular));
-				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(date) + "\n", bold));
+				document.add(new Phrase("Report from Date: ", regular));
+				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(from_date) + "\n", bold));
+				
+				document.add(new Phrase("Report to Date: ", regular));
+				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(to_date) + "\n", bold));
 
 				document.add(new Phrase("Date Generated: ", regular));
 				document.add(new Phrase(dateValue + "\n", bold));
@@ -117,7 +119,7 @@ public class ReaderActivityLogByDate extends HttpServlet {
 			table.setLockedWidth(true);
 			table.setWidths(new int[] { 1, 1, 3, 1, 1 ,1});
 			table.addCell(Util.getCell("Sl No", bold));
-			table.addCell(Util.getCell("Pole ID", bold));
+			table.addCell(Util.getCell("Pole No", bold));
 			table.addCell(Util.getCell("Address", bold));
 			table.addCell(Util.getCell("Latitude", bold));
 			table.addCell(Util.getCell("Longitude", bold));
@@ -125,7 +127,7 @@ public class ReaderActivityLogByDate extends HttpServlet {
 
 			table.setHeaderRows(1);
 			Font font = FontFactory.getFont(FontFactory.TIMES, 10);
-			Vector<Pole> log = PoleDAO.getPoleActivity(date);
+			Vector<Pole> log = PoleDAO.getPoleActivityByDateRange(from_date,to_date);
 			
 			int i;
 			for (i = 0; i < log.size(); i++) {
@@ -180,7 +182,6 @@ public class ReaderActivityLogByDate extends HttpServlet {
 				outputStream.close();
 			}
 		}
-
 	}
 
 }

@@ -14,11 +14,11 @@ public class Queries {
 	public static final String READER_RETRIEVE_ALL = "SELECT * FROM reader";
 	public static final String READER_CREATE = "CREATE TABLE `reader` (	`reader_id` VARCHAR(64),	`address` VARCHAR(256),	`lat` VARCHAR(32),	`lon` VARCHAR(32));";
 	public static final String READER_RETRIEVE_BY_READER_ID = "SELECT * FROM reader WHERE reader_id = ?";
-	public static final String READER_RETRIEVE_ACTIVITY_COUNT = "SELECT COUNT(*) FROM log WHERE reader_id = ? AND date = ?";
-	public static final String READER_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE = "SELECT COUNT(*) FROM log WHERE reader_id = ? AND date >= ? AND date <= ?";
+	public static final String READER_RETRIEVE_ACTIVITY_COUNT = "SELECT COUNT(*) FROM log WHERE pole_no = ? AND date = ?";
+	public static final String READER_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE = "SELECT COUNT(*) FROM log WHERE pole_no = ? AND date >= ? AND date <= ?";
 	
 	public static final String LOGITEM_CREATE = "CREATE TABLE `log` (`date` DATE, `time` TIME,`reader_id` VARCHAR(64),	`rfid` VARCHAR(64))";
-	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no,id,driven_by) VALUES (?,?,?,?,?,?,?)";
+	public static final String LOGITEM_INSERT = "INSERT INTO log (date,time,reader_id,rfid,vehicle_no,id,driven_by,pole_no) VALUES (?,?,?,?,?,?,?,?)";
 	public static final String LOGITEM_RETRIEVE_ALL = "SELECT * FROM log";
 	public static final String LOGITEM_RETRIEVE_BY_VEHICLE_NO = "SELECT * FROM log WHERE VEHICLE_NO = ?";
 	public static final String LOGITEM_RETRIEVE_BY_DATE = "SELECT * FROM log WHERE date = ?";
@@ -40,9 +40,16 @@ public class Queries {
 	public static final String LOG_DAILY_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date >= ? AND log.date <= ?";
 	public static final String LOG_READER_LOG_BY_DATE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ? AND reader.reader_id=?";
 	public static final String LOG_READER_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date >= ? AND log.date <= ? AND reader.reader_id=?";
+	public static final String LOG_POLE_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date >= ? AND log.date <= ? AND reader.pole_no=?";
 	public static final String LOG_VEHICLE_LOG_BY_DATE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ? AND vehicle.vehicle_no=?";
 	public static final String LOG_VEHICLE_LOG_BY_DATE_LIMIT = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ? AND vehicle.vehicle_no=? ORDER BY log.time DESC LIMIT 10";
 	public static final String LOG_VEHICLE_LOG_BY_DATE_RANGE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date >= ? AND log.date <= ? AND vehicle.vehicle_no=?";
+	
+	public static final String POLE_RETRIEVE_ALL = "SELECT * FROM pole";
+	public static final String LOG_POLE_LOG_BY_DATE = "SELECT reader.address, log.vehicle_no, vehicle.type_name, log.date,log.time FROM log INNER JOIN reader ON reader.reader_id = log.reader_id INNER JOIN vehicle ON vehicle.vehicle_no = log.vehicle_no WHERE log.date = ? AND reader.pole_no=?";
+	public static final String POLE_RETRIEVE_ACTIVITY_COUNT = "SELECT COUNT(*) FROM log WHERE pole_no = ? AND date = ?";
+	public static final String POLE_RETRIEVE_BY_POLE_NO = "SELECT * FROM pole WHERE pole_no = ?";
+	public static final String POLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE = "SELECT COUNT(*) FROM log WHERE pole_no = ? AND date >= ? AND date <= ?";
 	
 	
 	

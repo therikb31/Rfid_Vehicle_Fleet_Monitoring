@@ -201,6 +201,41 @@
 		<servlet-name>GetVehicleLogTodayServ</servlet-name>
 		<servlet-class>com.controllers.GetVehicleLogTodayServ</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetPolesServ</display-name>
+		<servlet-name>GetPolesServ</servlet-name>
+		<servlet-class>com.controllers.GetPolesServ</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PoleLogByDate</display-name>
+		<servlet-name>PoleLogByDate</servlet-name>
+		<servlet-class>com.reports.PoleLogByDate</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PoleActivityLogByDate</display-name>
+		<servlet-name>PoleActivityLogByDate</servlet-name>
+		<servlet-class>com.reports.PoleActivityLogByDate</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PoleLogByDateRange</display-name>
+		<servlet-name>PoleLogByDateRange</servlet-name>
+		<servlet-class>com.reports.PoleLogByDateRange</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PoleActivityLogByDateRange</display-name>
+		<servlet-name>PoleActivityLogByDateRange</servlet-name>
+		<servlet-class>com.reports.PoleActivityLogByDateRange</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogServ</servlet-name>
 		<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -312,6 +347,26 @@
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogTodayServ</servlet-name>
 		<url-pattern>/GetVehicleLogTodayServ</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetPolesServ</servlet-name>
+		<url-pattern>/GetPolesServ</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PoleLogByDate</servlet-name>
+		<url-pattern>/PoleLogByDate</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PoleActivityLogByDate</servlet-name>
+		<url-pattern>/PoleActivityLogByDate</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PoleLogByDateRange</servlet-name>
+		<url-pattern>/PoleLogByDateRange</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PoleActivityLogByDateRange</servlet-name>
+		<url-pattern>/PoleActivityLogByDateRange</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

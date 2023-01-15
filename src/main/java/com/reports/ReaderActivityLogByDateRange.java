@@ -31,6 +31,7 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.models.Employee;
+import com.models.Pole;
 import com.models.Reader;
 import com.properties.Constants;
 import com.utils.PDFHeaderFooter;
@@ -127,12 +128,12 @@ public class ReaderActivityLogByDateRange extends HttpServlet {
 
 			table.setHeaderRows(1);
 			Font font = FontFactory.getFont(FontFactory.TIMES, 10);
-			Vector<Reader> log = ReaderDAO.getReaderActivityByDateRange(from_date,to_date);
+			Vector<Pole> log = ReaderDAO.getReaderActivityByDateRange(from_date,to_date);
 			
 			int i;
 			for (i = 0; i < log.size(); i++) {
 				table.addCell(new Phrase(Integer.toString(i + 1), font));
-				table.addCell(new Phrase(log.elementAt(i).getReader_id(), font));
+				table.addCell(new Phrase(log.elementAt(i).getPole_no(), font));
 				table.addCell(new Phrase(log.elementAt(i).getAddress(), font));
 				table.addCell(new Phrase(log.elementAt(i).getLat(), font));
 				table.addCell(new Phrase(log.elementAt(i).getLon(), font));
