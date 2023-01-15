@@ -105,6 +105,8 @@ function setSidebarParams(data) {
 	}
 }
 function resetMap() {
+	map.setCenter(22.59,88.475);
+	map.setZoom(13.5);
 	document.getElementById("vehicle_no").innerHTML = "No vehicle selected";
 	document.getElementById("vehicle_type").innerHTML = "No vehicle selected";
 	document.getElementById("driver_name").innerHTML = "No vehicle selected";
@@ -126,7 +128,7 @@ function setVehicleInfo(vehicle_no) {
 			console.log(data);
 			document.getElementById("vehicle_no").innerHTML = data.vehicle_no;
 			document.getElementById("vehicle_type").innerHTML = data.type_name;
-			document.getElementById("driver_name").innerHTML = data.driven_by;
+			document.getElementById("driver_name").innerHTML = data.date_added;
 			document.getElementById("current_location").innerHTML = data.current_location;
 			document.getElementById("editDriverName").style.visibility = "visible";
 		});

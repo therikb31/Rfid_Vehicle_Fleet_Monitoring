@@ -7,7 +7,7 @@ public class Queries {
 	public static final String VEHICLE_RETRIEVE_BY_VEHICLE_NO = "SELECT * FROM vehicle where vehicle_no = ?";
 	public static final String VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE = "SELECT COUNT(*) FROM log WHERE vehicle_no = ? AND date = ?";
 	public static final String VEHICLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE = "SELECT COUNT(*) FROM log WHERE vehicle_no = ? AND date >= ? AND date <= ?";
-	public static final String VEHICLE_RETRIEVE_VEHICLE_CURRENT_LOCATION = "SELECT * FROM log WHERE vehicle_no=? AND date = ? ORDER BY date DESC Limit 1 ";
+	public static final String VEHICLE_RETRIEVE_VEHICLE_CURRENT_LOCATION = "SELECT * FROM log WHERE vehicle_no=? AND date = ? ORDER BY time DESC Limit 1 ";
 	public static final String VEHICLE_UPDATE_DRIVEN_BY = "UPDATE vehicle set driven_by = ? where vehicle_no = ?";
 	
 	public static final String READER_INSERT = "INSERT INTO reader(reader_id,address,lat,lon) VALUES (?,?,?,?)";
