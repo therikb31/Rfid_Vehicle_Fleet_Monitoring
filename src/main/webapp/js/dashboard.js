@@ -105,15 +105,15 @@ function setSidebarParams(data) {
 	}
 }
 function resetMap() {
-	map.setCenter(22.59,88.475);
-	map.setZoom(13.5);
 	document.getElementById("vehicle_no").innerHTML = "No vehicle selected";
 	document.getElementById("vehicle_type").innerHTML = "No vehicle selected";
 	document.getElementById("driver_name").innerHTML = "No vehicle selected";
 	document.getElementById("current_location").innerHTML = "No vehicle selected";
-	document.getElementById("editDriverName").style.visibility = "hidden";
+	//document.getElementById("editDriverName").style.visibility = "hidden";
 	document.getElementById("LogBody").innerHTML="";
 	jsMaps.api.removeMarkers(map);
+	map.setCenter(22.59,88.475);
+	map.setZoom(13.5);
 	plotMap();
 }
 function setVehicleInfo(vehicle_no) {
