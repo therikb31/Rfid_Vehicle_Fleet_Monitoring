@@ -57,8 +57,7 @@ public class DailyLog extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("/");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -71,9 +70,7 @@ public class DailyLog extends HttpServlet {
 		RequestDispatcher rd = null;
 		HttpSession session = request.getSession();
 		if(session.getAttribute("isLoggedIn") != "true") {
-			rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
-			return;
+			response.sendRedirect("/");
 		}
 		Employee emp = (Employee) session.getAttribute("employee");
 		String date_in = request.getParameter("date");

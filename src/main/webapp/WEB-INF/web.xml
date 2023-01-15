@@ -236,6 +236,13 @@
 		<servlet-name>PoleActivityLogByDateRange</servlet-name>
 		<servlet-class>com.reports.PoleActivityLogByDateRange</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetDailyLog</display-name>
+		<servlet-name>GetDailyLog</servlet-name>
+		<servlet-class>com.controllers.GetDailyLog</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogServ</servlet-name>
 		<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -367,6 +374,10 @@
 	<servlet-mapping>
 		<servlet-name>PoleActivityLogByDateRange</servlet-name>
 		<url-pattern>/PoleActivityLogByDateRange</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetDailyLog</servlet-name>
+		<url-pattern>/GetDailyLog</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

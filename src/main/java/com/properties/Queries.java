@@ -50,6 +50,7 @@ public class Queries {
 	public static final String POLE_RETRIEVE_ACTIVITY_COUNT = "SELECT COUNT(*) FROM log WHERE pole_no = ? AND date = ?";
 	public static final String POLE_RETRIEVE_BY_POLE_NO = "SELECT * FROM pole WHERE pole_no = ?";
 	public static final String POLE_RETRIEVE_ACTIVITY_COUNT_BY_DATE_RANGE = "SELECT COUNT(*) FROM log WHERE pole_no = ? AND date >= ? AND date <= ?";
+	public static final String EMPLOYEE_RETRIEVE_API_KEY = "SELECT * FROM employee where api_key = ?";
 	
 	
 	

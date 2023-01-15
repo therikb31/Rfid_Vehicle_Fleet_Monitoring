@@ -100,7 +100,7 @@ public class LogItemDAO {
 				log.setTime(rs.getTime("time"));
 				log.setReader_id(rs.getString("reader_id"));
 				log.setRfid(rs.getString("rfid"));
-				log.setDriven_by(rs.getString("driven_by"));
+//				log.setDriven_by(rs.getString("driven_by"));
 				log.setPole_no(rs.getString("pole_no"));
 				logs.add(log);
 			}

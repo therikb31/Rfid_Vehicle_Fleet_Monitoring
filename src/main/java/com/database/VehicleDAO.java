@@ -255,7 +255,7 @@ public class VehicleDAO {
 				data.setType_id(rs.getInt("type_id"));
 				data.setType_name(rs.getString("type_name"));
 				data.setDate_added(rs.getTimestamp("date_added"));
-				data.setDriven_by(rs.getString("driven_by"));
+//				data.setDriven_by(rs.getString("driven_by"));
 				result.add(data);
 			}
 			conn.close();

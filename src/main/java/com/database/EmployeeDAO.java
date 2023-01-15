@@ -12,6 +12,32 @@ import com.utils.DBConnector;
 import com.utils.Encryption;
 
 public class EmployeeDAO {
+	public static boolean checkApiKey(String api_key) {
+		Connection conn = null;
+		try {
+			conn = DBConnector.getConnection();
+			PreparedStatement ps = conn.prepareStatement(Queries.EMPLOYEE_RETRIEVE_API_KEY);
+			ps.setString(1, api_key);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return false;
+	}
 	public static void createEmployeeTab() {
 		Connection conn = null;
 		Statement stmt;
