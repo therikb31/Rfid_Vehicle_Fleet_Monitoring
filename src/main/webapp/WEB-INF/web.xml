@@ -243,6 +243,13 @@
 		<servlet-name>GetDailyLog</servlet-name>
 		<servlet-class>com.controllers.GetDailyLog</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetPoleActivityLog</display-name>
+		<servlet-name>GetPoleActivityLog</servlet-name>
+		<servlet-class>com.controllers.GetPoleActivityLog</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVehicleLogServ</servlet-name>
 		<url-pattern>/GetVehicleLogServ</url-pattern>
@@ -378,6 +385,10 @@
 	<servlet-mapping>
 		<servlet-name>GetDailyLog</servlet-name>
 		<url-pattern>/GetDailyLog</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetPoleActivityLog</servlet-name>
+		<url-pattern>/GetPoleActivityLog</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
