@@ -30,12 +30,17 @@ if (session.getAttribute("isLoggedIn") != null) {
 		</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Pole Activity Log By Date</h5>
-				<p class="card-text">Contains the activity rate of all Poles for a specific date.</p>
-				<form action="PoleActivityLogByDate" id="dailylog7" method="post"
+				<h5 class="card-title">Pole Log By Date Range</h5>
+				<p class="card-text">Contains the Log Events of all the readers
+					combined on a given date.</p>
+				<form action="PoleLogByDateRange" id="dailylog4" method="post"
 					target="_blank">
-					<label for="date">Enter Date:</label> <input type="date"
-						name="date" id="date14" required><br> <br>
+					<label for="date">From Date:</label> <input type="date"
+						name="from_date" id="date6" required><br> <br> <label
+						for="date">To Date:</label> <input type="date" name="to_date"
+						id="date7" required><br> <br> <label for="date">Enter
+						Reader ID:</label> <select class="select-reader" name="pole_no"
+						placeholder="Select Reader"></select><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
@@ -56,26 +61,6 @@ if (session.getAttribute("isLoggedIn") != null) {
 		</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Pole Log By Date Range</h5>
-				<p class="card-text">Contains the Log Events of all the readers
-					combined on a given date.</p>
-				<form action="PoleLogByDateRange" id="dailylog4" method="post"
-					target="_blank">
-					<label for="date">From Date:</label> <input type="date"
-						name="from_date" id="date6" required><br> <br> <label
-						for="date">To Date:</label> <input type="date" name="to_date"
-						id="date7" required><br> <br> <label for="date">Enter
-						Reader ID:</label> <select class="select-reader" name="pole_no"
-						placeholder="Select Reader"></select><br> <br>
-					<button class="btn btn-primary" type="submit">Submit</button>
-				</form>
-			</div>
-		</div>
-
-	</div>
-	<div class="row">
-		<div class="col card" style="width: 18rem; margin: 20px;">
-			<div class="card-body">
 				<h5 class="card-title">Daily Log By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
@@ -89,6 +74,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 				</form>
 			</div>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Vehicle Log By Date</h5>
@@ -125,34 +112,32 @@ if (session.getAttribute("isLoggedIn") != null) {
 		</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Pole Activity Log By Date Range</h5>
-				<p class="card-text">Contains the Log Events of all the readers
+				<h5 class="card-title">Vehicle Attendance By Date</h5>
+				<p class="card-text">Contains the Log Events of all the poles
 					combined on a given date.</p>
-				<form action="PoleActivityLogByDateRange" id="dailylog8"
-					method="post" target="_blank">
-					<label for="date">From Date:</label> <input type="date"
-						name="from_date" id="date15" required><br> <br>
-					<label for="date">To Date:</label> <input type="date"
-						name="to_date" id="date16" required><br> <br>
+				<form action="VehicleAttendanceByDate" id="dailylog7" method="post" target="_blank">
+					<label for="date">Enter Date:</label> <input type="date"
+						name="date" id="date13" required><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-3 card" style="width: 18rem; margin: 20px;">
+		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Log</h5>
+				<h5 class="card-title">Vehicle Attendance By Date Range</h5>
 				<p class="card-text">Contains the Log Events of all the readers
 					combined on a given date.</p>
-				<form action="LogByDate" id="dailylog8"
-					method="post" target="_blank">
-					<label for="date15">Date:</label> <input type="date"
-						name="date" id="date15" required><br><br>
+				<form action="VehicleAttendanceByDateRange" id="dailylog8" method="post"
+					target="_blank">
+					<label for="date">From Date:</label> <input type="date"
+						name="from_date" id="date14" required><br> <br> <label
+						for="date">To Date:</label> <input type="date" name="to_date"
+						id="date3" required><br> <br>
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</form>
 			</div>
 		</div>
+		
 	</div>
 </body>
 <script src="./js/bootstrap.bundle.min.js"></script>

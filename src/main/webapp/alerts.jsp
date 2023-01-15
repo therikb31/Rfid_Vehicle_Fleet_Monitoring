@@ -16,34 +16,177 @@ if (session.getAttribute("isLoggedIn") != null) {
 <%@ include file="./includes/navbar.jsp"%>
 </head>
 <body>
-	<%@ include file="./includes/loader.jsp"%>
-	<div class="row">
-		<div class="col-1 card"
-			style="width: 18rem; margin: 20px; padding: 0px;">
-			<h5 class="card-header">Most Used Reader</h5>
+<div class="row">
+		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<p class="card-text" id="mostUsedReader"></p>
+				<h5 class="card-title">Pole Activity Log By Date</h5>
+				<p class="card-text">Contains the activity rate of all Poles for a specific date.</p>
+					<button class="btn btn-primary" type="submit"
+					data-bs-toggle="modal" data-bs-target="#PoleActivityLogByDate">Submit</button>
+			</div>
+		</div>
+		<div class="modal fade" id="PoleActivityLogByDate" tabindex="-1"
+		aria-labelledby="addReaderModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Pole Activity Log By Date</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="AddVehicleServ" method="post">
+						<div class="form-outline mb-4">
+							<div class="row">
+								<div class="col-3">
+									<label for="enterdate">Enter Date:</label>
+								</div>
+								<div class="col-9">
+									<input type="date" name="date" id="date14" required>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row" id='leastUsedReader'></div>
-	<div class="row" id='mostActiveVehicle'></div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-		crossorigin="anonymous"></script>
-
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/alerts.js"></script>
+		<div class="col card" style="width: 18rem; margin: 20px;">
+			<div class="card-body">
+				<h5 class="card-title">Pole Activity Log By Date Range</h5>
+				<p class="card-text">Contains the Log Events of all the readers
+					combined on a given date.</p>
+					<button class="btn btn-primary" type="submit"
+					data-bs-toggle="modal" data-bs-target="#PoleActivityLogByDateRange">Submit</button>
+			</div>
+		</div>
+		<div class="modal fade" id="PoleActivityLogByDateRange" tabindex="-1"
+		aria-labelledby="addReaderModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Pole Activity Log By Date Range</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="AddVehicleServ" method="post">
+						<div class="form-outline mb-4">
+							<div class="row">
+								<div class="col-3">
+									<label for="enterdate">From Date:</label>
+								</div>
+								<div class="col-9">
+									<input type="date" name="date" id="date14" required>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-3">
+									<label for="enterdate">To Date:</label>
+								</div>
+								<div class="col-9">
+									<input type="date" name="date" id="date14" required>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="col card" style="width: 18rem; margin: 20px;">
+			<div class="card-body">
+				<h5 class="card-title">Vehicle Activity Log By Date</h5>
+				<p class="card-text">Contains the activity rate of all Poles for a specific date.</p>
+					<button class="btn btn-primary" type="submit"
+					data-bs-toggle="modal" data-bs-target="#VehicleActivityLogByDate">Submit</button>
+			</div>
+		</div>
+		<div class="modal fade" id="VehicleActivityLogByDate" tabindex="-1"
+		aria-labelledby="addReaderModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Vehicle Activity Log By Date</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="AddVehicleServ" method="post">
+						<div class="form-outline mb-4">
+							<div class="row">
+								<div class="col-3">
+									<label for="enterdate">Enter Date:</label>
+								</div>
+								<div class="col-9">
+									<input type="date" name="date" id="date14" required>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="col card" style="width: 18rem; margin: 20px;">
+			<div class="card-body">
+				<h5 class="card-title">Vehicle Activity Log By Date Range</h5>
+				<p class="card-text">Contains the Log Events of all the readers
+					combined on a given date.</p>
+					<button class="btn btn-primary" type="submit"
+					data-bs-toggle="modal" data-bs-target="#VehicleActivityLogByDateRange">Submit</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="VehicleActivityLogByDateRange" tabindex="-1"
+		aria-labelledby="addReaderModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Vehicle Activity Log By Date Range</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="AddVehicleServ" method="post">
+						<div class="form-outline mb-4">
+							<div class="row">
+								<div class="col-3">
+									<label for="enterdate">From Date:</label>
+								</div>
+								<div class="col-9">
+									<input type="date" name="date" id="date14" required>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-3">
+									<label for="enterdate">To Date:</label>
+								</div>
+								<div class="col-9">
+									<input type="date" name="date" id="date14" required>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <%
