@@ -350,7 +350,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Vehicle Attendance By Date Range</h5><br>
-				<p class="card-text">Contains the Log Events of all the vehicles
+				<p class="card-text">Contains the Attendance of all the vehicles
 					for a given date range.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#VehicleAttendanceByDateRange">Submit</button>
