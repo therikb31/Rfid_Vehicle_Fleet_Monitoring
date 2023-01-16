@@ -109,7 +109,7 @@ public class PoleLogByDateRange extends HttpServlet {
 				document.add(new Phrase("Report From Date: ", regular));
 				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(from_date) + "\n", bold));
 				
-				document.add(new Phrase("Report From Date: ", regular));
+				document.add(new Phrase("Report To Date: ", regular));
 				document.add(new Phrase(new SimpleDateFormat("dd/MM/yyyy").format(to_date) + "\n", bold));
 				
 				document.add(new Phrase("Date Generated: ", regular));

@@ -36,7 +36,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="AddVehicleServ" method="post">
+					<form action="PoleActivityLogByDate" method="post" target="_blank">
 						<div class="form-outline mb-4">
 							<div class="row">
 								<div class="col-3">
@@ -74,14 +74,14 @@ if (session.getAttribute("isLoggedIn") != null) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="AddVehicleServ" method="post">
+					<form action="PoleActivityLogByDateRange" method="post" target="_blank">
 						<div class="form-outline mb-4">
 							<div class="row">
 								<div class="col-3">
 									<label for="enterdate">From Date:</label>
 								</div>
 								<div class="col-9">
-									<input type="date" name="date" id="date14" required>
+									<input type="date" name="from_date" id="date14" required>
 								</div>
 							</div>
 							<br>
@@ -90,7 +90,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 									<label for="enterdate">To Date:</label>
 								</div>
 								<div class="col-9">
-									<input type="date" name="date" id="date14" required>
+									<input type="date" name="to_date" id="date14" required>
 								</div>
 							</div>
 						</div>
@@ -120,7 +120,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="AddVehicleServ" method="post">
+					<form action="VehicleActivityLogByDate" method="post" target="_blank">
 						<div class="form-outline mb-4">
 							<div class="row">
 								<div class="col-3">
@@ -159,14 +159,14 @@ if (session.getAttribute("isLoggedIn") != null) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="AddVehicleServ" method="post">
+					<form action="VehicleActivityLogByDateRange" method="post" target="_blank">
 						<div class="form-outline mb-4">
 							<div class="row">
 								<div class="col-3">
 									<label for="enterdate">From Date:</label>
 								</div>
 								<div class="col-9">
-									<input type="date" name="date" id="date14" required>
+									<input type="date" name="from_date" id="date14" required>
 								</div>
 							</div>
 							<br>
@@ -175,7 +175,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 									<label for="enterdate">To Date:</label>
 								</div>
 								<div class="col-9">
-									<input type="date" name="date" id="date14" required>
+									<input type="date" name="to_date" id="date14" required>
 								</div>
 							</div>
 						</div>
