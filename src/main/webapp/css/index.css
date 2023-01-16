@@ -1,0 +1,7 @@
+.text-white{
+	font-size: 0.8vw;
+}
+.navbar-brand{
+	display: flex;
+	justify-content: center;
+}
