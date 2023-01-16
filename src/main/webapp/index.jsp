@@ -37,7 +37,7 @@ body {
 		<!-- Image and text -->
 		<nav class="navbar navbar-dark bg-dark">
 			<a class="navbar-brand"
-				style="color: LightGray; margin-left: 380px; font-style: italic; font-weight: bold; letter-spacing: 3px;">
+				style="color: LightGray; margin-left: 380px; font-style: italic; font-weight: bold; letter-spacing: 3px; display:flex; justify-content: center;">
 				<img src="./static/nkda-logo.png" height="30"
 				class="d-inline-block align-top" alt="" style="margin-right: 15px;">
 				NKDA Solid Waste Vehicle Monitoring System <img
