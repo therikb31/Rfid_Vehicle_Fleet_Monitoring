@@ -97,7 +97,6 @@ public class DailyVehicleAttendenceMail {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

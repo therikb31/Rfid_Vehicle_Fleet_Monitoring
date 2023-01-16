@@ -41,7 +41,7 @@ public class Encryption
         }
     }  
     public static void main(String[] args) {
-    	String password = "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";
+    	String password = "Nkdaadmin3#";
     	System.out.println(encrypt(password));
     }
 }  
