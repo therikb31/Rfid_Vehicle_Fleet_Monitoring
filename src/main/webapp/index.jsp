@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="./css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/index.css">
 <title>NKDA</title>
 <style>
 .divider:after, .divider:before {
@@ -35,13 +36,13 @@ body {
 	<!-- Navbar -->
 	<section class="vh-100">
 		<!-- Image and text -->
-		<nav class="navbar navbar-dark bg-dark">
+		<nav class="navbar navbar-dark bg-dark d-flex justify-content-center" >
 			<a class="navbar-brand"
-				style="color: LightGray; margin-left: 380px; font-style: italic; font-weight: bold; letter-spacing: 3px; display:flex; justify-content: center;">
-				<img src="./static/nkda-logo.png" height="30"
+				style="color: LightGray; font-weight: bold; font-size: 1vw; letter-spacing: 3px;">
+				<img src="./static/nkda-logo.png" height="50"
 				class="d-inline-block align-top" alt="" style="margin-right: 15px;">
-				NKDA Solid Waste Vehicle Monitoring System <img
-				src="./static/nkda-logo2.png" height="30"
+				<h1>NKDA Solid Waste Vehicle Monitoring System</h1> 
+				<img src="./static/nkda-logo2.png" height="50"
 				class="d-inline-block align-top" alt="" style="margin-left: 15px;">
 			</a>
 		</nav>
@@ -72,7 +73,7 @@ body {
 
 							<div class="text-center text-lg-start mt-4 pt-2">
 								<button type="submit" class="btn btn-primary btn-lg"
-									style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+									style="padding-left: 2.5rem; padding-right: 2.5rem; font-size: 1vw;">Login</button>
 							</div>
 						</div>
 					</form>

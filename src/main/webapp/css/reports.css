@@ -11,3 +11,34 @@
 body{
 	overflow-x: hidden;
 }
+.card-title{
+	font-weight: bold;
+	font-size: 1vw;
+}
+.card-text{
+	font-size: 0.9vw;
+}
+.btn-primary{
+	font-size: 0.9vw;
+}
+.modal-title{
+	font-weight: bold;
+	font-size: 1vw;
+}
+.form-outline{
+	font-size: 0.8vw;
+}
+.card{
+	padding: 10px;
+	transition: 0.3s;
+}
+.card:hover{
+	box-shadow:  10px 10px 10px #0d6efd;
+}
+.modal-dialog{
+	display: flex;
+	justify-content: center;
+}
+.modal-content{
+	width: 30vw;
+}

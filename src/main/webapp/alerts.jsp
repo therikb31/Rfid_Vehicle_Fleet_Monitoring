@@ -14,13 +14,14 @@ if (session.getAttribute("isLoggedIn") != null) {
 
 <%@ include file="./includes/links.html"%>    
 <%@ include file="./includes/navbar.jsp"%>
+<link rel="stylesheet" href="/css/reports.css">
 </head>
 <body>
 <div class="row">
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Pole Activity Log By Date</h5>
-				<p class="card-text">Contains the activity rate of all Poles for a specific date.</p>
+				<h5 class="card-title">Pole Activity Log By Date</h5><br>
+				<p class="card-text">Contains the activity rate of all Poles for a specific date.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#PoleActivityLogByDate">Submit</button>
 			</div>
@@ -56,9 +57,9 @@ if (session.getAttribute("isLoggedIn") != null) {
 	</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Pole Activity Log By Date Range</h5>
+				<h5 class="card-title">Pole Activity Log By Date Range</h5><br>
 				<p class="card-text">Contains the Log Events of all the readers
-					combined on a given date.</p>
+					combined on a given date.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#PoleActivityLogByDateRange">Submit</button>
 			</div>
@@ -103,8 +104,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 	</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Vehicle Activity Log By Date</h5>
-				<p class="card-text">Contains the activity rate of all Poles for a specific date.</p>
+				<h5 class="card-title">Vehicle Activity Log By Date</h5><br>
+				<p class="card-text">Contains the activity rate of all Poles for a specific date.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#VehicleActivityLogByDate">Submit</button>
 			</div>
@@ -140,9 +141,9 @@ if (session.getAttribute("isLoggedIn") != null) {
 	</div>
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
-				<h5 class="card-title">Vehicle Activity Log By Date Range</h5>
+				<h5 class="card-title">Vehicle Activity Log By Date Range</h5><br>
 				<p class="card-text">Contains the Log Events of all the readers
-					combined on a given date.</p>
+					combined on a given date.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#VehicleActivityLogByDateRange">Submit</button>
 			</div>
