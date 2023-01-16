@@ -57,7 +57,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Pole Log By Date Range</h5><br>
-				<p class="card-text">Contains the Log Events of all the readers
+				<p class="card-text">Contains the Log Events of all the poles
 					combined on a given date.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#PoleLogByDateRange">Submit</button>
@@ -159,8 +159,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Daily Log By Date Range</h5><br>
-				<p class="card-text">Contains the Log Events of all the readers
-					combined on a given date.</p><br>
+				<p class="card-text">Contains the Log Events of all the poles
+					combined for a given date range.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#DailyLogByDateRange">Submit</button>
 			</div>
@@ -208,7 +208,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Vehicle Log By Date</h5><br>
-				<p class="card-text">Contains the Log Events of all the readers
+				<p class="card-text">Contains the Log Events of all the poles
 					combined on a given date.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#VehicleLogByDate">Submit</button>
@@ -255,8 +255,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Vehicle Log By Date Range</h5><br>
-				<p class="card-text">Contains the Log Events of all the readers
-					combined on a given date.</p><br>
+				<p class="card-text">Contains the Log Events of all the vehicles
+					on a given date.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#VehicleLogByDateRange">Submit</button>
 			</div>
@@ -311,8 +311,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Vehicle Attendance By Date</h5><br>
-				<p class="card-text">Contains the Log Events of all the poles
-					combined on a given date.</p><br>
+				<p class="card-text">Contains the Attendance of all the vehicles
+					on a given date.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#VehicleAttendanceByDate">Submit</button>
 
@@ -350,8 +350,8 @@ if (session.getAttribute("isLoggedIn") != null) {
 		<div class="col card" style="width: 18rem; margin: 20px;">
 			<div class="card-body">
 				<h5 class="card-title">Vehicle Attendance By Date Range</h5><br>
-				<p class="card-text">Contains the Log Events of all the readers
-					combined on a given date.</p><br>
+				<p class="card-text">Contains the Log Events of all the vehicles
+					for a given date range.</p><br>
 					<button class="btn btn-primary" type="submit"
 					data-bs-toggle="modal" data-bs-target="#VehicleAttendanceByDateRange">Submit</button>
 			</div>
