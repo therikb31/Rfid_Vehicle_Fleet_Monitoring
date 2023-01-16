@@ -95,7 +95,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 							<br>
 							<div class="row">
 								<div class="col-3">
-									<label for="enterdate">Enter Reader ID:</label>
+									<label for="enterdate">Enter Pole ID:</label>
 								</div>
 								<div class="col-9">
 									<select class="select-reader" name="pole_no" placeholder="Select Reader"></select>
@@ -141,7 +141,7 @@ if (session.getAttribute("isLoggedIn") != null) {
 							<br>
 							<div class="row">
 								<div class="col-3">
-									<label for="enterdate">Enter Reader ID:</label>
+									<label for="enterdate">Enter Pole ID:</label>
 								</div>
 								<div class="col-9">
 									<select class="select-reader" name="pole_no" placeholder="Select Reader"></select>
