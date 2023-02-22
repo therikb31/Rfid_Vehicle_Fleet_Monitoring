@@ -36,7 +36,7 @@ public class GetLogServ extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String api_key = request.getParameter("key");
 		if(EmployeeDAO.checkApiKey(api_key)) {			
-			Vector<LogItem> data = LogItemDAO.getLog();
+			Vector<LogItem> data = LogItemDAO.getLogWithoutReaderId();
 			String jsonData = new Gson().toJson(data);
 			response.getWriter().print("{\"data\":"+jsonData+"}");
 		}

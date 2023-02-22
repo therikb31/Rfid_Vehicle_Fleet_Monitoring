@@ -120,6 +120,40 @@ public class LogItemDAO {
 		}
 		return logs;
 	}
+	public static Vector<LogItem> getLogWithoutReaderId(){
+		Vector<LogItem> logs = new Vector<LogItem>();
+		Connection conn = null;
+		PreparedStatement ps;
+		try {
+			conn = DBConnector.getConnection();
+			ps = conn.prepareStatement(Queries.LOGITEM_RETRIEVE_ALL);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				LogItem log = new LogItem();
+				log.setDate(rs.getDate("date"));
+				log.setTime(rs.getTime("time"));
+//				log.setReader_id(rs.getString("reader_id"));
+				log.setRfid(rs.getString("rfid"));
+//				log.setDriven_by(rs.getString("driven_by"));
+				log.setPole_no(rs.getString("pole_no"));
+				logs.add(log);
+			}
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return logs;
+	}
 	@SuppressWarnings("unused")
 	private static void createTable() throws SQLException {
 		Connection conn = DBConnector.getConnection();
