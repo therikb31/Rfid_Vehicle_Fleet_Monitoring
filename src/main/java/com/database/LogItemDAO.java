@@ -120,17 +120,19 @@ public class LogItemDAO {
 		}
 		return logs;
 	}
-	public static Vector<LogItem> getLogWithoutReaderId(){
+	public static Vector<LogItem> getLogWithoutReaderId(Date from_date, Date to_date){
 		Vector<LogItem> logs = new Vector<LogItem>();
 		Connection conn = null;
 		PreparedStatement ps;
 		try {
 			conn = DBConnector.getConnection();
-			ps = conn.prepareStatement(Queries.LOGITEM_RETRIEVE_ALL);
+			ps = conn.prepareStatement(Queries.LOGITEM_RETRIEVE_BY_DATE_RANGE);
+			ps.setDate(1, from_date);
+			ps.setDate(2, to_date);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				LogItem log = new LogItem();
-				log.setDate(rs.getDate("date"));
+				log.setDate(Date.valueOf(rs.getString("date")));
 				log.setTime(rs.getTime("time"));
 //				log.setReader_id(rs.getString("reader_id"));
 				log.setRfid(rs.getString("rfid"));
@@ -201,8 +203,9 @@ public class LogItemDAO {
 	public static void main(String[] args) throws SQLException, InterruptedException {
 //		createTable();
 //		Vector<LogItem> logs = getLogByVehicleNo("WB03D2642");
-		
-		Vector<LogItem> logs = getLogByDate(Date.valueOf("2022-12-14"));
+		Date from_date = Date.valueOf("2023-02-01");
+		Date to_date = Date.valueOf("2023-02-02");		
+		Vector<LogItem> logs = getLogWithoutReaderId(from_date,to_date);
 		System.out.println(logs.size());
 		for(int i=0;i<logs.size();i++) {
 			System.out.println(logs.elementAt(i).toString());

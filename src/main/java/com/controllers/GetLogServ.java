@@ -1,9 +1,9 @@
 package com.controllers;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Vector;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +36,14 @@ public class GetLogServ extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String api_key = request.getParameter("key");
 		if(EmployeeDAO.checkApiKey(api_key)) {			
-			Vector<LogItem> data = LogItemDAO.getLogWithoutReaderId();
+			Date from_date = Date.valueOf(request.getParameter("from_date"));
+			Date to_date = Date.valueOf(request.getParameter("to_date"));
+			Vector<LogItem> data = LogItemDAO.getLogWithoutReaderId(from_date,to_date);
+			
+			System.out.println(data.size());
+			for(int i=0;i<data.size();i++) {
+				System.out.println(data.elementAt(i).toString());
+			}
 			String jsonData = new Gson().toJson(data);
 			response.getWriter().print("{\"data\":"+jsonData+"}");
 		}

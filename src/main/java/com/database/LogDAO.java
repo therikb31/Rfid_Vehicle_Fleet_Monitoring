@@ -329,7 +329,7 @@ public class LogDAO {
 	public static void main(String[] args) {
 //		String date = "2022-12-22";
 		Date fromParam = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-		Date toParam = Date.valueOf("2022-12-19");
+//		Date toParam = Date.valueOf("2022-12-19");
 //		String reader_id = "P9LR13";
 		for (Iterator<Log> iter = getVehicleLogByDate("WB08D3618", fromParam).iterator(); iter.hasNext();) {
 			System.out.println(iter.next().toString());
